@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f1e3adc5264b70bc02595d1f2df321, type: 3}
+  m_Name: AssetsStorage
+  m_EditorClassIdentifier: 
+  Entries:
+  - Name: Player
+    Reference: {fileID: 3488090816721635765, guid: e04992bd225b4a347ae6c76c4f2df8da, type: 3}
+    PooledCount: 2
+  - Name: MusicAudioSource
+    Reference: {fileID: 7789571584569683176, guid: 1dfd51d1c15cb084bb18df2e7d5d157d, type: 3}
+    PooledCount: 2
+  - Name: SoundAudioSource
+    Reference: {fileID: 7789571584569683176, guid: ed4639572f8a2f14ea719fc0dd4c6498, type: 3}
+    PooledCount: 10
