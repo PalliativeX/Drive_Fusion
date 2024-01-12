@@ -66,8 +66,8 @@ namespace Core.Sound
 
 		public void Dispose()
 		{
-			foreach (var source in Sources) 
-				Object.Destroy(source);
+			// foreach (var source in Sources) 
+				// Object.Destroy(source);
 			Sources = null;
 		}
 	}
