@@ -8,12 +8,11 @@ namespace Core.AssetManagement
 {
 	public sealed class AssetPool : IInitializable
 	{
-		private AssetsStorage _storage;
+		private readonly AssetsStorage _storage;
 
-		private Dictionary<string, Stack<GameObject>> _pooledObjects;
+		private readonly Dictionary<string, Stack<GameObject>> _pooledObjects;
 		
-		[Inject]
-		public void Construct(AssetsStorage storage)
+		public AssetPool(AssetsStorage storage)
 		{
 			_storage = storage;
 

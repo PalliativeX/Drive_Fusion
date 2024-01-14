@@ -5,10 +5,9 @@ namespace Core.Sound
 {
 	public class MainThemePlayInitializer : IInitializable
 	{
-		private World _world;
+		private readonly World _world;
 
-		[Inject]
-		public void Construct(World world) => _world = world;
+		public MainThemePlayInitializer(World world) => _world = world;
 
 		public void Initialize()
 		{

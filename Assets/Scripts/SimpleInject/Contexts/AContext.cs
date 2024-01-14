@@ -80,10 +80,8 @@ namespace SimpleInject
 
 			if (parentContext != null)
 				_container.AddParentContainer(parentContext.Container);
-
-			_container.Fill(_parentUnderSelf ? transform : null);
-
-			_container.ResolveBindings();
+			
+			_container.ResolveBindings(_parentUnderSelf ? transform : null);
 		}
 
 		private void InvokeInitializable()

@@ -5,10 +5,9 @@ namespace Core.AssetManagement
 {
 	public sealed class AssetProvider : IAssetProvider
 	{
-		private AssetPool _pool;
+		private readonly AssetPool _pool;
 
-		[Inject]
-		public void Construct(AssetPool pool) => _pool = pool;
+		public AssetProvider(AssetPool pool) => _pool = pool;
 
 		public (GameObject, bool isPooled) LoadAsset(string assetName)
 		{

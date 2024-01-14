@@ -15,11 +15,10 @@ namespace Core.Sound
 		
 		private Filter _filter;
 		
-		private MusicPlayer _musicPlayer;
-		private SoundPlayer _soundPlayer;
+		private readonly MusicPlayer _musicPlayer;
+		private readonly SoundPlayer _soundPlayer;
 
-		[Inject]
-		public void Construct(MusicPlayer musicPlayer, SoundPlayer soundPlayer)
+		public PlayInitializedClipSystem(MusicPlayer musicPlayer, SoundPlayer soundPlayer)
 		{
 			_soundPlayer = soundPlayer;
 			_musicPlayer = musicPlayer;

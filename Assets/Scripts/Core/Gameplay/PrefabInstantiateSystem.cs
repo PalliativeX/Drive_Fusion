@@ -17,10 +17,9 @@ namespace Core.Gameplay
 		
 		private Filter _filter;
 
-		private IAssetProvider _assetProvider;
+		private readonly IAssetProvider _assetProvider;
 
-		[Inject]
-		public void Construct(AssetProvider assetProvider)
+		public PrefabInstantiateSystem(AssetProvider assetProvider)
 		{
 			_assetProvider = assetProvider;
 		}

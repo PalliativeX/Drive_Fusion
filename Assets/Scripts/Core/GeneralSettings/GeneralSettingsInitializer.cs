@@ -10,12 +10,11 @@ namespace Core
 	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
 	public sealed class GeneralSettingsInitializer : IInitializer
 	{
-		private GeneralSettings _settings;
+		private readonly GeneralSettings _settings;
 
 		public World World { get; set; }
 
-		[Inject]
-		public void Construct(GeneralSettings settings) => 
+		public GeneralSettingsInitializer(GeneralSettings settings) => 
 			_settings = settings;
 
 		public void OnAwake()

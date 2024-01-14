@@ -10,14 +10,13 @@ namespace Core.Sound
 	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
 	public sealed class InitializeClipSystem : ISystem
 	{
-		public World World { get; set; }
+		private readonly SoundStorage _storage;
 		
 		private Filter _filter;
+		
+		public World World { get; set; }
 
-		private SoundStorage _storage;
-
-		[Inject]
-		public void Construct(SoundStorage storage)
+		public InitializeClipSystem(SoundStorage storage)
 		{
 			_storage = storage;
 		}

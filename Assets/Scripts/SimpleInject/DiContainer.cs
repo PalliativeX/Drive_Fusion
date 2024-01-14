@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
+using Utils;
 using Object = UnityEngine.Object;
 
 namespace SimpleInject
@@ -53,41 +54,6 @@ namespace SimpleInject
 			return data;
 		}
 
-		/// <summary>
-		/// Use BindingData to create all objects
-		/// </summary>
-		public void Fill(Transform parent)
-		{
-			foreach (BindingData bindingData in _bindingData)
-			{
-				Type type = bindingData.Type;
-				
-				object uniqueObject;
-
-				switch (bindingData.BindFrom) {
-					case BindFromType.FromNew:
-						uniqueObject = Activator.CreateInstance(type);
-						break;
-					case BindFromType.FromInstance:
-						uniqueObject = bindingData.Object;
-						break;
-					case BindFromType.FromComponentInPrefab:
-						uniqueObject = Object.Instantiate(bindingData.Object as Object, parent);
-						break;
-					default:
-						throw new ArgumentOutOfRangeException();
-				}
-
-				_uniqueObjects[type] = uniqueObject;
-
-				BindingType bindingType = bindingData.BindingType;
-				if (bindingType.HasFlag(BindingType.Self)) 
-					_dependencies[type] = uniqueObject;
-				if (bindingType.HasFlag(BindingType.Interfaces))
-					AddInterfaces(uniqueObject);
-			}
-		}
-
 		private void AddInterfaces(object dependency) {
 			Type[] interfaces = dependency.GetType().GetInterfaces();
 			foreach (Type @interface in interfaces)
@@ -97,7 +63,7 @@ namespace SimpleInject
 		private object FillInterfaceList(Type interfaceType, object value)
 		{
 			Type listType = typeof(List<>).MakeGenericType(interfaceType);
-
+			
 			object listInstance;
 			if (_dependencies.ContainsKey(listType))
 				listInstance = _dependencies[listType];
@@ -150,19 +116,95 @@ namespace SimpleInject
 			return false;
 		}
 
-		public void ResolveBindings()
+		// TODO: Add Lazy binding
+		public void ResolveBindings(Transform parent)
 		{
+			foreach (var bindingData in _bindingData) 
+				CreateBinding(bindingData, parent);
+
 			foreach ((Type type, object value) in _uniqueObjects)
 			{
 				MethodInfo[] methods = type.GetMethods();
 				foreach (MethodInfo method in methods) 
 					InvokeInjectMethods(method, value);
-
-				// ConstructorInfo constructorInfo = type.GetConstructors()[0];
-				// foreach (ParameterInfo parameterInfo in constructorInfo.GetParameters()) {
-				// Debug.Log(parameterInfo.ParameterType);
-				// }
 			}
+		}
+
+		private object CreateBinding(BindingData bindingData, Transform parent)
+		{
+			Type type = bindingData.Type;
+
+			// CONSIDER: Now this check enforces that there is only one unique object of a type
+			// So we can't pass 2 different BindingDatas with one unique type
+			if (_uniqueObjects.ContainsKey(type))
+				return _uniqueObjects[type];
+				
+			object uniqueObject;
+
+			switch (bindingData.BindFrom) {
+				case BindFromType.FromNew:
+					var constructorParameters = type.GetConstructors()[0].GetParameters();
+					if (constructorParameters.Length == 0)
+						uniqueObject = Activator.CreateInstance(type);
+					else
+					{
+						object[] parameterObjects = new object[constructorParameters.Length];
+						int index = 0;
+						foreach (ParameterInfo parameter in constructorParameters)
+						{
+							Type parameterType = parameter.ParameterType;
+
+							var parameterObject = GetBindingDependencyParameter(parameterType, parent);
+							if (parameterObject == null)
+								throw new Exception(
+									$"Binding dependency of {type} not found for Parameter type: " + parameterType
+								);
+							
+							parameterObjects[index++] = parameterObject;
+						}
+						
+						uniqueObject = Activator.CreateInstance(type, parameterObjects);
+					}
+					break;
+				case BindFromType.FromInstance:
+					uniqueObject = bindingData.Object;
+					break;
+				case BindFromType.FromComponentInPrefab:
+					uniqueObject = Object.Instantiate(bindingData.Object as Object, parent);
+					break;
+				default:
+					throw new ArgumentOutOfRangeException();
+			}
+
+			_uniqueObjects[type] = uniqueObject;
+
+			BindingType bindingType = bindingData.BindingType;
+			if (bindingType.HasFlag(BindingType.Self)) 
+				_dependencies[type] = uniqueObject;
+			if (bindingType.HasFlag(BindingType.Interfaces))
+				AddInterfaces(uniqueObject);
+
+			return uniqueObject;
+		}
+
+		private object GetBindingDependencyParameter(Type parameterType, Transform parent)
+		{
+			foreach (var searchContainer in _searchContainers) {
+				if (searchContainer._uniqueObjects.ContainsKey(parameterType))
+					return searchContainer._uniqueObjects[parameterType];
+
+				if (searchContainer == this)
+				{
+					var bindingDependency = _bindingData.FirstOrDefault(d => d.Type == parameterType);
+					if (bindingDependency != null)
+					{
+						object parameterObject = CreateBinding(bindingDependency, parent);
+						return parameterObject;
+					}
+				}
+			}
+
+			return null;
 		}
 
 		private void InvokeInjectMethods(MethodInfo method, object value) {
@@ -224,6 +266,13 @@ namespace SimpleInject
 		{
 			_parentContainers.Add(container);
 			_searchContainers.Add(container);
+		}
+
+		public void Log()
+		{
+			foreach (var (key, value) in _uniqueObjects) {
+				Debug.Log(key);
+			}
 		}
 	}
 }

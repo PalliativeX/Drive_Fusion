@@ -1,9 +1,6 @@
-﻿using Core.ECS;
-using Core.Infrastructure;
-using Core.SceneManagement.Services;
+﻿using Core.SceneManagement.Services;
 using Core.SceneManagement.Storages;
 using Scellecs.Morpeh;
-using SimpleInject;
 using Unity.IL2CPP.CompilerServices;
 using UnityEngine.SceneManagement;
 
@@ -14,13 +11,12 @@ namespace Core.Gameplay
 	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
 	public sealed class GameplaySceneInitializer : IInitializer
 	{
-		private SceneLoader _sceneLoader;
-		private SceneReferenceStorage _sceneReferences;
+		private readonly SceneLoader _sceneLoader;
+		private readonly SceneReferenceStorage _sceneReferences;
 		
 		public World World { get; set; }
 
-		[Inject]
-		public void Construct(SceneLoader sceneLoader, SceneReferenceStorage sceneReferences)
+		public GameplaySceneInitializer(SceneLoader sceneLoader, SceneReferenceStorage sceneReferences)
 		{
 			_sceneLoader = sceneLoader;
 			_sceneReferences = sceneReferences;

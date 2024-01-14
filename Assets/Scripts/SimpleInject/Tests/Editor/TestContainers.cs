@@ -13,20 +13,18 @@ namespace SimpleInject.Tests.Editor
 			var sceneContainer = new DiContainer();
 			sceneContainer.BindSelf<Child>().FromNew().AsSingle();
 
-			parentContainer.Fill(null);
-			parentContainer.ResolveBindings();
+			parentContainer.ResolveBindings(null);
 			
 			sceneContainer.AddParentContainer(parentContainer);
 			
-			sceneContainer.Fill(null);
-			sceneContainer.ResolveBindings();
+			sceneContainer.ResolveBindings(null);
 
 			var a = sceneContainer.Resolve<A>();
 			Assert.NotNull(a);
 		}
 	}
 
-	public class Child
+	internal class Child
 	{
 		[Inject]
 		public void Inject(A a)
