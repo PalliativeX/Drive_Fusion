@@ -41,6 +41,12 @@ namespace Core.Sound
 			}
 		}
 
+		public void SwitchSourcesActive(bool active)
+		{
+			foreach (AudioSource audioSource in Sources)
+				audioSource.mute = !active;
+		}
+
 		[CanBeNull]
 		protected AudioSource FindFree()
 		{

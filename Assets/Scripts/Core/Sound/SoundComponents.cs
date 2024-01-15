@@ -9,6 +9,15 @@ namespace Core.Sound
 	[Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
 	[Serializable]
+	public struct SoundActive : IComponent
+	{
+		public bool Value;
+	}
+	
+	[Il2CppSetOption(Option.NullChecks, false)]
+	[Il2CppSetOption(Option.ArrayBoundsChecks, false)]
+	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
+	[Serializable]
 	public struct Clip : IComponent
 	{
 		public SoundId Value;

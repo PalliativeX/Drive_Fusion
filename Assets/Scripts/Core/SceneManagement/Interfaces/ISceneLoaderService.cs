@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine.SceneManagement;
 
-namespace Core.SceneManagement.Interfaces
+namespace Core.SceneManagement
 {
 	public interface ISceneLoaderService
 	{

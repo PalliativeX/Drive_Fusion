@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections;
 using Core.Infrastructure;
-using Core.SceneManagement.Interfaces;
-using SimpleInject;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Core.SceneManagement.Services
+namespace Core.SceneManagement
 {
 	public sealed class SceneLoader : ISceneLoaderService
 	{
 		private const float MaxLoadProgress = 0.9f;
 
-		private CoroutineRunner _coroutineRunner;
+		private readonly CoroutineRunner _coroutineRunner;
 		
 		public bool IsLoadingScene { get; private set; }
 		public float CurrentLoadProgress { get; private set; }
@@ -24,8 +22,7 @@ namespace Core.SceneManagement.Services
 		
 		public event Action<float> LoadProgressChanged;
 
-		[Inject]
-		public void Construct(CoroutineRunner coroutineRunner) => 
+		public SceneLoader(CoroutineRunner coroutineRunner) => 
 			_coroutineRunner = coroutineRunner;
 
 		public void LoadLevel(SceneReference scene, bool setActive, LoadSceneMode loadMode = LoadSceneMode.Additive, Action onLoaded = null) => 

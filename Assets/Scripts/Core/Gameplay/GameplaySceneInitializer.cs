@@ -1,5 +1,5 @@
-﻿using Core.SceneManagement.Services;
-using Core.SceneManagement.Storages;
+﻿using Core.Levels.Storages;
+using Core.SceneManagement;
 using Scellecs.Morpeh;
 using Unity.IL2CPP.CompilerServices;
 using UnityEngine.SceneManagement;
@@ -12,19 +12,19 @@ namespace Core.Gameplay
 	public sealed class GameplaySceneInitializer : IInitializer
 	{
 		private readonly SceneLoader _sceneLoader;
-		private readonly SceneReferenceStorage _sceneReferences;
+		private readonly LevelsStorage _levels;
 		
 		public World World { get; set; }
 
-		public GameplaySceneInitializer(SceneLoader sceneLoader, SceneReferenceStorage sceneReferences)
+		public GameplaySceneInitializer(SceneLoader sceneLoader, LevelsStorage levels)
 		{
 			_sceneLoader = sceneLoader;
-			_sceneReferences = sceneReferences;
+			_levels = levels;
 		}
 
 		public void OnAwake()
 		{
-			_sceneLoader.LoadLevel(_sceneReferences.Gameplay, true, LoadSceneMode.Additive);
+			_sceneLoader.LoadLevel(_levels.GetScene(0), true, LoadSceneMode.Additive);
 		}
 
 		public void Dispose() { }

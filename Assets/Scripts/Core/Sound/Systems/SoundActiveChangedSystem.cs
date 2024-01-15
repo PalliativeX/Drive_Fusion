@@ -7,7 +7,7 @@ namespace Core.Sound
 	[Il2CppSetOption(Option.NullChecks, false)]
 	[Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
-	public sealed class PlayInitializedClipSystem : ISystem
+	public sealed class SoundActiveChangedSystem : ISystem
 	{
 		public World World { get; set; }
 		
@@ -16,7 +16,7 @@ namespace Core.Sound
 		private readonly MusicPlayer _musicPlayer;
 		private readonly SoundPlayer _soundPlayer;
 
-		public PlayInitializedClipSystem(MusicPlayer musicPlayer, SoundPlayer soundPlayer)
+		public SoundActiveChangedSystem(MusicPlayer musicPlayer, SoundPlayer soundPlayer)
 		{
 			_soundPlayer = soundPlayer;
 			_musicPlayer = musicPlayer;
@@ -25,9 +25,8 @@ namespace Core.Sound
 		public void OnAwake()
 		{
 			_filter = World.Filter
-				.With<Clip>()
-				.With<Initialized>()
-				.Without<Destroyed>()
+				.With<SoundActive>()
+				.With<Changed>()
 				.Build();
 		}
 
@@ -35,11 +34,11 @@ namespace Core.Sound
 		{
 			foreach (var entity in _filter)
 			{
-				var soundType = entity.GetComponent<SoundTypeComponent>();
-				if (soundType.Value == SoundType.Music)
-					_musicPlayer.Play(entity);
-				else
-					_soundPlayer.Play(entity);
+				bool soundActive = entity.GetComponent<SoundActive>().Value;
+				_musicPlayer.SwitchSourcesActive(soundActive);
+				_soundPlayer.SwitchSourcesActive(soundActive);
+
+				entity.RemoveComponent<Changed>();
 			}
 		}
 		
