@@ -1,4 +1,5 @@
 ﻿using TMPro;
+using UnityEngine.UI;
 
 namespace Core.UI.Menu
 {
@@ -7,5 +8,6 @@ namespace Core.UI.Menu
 		public TextMeshProUGUI LevelText;
 		public UiToggle SoundToggle;
 		public TextMeshProUGUI MoneyCountText;
+		public Button StartGameplayButton;
 	}
 }

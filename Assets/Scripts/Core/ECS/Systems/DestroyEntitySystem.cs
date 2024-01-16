@@ -1,5 +1,6 @@
 ﻿using Scellecs.Morpeh;
 using Unity.IL2CPP.CompilerServices;
+using UnityEngine;
 
 namespace Core.ECS
 {
@@ -19,8 +20,18 @@ namespace Core.ECS
 
 		public void OnUpdate(float deltaTime)
 		{
-			foreach (var entity in _filter) 
+			foreach (var entity in _filter)
+			{
+				if (entity.Has<View>())
+				{
+					GameObject obj = entity.GetComponent<View>().Reference;
+					var baseBehaviour = obj.GetComponent<BaseEcsBehaviour>();
+					if (baseBehaviour)
+						baseBehaviour.Unlink();
+				}
+
 				World.RemoveEntity(entity);
+			}
 		}
 		
 		public void Dispose() { }

@@ -29,7 +29,7 @@ namespace Core.SceneManagement
 			_coroutineRunner.StartCoroutine(LoadSceneCoroutine(scene, setActive, loadMode, onLoaded));
 
 		public void UnloadLevel(SceneReference scene) => 
-			_coroutineRunner.StopCoroutine(UnloadSceneCoroutine(scene));
+			_coroutineRunner.StartCoroutine(UnloadSceneCoroutine(scene));
 
 		private IEnumerator LoadSceneCoroutine(
 			SceneReference sceneReference,

@@ -1,5 +1,7 @@
 ﻿using Core.AssetManagement;
 using Core.Currency;
+using Core.Infrastructure.GameFsm;
+using Core.Levels;
 using Core.SceneManagement;
 using Core.Sound;
 using Scellecs.Morpeh;
@@ -23,6 +25,10 @@ namespace Core.Infrastructure.Installers
 			Container.BindInterfacesAndSelf<MoneyManager>().FromNew().AsSingle();
 			
 			InstallSound();
+
+			InstallGameStateMachine();
+
+			InstallLevels();
 		}
 
 		private void InstallSound()
@@ -35,6 +41,22 @@ namespace Core.Infrastructure.Installers
 			Container.BindInterfacesAndSelf<MainThemePlayInitializer>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<PlayInitializedClipSystem>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<SoundActiveChangedSystem>().FromNew().AsSingle();
+		}
+
+		private void InstallGameStateMachine()
+		{
+			Container.BindInterfacesAndSelf<GameStateMachine>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<LoadProgressState>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<InitializeGlobalProgressState>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<LoadLevelState>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<InitializeGameplayProgressState>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<MenuState>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<GameplayState>().FromNew().AsSingle();
+		}
+
+		private void InstallLevels()
+		{
+			Container.BindInterfacesAndSelf<LevelsHelper>().FromNew().AsSingle();
 		}
 	}
 }

@@ -1,8 +1,7 @@
-﻿using Core.Levels.Storages;
-using Core.SceneManagement;
+using Core.CameraLogic;
+using Core.ECS;
 using Scellecs.Morpeh;
 using Unity.IL2CPP.CompilerServices;
-using UnityEngine.SceneManagement;
 
 namespace Core.Gameplay
 {
@@ -11,22 +10,32 @@ namespace Core.Gameplay
 	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
 	public sealed class GameplaySceneInitializer : IInitializer
 	{
-		private readonly SceneLoader _sceneLoader;
-		private readonly LevelsStorage _levels;
-		
 		public World World { get; set; }
-
-		public GameplaySceneInitializer(SceneLoader sceneLoader, LevelsStorage levels)
-		{
-			_sceneLoader = sceneLoader;
-			_levels = levels;
-		}
 
 		public void OnAwake()
 		{
-			_sceneLoader.LoadLevel(_levels.GetScene(0), true, LoadSceneMode.Additive);
+			CreatePlayer(EPlayerType.Human);
+			CreatePlayer(EPlayerType.AI);
+
+			CreateCamera();
 		}
 
 		public void Dispose() { }
+
+		private void CreatePlayer(EPlayerType type)
+		{
+			Entity player = World.CreateEntity();
+			player.SetComponent(new PlayerType { Value = type });
+			player.AddPrefab("Player");
+			
+			if (type == EPlayerType.Human)
+				player.SetComponent(new CameraTarget());
+		}
+
+		private void CreateCamera()
+		{
+			Entity cameraEntity = World.CreateEntity();
+			cameraEntity.AddPrefab("Camera");
+		}
 	}
 }

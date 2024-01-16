@@ -20,13 +20,19 @@ namespace Core.UI.Menu
 			View.SoundToggle.SwitchActive(_model.IsSoundActive());
 			View.SoundToggle.Button.onClick.AddListener(ToggleSoundActive);
 			
+			View.StartGameplayButton.onClick.AddListener(_model.StartPlaying);
+			
 			UpdateMoney(_moneyManager.Money);
 			_moneyManager.MoneyChanged += UpdateMoney;
+			
+			View.LevelText.SetText($"Level {_model.GetCurrentLevel()}");
 		}
 
 		protected override void OnClose()
 		{
 			View.SoundToggle.Button.onClick.RemoveListener(ToggleSoundActive);
+			
+			View.StartGameplayButton.onClick.RemoveListener(_model.StartPlaying);
 			
 			_moneyManager.MoneyChanged -= UpdateMoney;
 		}

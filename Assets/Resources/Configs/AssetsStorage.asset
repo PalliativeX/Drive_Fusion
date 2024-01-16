@@ -25,3 +25,6 @@ MonoBehaviour:
   - Name: Menu
     Reference: {fileID: 3771875333702981443, guid: e12664ddd66c0d14db19491350d79e24, type: 3}
     PooledCount: 0
+  - Name: Camera
+    Reference: {fileID: 5107067610117800399, guid: 57ab2d0ed7ff23e4a8fc362c5c56d744, type: 3}
+    PooledCount: 0

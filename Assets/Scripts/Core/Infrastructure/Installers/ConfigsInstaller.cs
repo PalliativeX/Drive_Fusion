@@ -10,14 +10,14 @@ namespace Core.Infrastructure.Installers
 	{
 		[SerializeField] private CoroutineRunner _coroutineRunner;
 		[SerializeField] private AssetsStorage _assets;
-		[SerializeField] private LevelsStorage _levelses;
+		[SerializeField] private LevelsStorage _levels;
 		[SerializeField] private GeneralSettings _generalSettings;
 		[SerializeField] private SoundStorage _soundStorage;
 		
 		public override void InstallBindings()
 		{
 			Container.BindSelf<AssetsStorage>().FromInstance(_assets).AsSingle();
-			Container.BindSelf<LevelsStorage>().FromInstance(_levelses).AsSingle();
+			Container.BindSelf<LevelsStorage>().FromInstance(_levels).AsSingle();
 			Container.BindSelf<GeneralSettings>().FromInstance(_generalSettings).AsSingle();
 			Container.BindSelf<SoundStorage>().FromInstance(_soundStorage).AsSingle();
 			Container.BindSelf<CoroutineRunner>().FromComponentInNewPrefab(_coroutineRunner).AsSingle();

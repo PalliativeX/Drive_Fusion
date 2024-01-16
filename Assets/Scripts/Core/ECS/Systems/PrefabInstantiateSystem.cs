@@ -1,10 +1,9 @@
 ﻿using Core.AssetManagement;
-using Core.ECS;
 using Scellecs.Morpeh;
 using Unity.IL2CPP.CompilerServices;
 using UnityEngine;
 
-namespace Core.Gameplay
+namespace Core.ECS
 {
 	[Il2CppSetOption(Option.NullChecks, false)]
 	[Il2CppSetOption(Option.ArrayBoundsChecks, false)]
@@ -38,6 +37,10 @@ namespace Core.Gameplay
 				entity.SetComponent(new View { Reference = instantiated });
 				if (isPooled)
 					entity.SetComponent(new Pooled());
+
+				var baseBehaviour = instantiated.GetComponent<BaseEcsBehaviour>();
+				if (baseBehaviour) 
+					baseBehaviour.Link(entity);
 
 				entity.RemoveComponent<Prefab>();
 			}
