@@ -1,5 +1,9 @@
 ﻿using Core.Currency;
+using Core.Gameplay;
+using Core.Infrastructure.GameFsm;
+using Core.InputLogic;
 using Core.Levels;
+using Scellecs.Morpeh;
 using SimpleInject;
 using UnityEngine;
 
@@ -10,11 +14,19 @@ namespace Debugging
 	{
 		private readonly MoneyManager _moneyManager;
 		private readonly LevelsHelper _levelHelper;
+		private readonly World _world;
+		private readonly GameStateMachine _gameFsm;
 
-		public HotkeyProcessor(MoneyManager moneyManager, LevelsHelper levelHelper)
+		private Filter _playerFilter;
+
+		public HotkeyProcessor(MoneyManager moneyManager, LevelsHelper levelHelper, World world, GameStateMachine gameFsm)
 		{
 			_moneyManager = moneyManager;
 			_levelHelper = levelHelper;
+			_world = world;
+			_gameFsm = gameFsm;
+
+			_playerFilter = _world.Filter.With<HumanPlayer>().Build();
 		}
 
 		public void Tick()
@@ -26,6 +38,27 @@ namespace Debugging
 				_levelHelper.NextLevel();
 			if (Input.GetKeyDown(KeyCode.R)) 
 				_levelHelper.RestartLevel();
+
+			if (_gameFsm.ActiveState != GameStateType.Gameplay)
+				return;
+			
+			Entity player = _playerFilter.First();
+			HandlePlayerInput(player);
+		}
+
+		private void HandlePlayerInput(Entity player)
+		{
+			Vector3 movementInput = Vector3.zero;
+			if (Input.GetKey(KeyCode.A))
+				movementInput.x = -1f;
+			else if (Input.GetKey(KeyCode.D)) 
+				movementInput.x = 1f;
+
+			if (movementInput != Vector3.zero)
+			{
+				ref MovementInput input = ref player.GetComponent<MovementInput>();
+				input.Value = movementInput;
+			}
 		}
 	}
 #else

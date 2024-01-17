@@ -21,7 +21,8 @@ namespace Core.Infrastructure.Installers
 			Container.BindInterfacesAndSelf<AssetProvider>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<SceneLoader>().FromNew().AsSingle();
 			
-			
+			Container.BindInterfacesAndSelf<GeneralSettingsInitializer>().FromNew().AsSingle();
+
 			Container.BindInterfacesAndSelf<MoneyManager>().FromNew().AsSingle();
 			
 			InstallSound();

@@ -28,3 +28,6 @@ MonoBehaviour:
   - Name: Camera
     Reference: {fileID: 5107067610117800399, guid: 57ab2d0ed7ff23e4a8fc362c5c56d744, type: 3}
     PooledCount: 0
+  - Name: CameraTarget
+    Reference: {fileID: 273698424919477787, guid: 4b06b2afded3bc14faa35728873284a7, type: 3}
+    PooledCount: 0
