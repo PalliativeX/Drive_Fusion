@@ -38,6 +38,8 @@ namespace Core.ECS
 				if (isPooled)
 					entity.SetComponent(new Pooled());
 
+				SetInitialTransform(instantiated, entity);
+
 				var baseBehaviour = instantiated.GetComponent<BaseEcsBehaviour>();
 				if (baseBehaviour) 
 					baseBehaviour.Link(entity);
@@ -45,7 +47,15 @@ namespace Core.ECS
 				entity.RemoveComponent<Prefab>();
 			}
 		}
-		
+
 		public void Dispose() { }
+
+		private void SetInitialTransform(GameObject instantiated, Entity entity) {
+			Transform transform = instantiated.transform;
+			if (entity.Has<Position>())
+				transform.position = entity.GetComponent<Position>().Value;
+			if (entity.Has<Rotation>())
+				transform.rotation = entity.GetComponent<Rotation>().Quaternion;
+		}
 	}
 }

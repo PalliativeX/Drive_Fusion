@@ -1,16 +1,20 @@
 ﻿using Core.AssetManagement;
 using Core.Currency;
+using Core.Gameplay;
 using Core.Infrastructure.GameFsm;
 using Core.Levels;
 using Core.SceneManagement;
 using Core.Sound;
 using Scellecs.Morpeh;
 using SimpleInject;
+using UnityEngine;
 
 namespace Core.Infrastructure.Installers
 {
 	public sealed class ProjectInstaller : MonoInstaller
 	{
+		[SerializeField] private PoolContainer _poolContainer;
+		
 		public override void InstallBindings()
 		{
 			Container.BindSelf<World>().FromInstance(World.Default).AsSingle();
@@ -19,7 +23,9 @@ namespace Core.Infrastructure.Installers
 
 			Container.BindInterfacesAndSelf<AssetPool>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<AssetProvider>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<PoolContainer>().FromComponentInNewPrefab(_poolContainer).AsSingle();
 			Container.BindInterfacesAndSelf<SceneLoader>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<GameParentProvider>().FromNew().AsSingle();
 			
 			Container.BindInterfacesAndSelf<GeneralSettingsInitializer>().FromNew().AsSingle();
 

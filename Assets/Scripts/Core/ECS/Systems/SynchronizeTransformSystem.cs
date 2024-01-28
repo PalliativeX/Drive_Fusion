@@ -19,6 +19,7 @@ namespace Core.ECS
 				.With<View>()
 				.With<Position>()
 				.With<Rotation>()
+				.Without<TransformUpdatesPosition>()
 				.Build();
 		}
 

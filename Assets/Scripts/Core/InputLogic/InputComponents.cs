@@ -20,13 +20,4 @@ namespace Core.InputLogic
 	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
 	[Serializable]
 	public struct MovementInputBlocked : IComponent { }
-	
-	[Il2CppSetOption(Option.NullChecks, false)]
-	[Il2CppSetOption(Option.ArrayBoundsChecks, false)]
-	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
-	[Serializable]
-	public struct ActionInput : IComponent
-	{
-		public ActionType Value;
-	}
 }

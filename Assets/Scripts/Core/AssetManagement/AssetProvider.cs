@@ -1,4 +1,4 @@
-﻿using SimpleInject;
+﻿using Core.Gameplay;
 using UnityEngine;
 
 namespace Core.AssetManagement
@@ -6,12 +6,17 @@ namespace Core.AssetManagement
 	public sealed class AssetProvider : IAssetProvider
 	{
 		private readonly AssetPool _pool;
+		private readonly GameParentProvider _parentProvider;
 
-		public AssetProvider(AssetPool pool) => _pool = pool;
+		public AssetProvider(AssetPool pool, GameParentProvider parentProvider)
+		{
+			_pool = pool;
+			_parentProvider = parentProvider;
+		}
 
 		public (GameObject, bool isPooled) LoadAsset(string assetName)
 		{
-			(GameObject instantiated, bool isPooled) = _pool.Get(assetName, null);
+			(GameObject instantiated, bool isPooled) = _pool.Get(assetName, _parentProvider.Parent);
 			instantiated.SetActive(true);
 			return (instantiated, isPooled);
 		}

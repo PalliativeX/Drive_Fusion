@@ -9,12 +9,14 @@ namespace Core.AssetManagement
 	public sealed class AssetPool : IInitializable
 	{
 		private readonly AssetsStorage _storage;
+		private readonly PoolContainer _poolContainer;
 
 		private readonly Dictionary<string, Stack<GameObject>> _pooledObjects;
 		
-		public AssetPool(AssetsStorage storage)
+		public AssetPool(AssetsStorage storage, PoolContainer poolContainer)
 		{
 			_storage = storage;
+			_poolContainer = poolContainer;
 
 			_pooledObjects = new Dictionary<string, Stack<GameObject>>();
 		}
@@ -27,7 +29,7 @@ namespace Core.AssetManagement
 
 				for (int i = 0; i < entry.PooledCount; i++)
 				{
-					GameObject instantiated = Instantiate(entry.Name);
+					GameObject instantiated = Instantiate(entry.Name, _poolContainer.Transform);
 					instantiated.SetActive(false);
 					stack.Push(instantiated);
 				}
@@ -46,7 +48,11 @@ namespace Core.AssetManagement
 			{
 				isPooled = true;
 				if (_pooledObjects[assetName].Count > 0)
-					return (_pooledObjects[assetName].Pop(), true);
+				{
+					var pooled = _pooledObjects[assetName].Pop();
+					pooled.transform.SetParent(parent, false);
+					return (pooled, true);
+				}
 			}
 
 			return (Instantiate(assetName, parent), isPooled);

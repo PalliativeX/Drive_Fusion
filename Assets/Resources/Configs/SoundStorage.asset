@@ -14,9 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sounds:
   - Id: 0
-    Clip: {fileID: 8300000, guid: 65fdd025aa9a6544ea8822180637517d, type: 3}
+    Clip: {fileID: 8300000, guid: f96668c903201ef4bb695e07f77928a8, type: 3}
     IsLooped: 1
-    Volume: 1
+    Volume: 0.4
+    Pitch: 1
+  - Id: 1
+    Clip: {fileID: 8300000, guid: 19a33ca2158daff4ea10d262d4f8e8b3, type: 3}
+    IsLooped: 1
+    Volume: 0.225
     Pitch: 1
   Sources:
   - Type: 0

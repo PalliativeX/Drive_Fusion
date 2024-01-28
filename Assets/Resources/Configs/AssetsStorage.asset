@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Entries:
   - Name: Player
-    Reference: {fileID: 3488090816721635765, guid: e04992bd225b4a347ae6c76c4f2df8da, type: 3}
-    PooledCount: 2
+    Reference: {fileID: 8178125761769540529, guid: d09f06e1d31ffa840a5f47f39c85f826, type: 3}
+    PooledCount: 1
   - Name: MusicAudioSource
     Reference: {fileID: 7789571584569683176, guid: 1dfd51d1c15cb084bb18df2e7d5d157d, type: 3}
     PooledCount: 2

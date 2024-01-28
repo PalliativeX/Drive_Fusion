@@ -25,4 +25,10 @@ namespace Core.ECS
 		public Quaternion Quaternion => Quaternion.Euler(Value);
 		public Vector3 Direction => Quaternion.Euler(Value) * Vector3.forward;
 	}
+	
+	[Il2CppSetOption(Option.NullChecks, false)]
+	[Il2CppSetOption(Option.ArrayBoundsChecks, false)]
+	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
+	[Serializable]
+	public struct TransformUpdatesPosition : IComponent { }
 }

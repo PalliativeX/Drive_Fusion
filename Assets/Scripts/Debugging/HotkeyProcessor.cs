@@ -49,11 +49,8 @@ namespace Debugging
 		private void HandlePlayerInput(Entity player)
 		{
 			Vector3 movementInput = Vector3.zero;
-			if (Input.GetKey(KeyCode.A))
-				movementInput.x = -1f;
-			else if (Input.GetKey(KeyCode.D)) 
-				movementInput.x = 1f;
-
+			movementInput.x = Input.GetAxis("Horizontal");
+			movementInput.z = Input.GetAxis("Vertical");
 			if (movementInput != Vector3.zero)
 			{
 				ref MovementInput input = ref player.GetComponent<MovementInput>();

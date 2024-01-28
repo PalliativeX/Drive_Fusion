@@ -1,4 +1,5 @@
 ﻿using Core.ECS;
+using Core.Gameplay;
 using Scellecs.Morpeh;
 using Unity.IL2CPP.CompilerServices;
 using UnityEngine;
@@ -18,7 +19,7 @@ namespace Core.CameraLogic
 		public void OnAwake()
 		{
 			_cameraFilter = World.Filter.With<ActualCamera>().Without<Link>().Build();
-			_cameraTargetFilter = World.Filter.With<CameraTarget>().With<View>().Build();
+			_cameraTargetFilter = World.Filter.With<CameraTarget>().With<CameraTargetTransform>().With<View>().Build();
 		}
 
 		public void OnUpdate(float deltaTime)
@@ -31,7 +32,7 @@ namespace Core.CameraLogic
 			if (cameraTarget == null)
 				return;
 
-			Transform targetTransform = cameraTarget.GetComponent<View>().Reference.transform;
+			Transform targetTransform = cameraTarget.GetComponent<CameraTargetTransform>().Reference.transform;
 
 			ref var virtualCamera = ref camera.GetComponent<ActualCamera>().Reference;
 			virtualCamera.Follow = targetTransform;

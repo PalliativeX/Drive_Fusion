@@ -800,7 +800,7 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 1
   scriptingDefineSymbols:
-    WebGL: ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1;ODIN_INSPECTOR_EDITOR_ONLY;MORPEH
+    WebGL: ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1;ODIN_INSPECTOR_EDITOR_ONLY;MORPEH;MORPEH_BURST
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
