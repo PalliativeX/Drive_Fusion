@@ -18,13 +18,16 @@ namespace Core.UI
 			
 			InstallPanels();
 			
-			Container.BindInterfacesAndSelf<MenuPanelInitializer>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<PanelByStateInitializer>().FromNew().AsSingle();
 		}
 
 		private void InstallPanels()
 		{
 			Container.BindInterfacesAndSelf<MenuPresenter>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<MenuModel>().FromNew().AsSingle();
+			
+			Container.BindInterfacesAndSelf<GamePresenter>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<GameModel>().FromNew().AsSingle();
 		}
 	}
 }

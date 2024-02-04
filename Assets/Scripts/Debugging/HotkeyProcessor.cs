@@ -1,7 +1,6 @@
 ﻿using Core.Currency;
 using Core.Gameplay;
 using Core.Infrastructure.GameFsm;
-using Core.InputLogic;
 using Core.Levels;
 using Scellecs.Morpeh;
 using SimpleInject;
@@ -42,20 +41,7 @@ namespace Debugging
 			if (_gameFsm.ActiveState != GameStateType.Gameplay)
 				return;
 			
-			Entity player = _playerFilter.First();
-			HandlePlayerInput(player);
-		}
-
-		private void HandlePlayerInput(Entity player)
-		{
-			Vector3 movementInput = Vector3.zero;
-			movementInput.x = Input.GetAxis("Horizontal");
-			movementInput.z = Input.GetAxis("Vertical");
-			if (movementInput != Vector3.zero)
-			{
-				ref MovementInput input = ref player.GetComponent<MovementInput>();
-				input.Value = movementInput;
-			}
+			// Entity player = _playerFilter.First();
 		}
 	}
 #else

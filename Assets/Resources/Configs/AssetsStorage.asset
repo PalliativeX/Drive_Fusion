@@ -22,12 +22,15 @@ MonoBehaviour:
   - Name: SoundAudioSource
     Reference: {fileID: 7789571584569683176, guid: ed4639572f8a2f14ea719fc0dd4c6498, type: 3}
     PooledCount: 10
-  - Name: Menu
-    Reference: {fileID: 3771875333702981443, guid: e12664ddd66c0d14db19491350d79e24, type: 3}
-    PooledCount: 0
   - Name: Camera
     Reference: {fileID: 5107067610117800399, guid: 57ab2d0ed7ff23e4a8fc362c5c56d744, type: 3}
     PooledCount: 0
   - Name: CameraTarget
     Reference: {fileID: 273698424919477787, guid: 4b06b2afded3bc14faa35728873284a7, type: 3}
+    PooledCount: 0
+  - Name: Menu
+    Reference: {fileID: 3771875333702981443, guid: e12664ddd66c0d14db19491350d79e24, type: 3}
+    PooledCount: 0
+  - Name: Game
+    Reference: {fileID: 8487114545182723515, guid: 9342ca1dbce472a46af303b6dd7474e4, type: 3}
     PooledCount: 0

@@ -2,6 +2,7 @@
 using Core.ECS;
 using Core.Gameplay;
 using Core.Gameplay.Behaviours;
+using Core.InputLogic;
 using Core.Levels;
 using SimpleInject;
 using UnityEngine;
@@ -25,6 +26,8 @@ namespace Core.Infrastructure.Installers
 			Container.BindInterfacesAndSelf<GameplaySceneInitializer>().FromNew().AsSingle();
 			
 			// Container.BindInterfacesAndSelf<MovePlayerWheelColliderSystem>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<InputHelper>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<HandleKeyboardInputSystem>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<MovePlayerControllerSystem>().FromNew().AsSingle();
 			// Container.BindInterfacesAndSelf<UpdateCameraTargetSystem>().FromNew().AsSingle();
 			

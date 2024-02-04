@@ -1,4 +1,5 @@
 ﻿using Core.AssetManagement;
+using Core.InputLogic;
 using Core.Levels.Storages;
 using Core.Sound;
 using SimpleInject;
@@ -13,6 +14,7 @@ namespace Core.Infrastructure.Installers
 		[SerializeField] private LevelsStorage _levels;
 		[SerializeField] private GeneralSettings _generalSettings;
 		[SerializeField] private SoundStorage _soundStorage;
+		[SerializeField] private InputConfig _inputConfig;
 		
 		public override void InstallBindings()
 		{
@@ -21,6 +23,7 @@ namespace Core.Infrastructure.Installers
 			Container.BindSelf<GeneralSettings>().FromInstance(_generalSettings).AsSingle();
 			Container.BindSelf<SoundStorage>().FromInstance(_soundStorage).AsSingle();
 			Container.BindSelf<CoroutineRunner>().FromComponentInNewPrefab(_coroutineRunner).AsSingle();
+			Container.BindSelf<InputConfig>().FromInstance(_inputConfig).AsSingle();
 		}
 	}
 }
