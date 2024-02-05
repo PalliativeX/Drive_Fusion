@@ -12,6 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 022e56de6ab64c21b175bc8f40cec5c8, type: 3}
   m_Name: VehicleConfig
   m_EditorClassIdentifier: 
-  MotorForce: 10000
-  SteeringMotorForce: 10000
-  MaxSteeringAngle: 15
+  FuelConsumptionPerSecond: 0.02

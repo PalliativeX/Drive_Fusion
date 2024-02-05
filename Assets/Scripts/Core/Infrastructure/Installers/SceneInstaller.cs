@@ -29,6 +29,8 @@ namespace Core.Infrastructure.Installers
 			Container.BindInterfacesAndSelf<InputHelper>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<HandleKeyboardInputSystem>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<MovePlayerControllerSystem>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<SetVehicleWreckedDurabilitySystem>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<UpdateVehicleFuelSystem>().FromNew().AsSingle();
 			// Container.BindInterfacesAndSelf<UpdateCameraTargetSystem>().FromNew().AsSingle();
 			
 			Container.BindInterfacesAndSelf<SynchronizePositionFromTransformSystem>().FromNew().AsSingle();

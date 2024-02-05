@@ -44,7 +44,7 @@ namespace Core.Gameplay
 			player.SetComponent(new Position { Value = spawnPoint.position });
 			player.SetComponent(new Rotation { Value = spawnPoint.eulerAngles });
 			player.SetComponent(new TransformUpdatesPosition());
-			
+
 			player.SetComponent(new MovementInput { Value = Vector3.zero });
 			
 			player.SetComponent(new CameraTarget());

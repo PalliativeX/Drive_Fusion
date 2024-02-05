@@ -34,5 +34,17 @@ namespace Core.UI
 				_inputHelper.Set(entity, _currentXInput, 1f);
 			}
 		}
+
+		public float GetCurrentFuel()
+		{
+			Entity player = _playerFilter.First();
+			return player.GetComponent<Fuel>().Value;
+		}
+		
+		public float GetCurrentDurability()
+		{
+			Entity player = _playerFilter.First();
+			return player.GetComponent<Durability>().Value;
+		}
 	}
 }

@@ -1,6 +1,8 @@
-﻿namespace Core.UI
+﻿using SimpleInject;
+
+namespace Core.UI
 {
-	public class GamePresenter : APresenter<GameView>
+	public class GamePresenter : APresenter<GameView>, ITickable
 	{
 		private readonly GameModel _model;
 		
@@ -17,6 +19,9 @@
 				touchArea.PointerDown += OnTouchAreaPressed;
 				touchArea.PointerUp += OnTouchAreaUp;
 			}
+
+			View.DurabilityFill.fillAmount = _model.GetCurrentDurability();
+			View.FuelFill.fillAmount = _model.GetCurrentFuel();
 		}
 
 		protected override void OnClose()
@@ -27,6 +32,14 @@
 			}
 			
 			OnTouchAreaUp();
+		}
+
+		public void Tick()
+		{
+			if (!IsActive)
+				return;
+			
+			View.FuelFill.fillAmount = _model.GetCurrentFuel();
 		}
 
 		private void OnTouchAreaPressed(MovementTouchAreaType type)
