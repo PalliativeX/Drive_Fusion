@@ -804,7 +804,7 @@ GameObject:
   - component: {fileID: 3232791155012697485}
   - component: {fileID: 2693447850670894934}
   m_Layer: 5
-  m_Name: Pause Button
+  m_Name: Settings Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1396,7 +1396,7 @@ MonoBehaviour:
   TouchAreas:
   - {fileID: 8163393594613592703}
   - {fileID: 8163393595231897834}
-  PauseButton: {fileID: 2693447850670894934}
+  SettingsButton: {fileID: 2693447850670894934}
   ScoreLabel: {fileID: 1408748595321712217}
   DurabilityFill: {fileID: 8460065936526050931}
   FuelFill: {fileID: 4723417609048255898}

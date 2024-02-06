@@ -8,7 +8,7 @@ namespace Core.UI
 	{
 		public GameMovementTouchArea[] TouchAreas;
 
-		public Button PauseButton;
+		public Button SettingsButton;
 
 		public TextMeshProUGUI ScoreLabel;
 		public SlicedFilledImage DurabilityFill;

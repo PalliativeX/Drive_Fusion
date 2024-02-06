@@ -19,6 +19,8 @@ namespace Core.UI
 				touchArea.PointerDown += OnTouchAreaPressed;
 				touchArea.PointerUp += OnTouchAreaUp;
 			}
+			
+			View.SettingsButton.onClick.AddListener(_model.OnSettings);
 
 			View.DurabilityFill.fillAmount = _model.GetCurrentDurability();
 			View.FuelFill.fillAmount = _model.GetCurrentFuel();
@@ -30,6 +32,8 @@ namespace Core.UI
 				touchArea.PointerDown -= OnTouchAreaPressed;
 				touchArea.PointerUp -= OnTouchAreaUp;
 			}
+			
+			View.SettingsButton.onClick.RemoveListener(_model.OnSettings);
 			
 			OnTouchAreaUp();
 		}

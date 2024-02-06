@@ -1,4 +1,6 @@
 ﻿using Core.UI.Menu;
+using Core.UI.Revive;
+using Core.UI.Settings;
 using Core.UI.Systems;
 using SimpleInject;
 using UnityEngine;
@@ -28,6 +30,12 @@ namespace Core.UI
 			
 			Container.BindInterfacesAndSelf<GamePresenter>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<GameModel>().FromNew().AsSingle();
+			
+			Container.BindInterfacesAndSelf<SettingsModel>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<SettingsPresenter>().FromNew().AsSingle();
+			
+			Container.BindInterfacesAndSelf<ReviveModel>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<RevivePresenter>().FromNew().AsSingle();
 		}
 	}
 }
