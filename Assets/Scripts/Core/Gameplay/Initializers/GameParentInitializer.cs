@@ -1,7 +1,6 @@
 ﻿using System;
 using Core.Gameplay.Behaviours;
 using SimpleInject;
-using UnityEngine;
 
 namespace Core.Gameplay
 {
@@ -21,6 +20,6 @@ namespace Core.Gameplay
 			_parentProvider.SetParent(_parent.Transform);
 		}
 
-		public void Dispose()    => _parentProvider.RemoveParent();
+		public void Dispose() => _parentProvider.RemoveParent();
 	}
 }

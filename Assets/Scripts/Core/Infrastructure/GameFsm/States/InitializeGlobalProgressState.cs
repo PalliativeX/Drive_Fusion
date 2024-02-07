@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Core.Levels;
+using Scellecs.Morpeh;
 
 namespace Core.Infrastructure.GameFsm
 {
@@ -31,13 +32,12 @@ namespace Core.Infrastructure.GameFsm
 		public async void Enter()
 		{
 			// _saveLoadService.RestoreState(_loadable);
-
-			int currentLevel = 1;
 			
-			var entity = _levelsHelper.Initialize(currentLevel, 0);
+			var entity = _levelsHelper.Initialize();
 
 			await Task.Yield();
-
+			
+			entity.SetComponent(new RequestMenuLoad());
 			_stateMachine.ChangeState(GameStateType.LoadLevel, entity);
 		}
 

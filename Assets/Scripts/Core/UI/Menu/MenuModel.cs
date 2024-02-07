@@ -13,10 +13,11 @@ namespace Core.UI.Menu
 		private readonly Filter _hasSoundFilter;
 		private readonly Filter _currentLevelFilter;
 		
-		public MenuModel(World world, GameStateMachine stateMachine)
+		public MenuModel(GlobalWorld globalWorld, GameStateMachine stateMachine)
 		{
 			_stateMachine = stateMachine;
 
+			var world = globalWorld.World;
 			_hasSoundFilter = world.Filter.With<SoundActive>().Build();
 			_currentLevelFilter = world.Filter.With<CurrentLevel>().Build();
 		}

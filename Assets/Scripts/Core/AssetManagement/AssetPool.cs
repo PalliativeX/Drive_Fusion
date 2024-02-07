@@ -43,7 +43,7 @@ namespace Core.AssetManagement
 		public (GameObject, bool isPooled) Get(string assetName, Transform parent)
 		{
 			bool isPooled = false;
-
+			
 			if (_pooledObjects.ContainsKey(assetName))
 			{
 				isPooled = true;

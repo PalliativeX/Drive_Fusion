@@ -39,10 +39,10 @@ namespace Core.Gameplay
 				ref var controller = ref entity.GetComponent<CarController>().Reference;
 
 				ref Vector3 input = ref entity.GetComponent<MovementInput>().Value;
-				
+
 				controller.SetSteering(input.x);
 				controller.SetMotor(input.z);
-			
+				
 				input = Vector3.zero;
 			}
 		}

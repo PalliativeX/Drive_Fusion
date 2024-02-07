@@ -9,13 +9,18 @@ namespace Core.Infrastructure
 	{
 		private static int Index;
 		
+		private World _world;
+
 		[Inject]
 		public void Construct(
-			World world,
+			[InjectScope(ContextScope.Local)] World world,
 			[InjectScope(ContextScope.Local)] List<IInitializer> initializers,
 			[InjectScope(ContextScope.Local)] List<ISystem> systems)
 		{
-			SystemsGroup group = world.CreateSystemsGroup();
+			_world = world;
+			_world.UpdateByUnity = true;
+			
+			var group = world.CreateSystemsGroup();
 
 			foreach (IInitializer initializer in initializers) 
 				group.AddInitializer(initializer);
@@ -27,19 +32,10 @@ namespace Core.Infrastructure
 			Index++;
 		}
 
-		public void Initialize()
-		{
-			
-		}
+		public void Initialize() { }
 
-		public void Tick()
-		{
-			
-		}
+		public void Tick() { }
 
-		public void Dispose()
-		{
-			
-		}
+		public void Dispose() => _world = null;
 	}
 }

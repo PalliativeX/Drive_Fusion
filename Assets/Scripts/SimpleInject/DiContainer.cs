@@ -143,7 +143,10 @@ namespace SimpleInject
 
 			switch (bindingData.BindFrom) {
 				case BindFromType.FromNew:
-					var constructorParameters = type.GetConstructors()[0].GetParameters();
+					var constructors = type.GetConstructors();
+					if (constructors.Length == 0)
+						throw new Exception($"Constructor count is zero on type: '{type}'!");
+					var constructorParameters = constructors[0].GetParameters();
 					if (constructorParameters.Length == 0)
 						uniqueObject = Activator.CreateInstance(type);
 					else

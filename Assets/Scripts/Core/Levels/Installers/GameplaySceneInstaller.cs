@@ -2,21 +2,24 @@
 using Core.ECS;
 using Core.Gameplay;
 using Core.Gameplay.Behaviours;
+using Core.Infrastructure;
 using Core.InputLogic;
-using Core.Levels;
+using Scellecs.Morpeh;
 using SimpleInject;
 using UnityEngine;
 
-namespace Core.Infrastructure.Installers
+namespace Core.Levels
 {
-	public sealed class SceneInstaller : MonoInstaller
+	public sealed class GameplaySceneInstaller : MonoInstaller
 	{
 		[SerializeField] private LevelBehaviour _levelBehaviour; 
 		[SerializeField] private GameParentBehaviour _gameParent; 
 		
 		public override void InstallBindings()
 		{
+			Container.BindInterfacesAndSelf<World>().FromInstance(World.Create("Gameplay")).AsSingle();
 			Container.BindInterfacesAndSelf<Bootstrap>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<SetComponentsDisposableInitializer>().FromNew().AsSingle();
 			
 			Container.BindInterfacesAndSelf<LevelBehaviour>().FromInstance(_levelBehaviour).AsSingle();
 			Container.BindInterfacesAndSelf<GameParentBehaviour>().FromInstance(_gameParent).AsSingle();
@@ -36,7 +39,7 @@ namespace Core.Infrastructure.Installers
 			Container.BindInterfacesAndSelf<SynchronizePositionFromTransformSystem>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<SynchronizeTransformSystem>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<SetCameraFollowSystem>().FromNew().AsSingle();
-
+			
 			Container.BindInterfacesAndSelf<DestroyEntitySystem>().FromNew().AsSingle();
 		}
 	}

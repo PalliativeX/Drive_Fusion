@@ -18,26 +18,34 @@ namespace Core.Levels
 			_filter = world.Filter.With<CurrentLevel>().Build();
 		}
 
-		public Entity Initialize(int currentLevel, int levelsPassed)
+		public Entity Initialize()
 		{
 			var entity = _world.CreateEntity();
-			entity.SetComponent(new CurrentLevel { Value = currentLevel });
-			entity.SetComponent(new LevelsPassed { Value = levelsPassed });
+			entity.SetComponent(new CurrentLevel { Value = 0 });
 			return entity;
 		}
-
-		public void NextLevel()
+		
+		public void Play(int level)
 		{
 			var entity = _filter.First();
 			ref var currentLevel = ref entity.GetComponent<CurrentLevel>();
-			currentLevel.Value++;
-
+			currentLevel.Value = level;
 			_stateMachine.ChangeState(GameStateType.LoadLevel, entity);
 		}
 
 		public void RestartLevel()
 		{
 			var entity = _filter.First();
+			_stateMachine.ChangeState(GameStateType.LoadLevel, entity);
+		}
+		
+		public void LoadMenu()
+		{
+			var entity = _filter.First();
+			ref var currentLevel = ref entity.GetComponent<CurrentLevel>();
+			currentLevel.Value = 0;
+
+			entity.SetComponent(new RequestMenuLoad());
 			_stateMachine.ChangeState(GameStateType.LoadLevel, entity);
 		}
 	}

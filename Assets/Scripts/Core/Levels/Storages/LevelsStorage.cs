@@ -7,6 +7,7 @@ namespace Core.Levels.Storages
 	[CreateAssetMenu(fileName = nameof(LevelsStorage), menuName = "Storages/" + nameof(LevelsStorage))]
 	public sealed class LevelsStorage : ScriptableObject
 	{
+		public SceneReference MenuScene;
 		public List<SceneByLevel> ScenesByLevel;
 
 		public SceneReference GetScene(int levelIndex) => ScenesByLevel[levelIndex].Scene;

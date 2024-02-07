@@ -31,7 +31,6 @@ namespace Core.Gameplay
 			CreateCamera();
 		}
 
-
 		public void Dispose() { }
 
 		private Entity CreatePlayer()

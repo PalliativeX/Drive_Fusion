@@ -92,5 +92,14 @@ namespace SimpleInject
 			foreach (var initializable in initializables)
 				initializable.Initialize();
 		}
+
+		private void OnDestroy()
+		{
+			if (!_container.TryResolve<List<IDisposable>>(out var disposables, ContextScope.Local))
+				return;
+			
+			foreach (var disposable in disposables)
+				disposable.Dispose();
+		}
 	}
 }

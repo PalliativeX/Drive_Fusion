@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d12b952e6eca4cc39030149d7417d25e, type: 3}
   m_Name: SceneReferenceStorage
   m_EditorClassIdentifier: 
+  MenuScene:
+    sceneAsset: {fileID: 102900000, guid: c401cc3e36db41d47a012d2c41de957d, type: 3}
+    scenePath: Assets/Scenes/GarageMenu.unity
   ScenesByLevel:
   - Scene:
       sceneAsset: {fileID: 102900000, guid: eb971339152f7814e97c72a43003851b, type: 3}
       scenePath: Assets/Scenes/Level_1.unity
-  - Scene:
-      sceneAsset: {fileID: 102900000, guid: edd1e9e32c457424aa4b90b1319d5854, type: 3}
-      scenePath: Assets/Scenes/Level_2.unity

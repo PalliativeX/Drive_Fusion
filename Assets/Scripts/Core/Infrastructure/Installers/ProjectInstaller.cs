@@ -1,5 +1,6 @@
 ﻿using Core.AssetManagement;
 using Core.Currency;
+using Core.ECS;
 using Core.Gameplay;
 using Core.Infrastructure.GameFsm;
 using Core.Levels;
@@ -18,6 +19,7 @@ namespace Core.Infrastructure.Installers
 		public override void InstallBindings()
 		{
 			Container.BindSelf<World>().FromInstance(World.Default).AsSingle();
+			Container.BindSelf<GlobalWorld>().FromNew().AsSingle();
 			
 			Container.BindInterfacesAndSelf<Bootstrap>().FromNew().AsSingle();
 

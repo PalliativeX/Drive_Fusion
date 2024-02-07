@@ -17,8 +17,8 @@ namespace Core.UI.Settings
 			_model.SwitchPause(true);
 			
 			View.ContinueButton.Subscribe(_model.OnContinue);
-			// View.MenuButton.Subscribe();
-			// View.RestartButton.Subscribe();
+			View.MenuButton.Subscribe(_model.OnMenu);
+			View.RestartButton.Subscribe(_model.OnRestart);
 		}
 
 		protected override void OnClose()
@@ -27,8 +27,8 @@ namespace Core.UI.Settings
 			_model.SwitchPause(false);
 			
 			View.ContinueButton.Unsubscribe(_model.OnContinue);
-			// View.MenuButton.Unsubscribe();
-			// View.RestartButton.Unsubscribe();
+			View.MenuButton.Unsubscribe(_model.OnMenu);
+			View.RestartButton.Unsubscribe(_model.OnRestart);
 		}
 	}
 }

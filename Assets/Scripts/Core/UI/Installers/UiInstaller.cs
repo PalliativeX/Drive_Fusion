@@ -1,13 +1,10 @@
-﻿using Core.UI.Menu;
-using Core.UI.Revive;
-using Core.UI.Settings;
-using Core.UI.Systems;
+﻿using Core.UI.Systems;
 using SimpleInject;
 using UnityEngine;
 
 namespace Core.UI
 {
-	public sealed class UiInstaller : MonoInstaller
+	public abstract class AUiInstaller : MonoInstaller
 	{
 		[SerializeField] private UiParent _uiParent;
 		
@@ -19,23 +16,8 @@ namespace Core.UI
 			Container.BindInterfacesAndSelf<PanelController>().FromNew().AsSingle();
 			
 			InstallPanels();
-			
-			Container.BindInterfacesAndSelf<PanelByStateInitializer>().FromNew().AsSingle();
 		}
 
-		private void InstallPanels()
-		{
-			Container.BindInterfacesAndSelf<MenuPresenter>().FromNew().AsSingle();
-			Container.BindInterfacesAndSelf<MenuModel>().FromNew().AsSingle();
-			
-			Container.BindInterfacesAndSelf<GamePresenter>().FromNew().AsSingle();
-			Container.BindInterfacesAndSelf<GameModel>().FromNew().AsSingle();
-			
-			Container.BindInterfacesAndSelf<SettingsModel>().FromNew().AsSingle();
-			Container.BindInterfacesAndSelf<SettingsPresenter>().FromNew().AsSingle();
-			
-			Container.BindInterfacesAndSelf<ReviveModel>().FromNew().AsSingle();
-			Container.BindInterfacesAndSelf<RevivePresenter>().FromNew().AsSingle();
-		}
+		protected abstract void InstallPanels();
 	}
 }

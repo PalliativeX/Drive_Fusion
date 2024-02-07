@@ -33,8 +33,8 @@ namespace Debugging
 			if (Input.GetKeyDown(KeyCode.M))
 				_moneyManager.AddMoney(1000);
 
-			if (Input.GetKeyDown(KeyCode.N)) 
-				_levelHelper.NextLevel();
+			if (Input.GetKeyDown(KeyCode.M)) 
+				_levelHelper.LoadMenu();
 			if (Input.GetKeyDown(KeyCode.R)) 
 				_levelHelper.RestartLevel();
 

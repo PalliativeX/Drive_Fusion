@@ -2,6 +2,7 @@
 using Scellecs.Morpeh;
 using SimpleInject;
 using Unity.IL2CPP.CompilerServices;
+using UnityEngine;
 
 namespace Core.Sound
 {

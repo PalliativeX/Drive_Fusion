@@ -37,16 +37,26 @@ namespace Core.Infrastructure.GameFsm
 		private void LoadNewLevel(Entity levelEntity)
 		{
 			if (levelEntity.Has<LoadedLevel>())
-				_sceneLoader.UnloadLevel(_levels.GetScene(levelEntity.GetComponent<LoadedLevel>().Value - 1));
+			{
+				var loadedLevel = levelEntity.GetComponent<LoadedLevel>();
+				var loadedScene = loadedLevel.IsMenu ? _levels.MenuScene : _levels.GetScene(loadedLevel.Value - 1);
+				_sceneLoader.UnloadLevel(loadedScene);
+			}
 
 			var currentLevel = levelEntity.GetComponent<CurrentLevel>();
+			bool isRequestMenu = levelEntity.Has<RequestMenuLoad>();
+			var scene = isRequestMenu ? _levels.MenuScene : _levels.GetScene(currentLevel.Index);
+
+			if (isRequestMenu)
+				levelEntity.RemoveComponent<RequestMenuLoad>();
+			
 			_sceneLoader.LoadLevel(
-				_levels.GetScene(currentLevel.Index),
+				scene,
 				true,
 				LoadSceneMode.Additive,
 				() =>
 				{
-					levelEntity.SetComponent(new LoadedLevel { Value = currentLevel.Value });
+					levelEntity.SetComponent(new LoadedLevel { Value = currentLevel.Value, IsMenu = isRequestMenu});
 					RequestNextState?.Invoke(GameStateType.InitializeGameplayProgress);
 				}
 			);
