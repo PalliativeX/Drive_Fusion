@@ -1,4 +1,5 @@
 ﻿using Core.AssetManagement;
+using Core.Gameplay;
 using Core.InputLogic;
 using Core.Levels.Storages;
 using Core.Sound;
@@ -15,6 +16,7 @@ namespace Core.Infrastructure.Installers
 		[SerializeField] private GeneralSettings _generalSettings;
 		[SerializeField] private SoundStorage _soundStorage;
 		[SerializeField] private InputConfig _inputConfig;
+		[SerializeField] private VehiclesStorage _vehiclesStorage;
 		
 		public override void InstallBindings()
 		{
@@ -24,6 +26,7 @@ namespace Core.Infrastructure.Installers
 			Container.BindSelf<SoundStorage>().FromInstance(_soundStorage).AsSingle();
 			Container.BindSelf<CoroutineRunner>().FromComponentInNewPrefab(_coroutineRunner).AsSingle();
 			Container.BindSelf<InputConfig>().FromInstance(_inputConfig).AsSingle();
+			Container.BindSelf<VehiclesStorage>().FromInstance(_vehiclesStorage).AsSingle();
 		}
 	}
 }

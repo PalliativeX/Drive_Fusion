@@ -2,6 +2,7 @@
 using Core.Levels;
 using Core.Levels.Storages;
 using Core.SceneManagement;
+using Core.SceneManagement.LoadingScreen;
 using Scellecs.Morpeh;
 using UnityEngine.SceneManagement;
 
@@ -12,7 +13,7 @@ namespace Core.Infrastructure.GameFsm
 		private readonly ISceneLoaderService _sceneLoader;
 		private readonly LevelsStorage _levels;
 
-		// private readonly LoadingScreenProvider _loadingScreenProvider;
+		private readonly LoadingScreenProvider _loadingScreenProvider;
 		
 		public GameStateType Type => GameStateType.LoadLevel;
 
@@ -20,17 +21,18 @@ namespace Core.Infrastructure.GameFsm
 
 		public LoadLevelState(
 			SceneLoader sceneLoader,
-			LevelsStorage levels
-			// LoadingScreenProvider loadingScreenProvider
+			LevelsStorage levels,
+			LoadingScreenProvider loadingScreenProvider
 		)
 		{
 			_sceneLoader = sceneLoader;
 			_levels = levels;
-			// _loadingScreenProvider = loadingScreenProvider;
+			_loadingScreenProvider = loadingScreenProvider;
 		}
 
 		public void Enter(Entity levelEntity)
 		{
+			_loadingScreenProvider.LoadingScreen.Show();
 			LoadNewLevel(levelEntity);
 		}
 

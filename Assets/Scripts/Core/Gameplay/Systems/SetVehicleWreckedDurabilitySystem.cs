@@ -25,8 +25,11 @@ namespace Core.Gameplay
 			foreach (var entity in _filter)
 			{
 				float durability = entity.GetComponent<Durability>().Value;
-				if (durability <= 0f)
+				if (durability <= 0f && !entity.Has<Stopped>())
+				{
 					entity.SetComponent(new Wrecked());
+					entity.SetComponent(new StopRequested());
+				}
 			}
 		}
 		

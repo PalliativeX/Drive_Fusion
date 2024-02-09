@@ -1,4 +1,6 @@
 ﻿using Core.Infrastructure.GameFsm;
+using Core.Levels.Storages;
+using Core.Sound;
 using Scellecs.Morpeh;
 
 namespace Core.Levels
@@ -7,13 +9,15 @@ namespace Core.Levels
 	{
 		private readonly World _world;
 		private readonly IGameStateMachine _stateMachine;
+		private readonly LevelsStorage _levels;
 
 		private readonly Filter _filter;
 
-		public LevelsHelper(World world, GameStateMachine stateMachine)
+		public LevelsHelper(World world, GameStateMachine stateMachine, LevelsStorage levels)
 		{
 			_world = world;
 			_stateMachine = stateMachine;
+			_levels = levels;
 
 			_filter = world.Filter.With<CurrentLevel>().Build();
 		}
@@ -47,6 +51,13 @@ namespace Core.Levels
 
 			entity.SetComponent(new RequestMenuLoad());
 			_stateMachine.ChangeState(GameStateType.LoadLevel, entity);
+		}
+
+		public LevelEntry GetCurrentEntry()
+		{
+			var entity = _filter.First();
+			var currentLevel = entity.GetComponent<CurrentLevel>();
+			return _levels.LevelEntries[currentLevel.Index];
 		}
 	}
 }

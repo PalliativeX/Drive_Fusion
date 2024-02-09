@@ -61,4 +61,16 @@ namespace Core.Gameplay
 	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
 	[Serializable]
 	public struct Wrecked : IComponent { }
+	
+	[Il2CppSetOption(Option.NullChecks, false)]
+	[Il2CppSetOption(Option.ArrayBoundsChecks, false)]
+	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
+	[Serializable]
+	public struct StopRequested : IComponent { }
+	
+	[Il2CppSetOption(Option.NullChecks, false)]
+	[Il2CppSetOption(Option.ArrayBoundsChecks, false)]
+	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
+	[Serializable]
+	public struct Stopped : IComponent { }
 }

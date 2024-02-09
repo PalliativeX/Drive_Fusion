@@ -2,7 +2,8 @@
 {
 	public enum SoundId
 	{
-		MainTheme = 0,
-		CarEngine = 1,
+		MenuTheme = 0,
+		MainTheme = 1,
+		CarEngine = 2,
 	}
 }

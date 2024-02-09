@@ -31,6 +31,9 @@ namespace Core.Gameplay
 
 				ref var fuel = ref entity.GetComponent<Fuel>();
 				fuel.Value -= Time.deltaTime * config.FuelConsumptionPerSecond;
+				
+				if (fuel.Value <= 0f && !entity.Has<Stopped>())
+					entity.SetComponent(new StopRequested());
 			}
 		}
 		

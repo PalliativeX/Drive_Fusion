@@ -5,6 +5,7 @@ using Core.Gameplay;
 using Core.Infrastructure.GameFsm;
 using Core.Levels;
 using Core.SceneManagement;
+using Core.SceneManagement.LoadingScreen;
 using Core.Sound;
 using Scellecs.Morpeh;
 using SimpleInject;
@@ -28,6 +29,7 @@ namespace Core.Infrastructure.Installers
 			Container.BindInterfacesAndSelf<PoolContainer>().FromComponentInNewPrefab(_poolContainer).AsSingle();
 			Container.BindInterfacesAndSelf<SceneLoader>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<GameParentProvider>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<LoadingScreenProvider>().FromNew().AsSingle();
 			
 			Container.BindInterfacesAndSelf<GeneralSettingsInitializer>().FromNew().AsSingle();
 
@@ -47,7 +49,6 @@ namespace Core.Infrastructure.Installers
 			Container.BindInterfacesAndSelf<SoundPlayer>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<InitializeClipSystem>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<SoundActiveInitializer>().FromNew().AsSingle();
-			Container.BindInterfacesAndSelf<MainThemePlayInitializer>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<PlayInitializedClipSystem>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<SoundActiveChangedSystem>().FromNew().AsSingle();
 		}

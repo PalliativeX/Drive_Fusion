@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Core.Sound;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Core.Levels.Storages
 {
@@ -8,17 +10,18 @@ namespace Core.Levels.Storages
 	public sealed class LevelsStorage : ScriptableObject
 	{
 		public SceneReference MenuScene;
-		public List<SceneByLevel> ScenesByLevel;
+		[FormerlySerializedAs("ScenesByLevel")] public List<LevelEntry> LevelEntries;
 
-		public SceneReference GetScene(int levelIndex) => ScenesByLevel[levelIndex].Scene;
+		public SceneReference GetScene(int levelIndex) => LevelEntries[levelIndex].Scene;
 
-		public int LastLevel() => ScenesByLevel.Count - 1;
+		public int LastLevel() => LevelEntries.Count - 1;
 	}
 	
 	[Serializable]
-	public class SceneByLevel
+	public class LevelEntry
 	{
-		// public int Level;
 		public SceneReference Scene;
+		public SoundId MainThemeId = SoundId.MainTheme;
+
 	}
 }

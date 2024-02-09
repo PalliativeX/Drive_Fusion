@@ -3,6 +3,7 @@ using Core.ECS;
 using Core.Gameplay;
 using Core.Gameplay.Behaviours;
 using Core.Infrastructure;
+using Core.Sound;
 using Scellecs.Morpeh;
 using SimpleInject;
 using UnityEngine;
@@ -30,6 +31,8 @@ namespace Core.Levels
 			Container.BindInterfacesAndSelf<SynchronizePositionFromTransformSystem>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<SynchronizeTransformSystem>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<SetCameraFollowSystem>().FromNew().AsSingle();
+			
+			Container.BindInterfacesAndSelf<MenuThemePlayInitializer>().FromNew().AsSingle();
 
 			Container.BindInterfacesAndSelf<DestroyEntitySystem>().FromNew().AsSingle();
 		}

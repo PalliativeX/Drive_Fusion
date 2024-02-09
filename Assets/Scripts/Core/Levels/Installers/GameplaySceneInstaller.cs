@@ -4,6 +4,8 @@ using Core.Gameplay;
 using Core.Gameplay.Behaviours;
 using Core.Infrastructure;
 using Core.InputLogic;
+using Core.Sound;
+using Core.UI.Systems;
 using Scellecs.Morpeh;
 using SimpleInject;
 using UnityEngine;
@@ -39,6 +41,9 @@ namespace Core.Levels
 			Container.BindInterfacesAndSelf<SynchronizePositionFromTransformSystem>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<SynchronizeTransformSystem>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<SetCameraFollowSystem>().FromNew().AsSingle();
+			
+			Container.BindInterfacesAndSelf<MainThemePlayInitializer>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<ShowReviveUiOnStopSystem>().FromNew().AsSingle();
 			
 			Container.BindInterfacesAndSelf<DestroyEntitySystem>().FromNew().AsSingle();
 		}

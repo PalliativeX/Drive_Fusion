@@ -51,6 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0221eb283e7e5e74f99a442d9503abd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RefuseButton: {fileID: 7874070590637726088}
+  ReviveButton: {fileID: 7874070590958177890}
 --- !u!1 &7874070589571900097
 GameObject:
   m_ObjectHideFlags: 0
