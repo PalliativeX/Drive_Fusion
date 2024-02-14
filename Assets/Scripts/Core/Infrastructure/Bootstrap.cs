@@ -22,11 +22,18 @@ namespace Core.Infrastructure
 			
 			var group = world.CreateSystemsGroup();
 
-			foreach (IInitializer initializer in initializers) 
-				group.AddInitializer(initializer);
-			
-			foreach (ISystem system in systems) 
+			HashSet<IInitializer> initializerSystems = new HashSet<IInitializer>();
+			foreach (ISystem system in systems)
+			{
 				group.AddSystem(system);
+				initializerSystems.Add(system);
+			}
+
+			foreach (IInitializer initializer in initializers)
+			{
+				if (!initializerSystems.Contains(initializer))
+					group.AddInitializer(initializer);
+			}
 
 			world.AddSystemsGroup(order: Index, group);
 			Index++;

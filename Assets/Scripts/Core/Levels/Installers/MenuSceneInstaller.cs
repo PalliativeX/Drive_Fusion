@@ -3,6 +3,7 @@ using Core.ECS;
 using Core.Gameplay;
 using Core.Gameplay.Behaviours;
 using Core.Infrastructure;
+using Core.Menu;
 using Core.Sound;
 using Scellecs.Morpeh;
 using SimpleInject;
@@ -25,6 +26,7 @@ namespace Core.Levels
 			Container.BindInterfacesAndSelf<GameParentBehaviour>().FromInstance(_gameParent).AsSingle();
 			Container.BindInterfacesAndSelf<GameParentInitializer>().FromNew().AsSingle();
 			
+			Container.BindInterfacesAndSelf<VehicleSelectionSpawnSystem>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<PrefabInstantiateSystem>().FromNew().AsSingle();
 			// Container.BindInterfacesAndSelf<GameplaySceneInitializer>().FromNew().AsSingle();
 			
@@ -34,6 +36,7 @@ namespace Core.Levels
 			
 			Container.BindInterfacesAndSelf<MenuThemePlayInitializer>().FromNew().AsSingle();
 
+			Container.BindInterfacesAndSelf<PoolViewsOnDisposeHelper>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<DestroyEntitySystem>().FromNew().AsSingle();
 		}
 	}

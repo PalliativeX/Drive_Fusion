@@ -20,6 +20,7 @@ namespace Core.ECS
 	[Serializable]
 	public struct Pooled : IComponent
 	{
+		public string AssetName;
 	}
 	
 	[Il2CppSetOption(Option.NullChecks, false)]

@@ -6,6 +6,8 @@ namespace Core.Gameplay
 	public sealed class VehicleConfig : ScriptableObject
 	{
 		public string Name;
+
+		public int Price;
 		
 		[Range(0f, 1f)]
 		public float FuelConsumptionPerSecond;

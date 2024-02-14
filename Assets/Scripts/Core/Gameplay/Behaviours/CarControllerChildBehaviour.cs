@@ -18,6 +18,7 @@ namespace Core.Gameplay.Behaviours
 			entity.SetComponent(new Durability { Value = 1f });
 		}
 
-		public override void Unlink(Entity entity) { }
+		public override void Unlink(Entity entity) => 
+			_controller.Clear();
 	}
 }

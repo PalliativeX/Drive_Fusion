@@ -58,9 +58,10 @@ namespace Core.AssetManagement
 			return (Instantiate(assetName, parent), isPooled);
 		}
 
-		public void Put(GameObject asset, string assetName)
+		public void Return(GameObject asset, string assetName)
 		{
 			asset.SetActive(false);
+			asset.transform.SetParent(_poolContainer.Transform, false);
 			_pooledObjects[assetName].Push(asset);
 		}
 

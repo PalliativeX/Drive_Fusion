@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using UniRx;
+using UnityEngine;
 
 namespace Core.UI
 {
 	public abstract class APresenter<T> : IPresenter where T : BaseView
 	{
+		protected readonly CompositeDisposable Disposable = new CompositeDisposable();
 		protected T View;
 		
 		public abstract string Name { get; }
@@ -29,6 +31,8 @@ namespace Core.UI
 			
 			View.gameObject.SetActive(false);
 			OnClose();
+			
+			Disposable.Dispose();
 		}
 
 		public void SetAsLast() => View.transform.SetAsLastSibling();

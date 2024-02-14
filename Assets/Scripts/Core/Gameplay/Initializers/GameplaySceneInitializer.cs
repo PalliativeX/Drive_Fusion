@@ -2,6 +2,7 @@ using Core.CameraLogic;
 using Core.ECS;
 using Core.InputLogic;
 using Core.Levels;
+using Core.Menu;
 using Scellecs.Morpeh;
 using Unity.IL2CPP.CompilerServices;
 using UnityEngine;
@@ -15,12 +16,14 @@ namespace Core.Gameplay
 	public sealed class GameplaySceneInitializer : IInitializer
 	{
 		private readonly LevelBehaviour _levelBehaviour;
+		private readonly VehicleSelectionService _vehicleSelectionService;
 
 		public World World { get; set; }
 
-		public GameplaySceneInitializer(LevelBehaviour levelBehaviour)
+		public GameplaySceneInitializer(LevelBehaviour levelBehaviour, VehicleSelectionService vehicleSelectionService)
 		{
 			_levelBehaviour = levelBehaviour;
+			_vehicleSelectionService = vehicleSelectionService;
 		}
 
 		public void OnAwake()
@@ -37,7 +40,7 @@ namespace Core.Gameplay
 		{
 			Entity player = World.CreateEntity();
 			player.SetComponent(new HumanPlayer());
-			player.AddPrefab("Player");
+			player.AddPrefab(_vehicleSelectionService.GetSelectedName());
 
 			Transform spawnPoint = _levelBehaviour.SpawnPoint;
 			player.SetComponent(new Position { Value = spawnPoint.position });

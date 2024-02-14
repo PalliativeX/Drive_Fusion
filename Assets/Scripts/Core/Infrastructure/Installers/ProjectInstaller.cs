@@ -4,6 +4,7 @@ using Core.ECS;
 using Core.Gameplay;
 using Core.Infrastructure.GameFsm;
 using Core.Levels;
+using Core.Menu;
 using Core.SceneManagement;
 using Core.SceneManagement.LoadingScreen;
 using Core.Sound;
@@ -40,6 +41,7 @@ namespace Core.Infrastructure.Installers
 			InstallGameStateMachine();
 
 			InstallLevels();
+			InstallVehicles();
 		}
 
 		private void InstallSound()
@@ -67,6 +69,12 @@ namespace Core.Infrastructure.Installers
 		private void InstallLevels()
 		{
 			Container.BindInterfacesAndSelf<LevelsHelper>().FromNew().AsSingle();
+		}
+
+		private void InstallVehicles()
+		{
+			Container.BindInterfacesAndSelf<VehiclesInitializer>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<VehicleSelectionService>().FromNew().AsSingle();
 		}
 	}
 }

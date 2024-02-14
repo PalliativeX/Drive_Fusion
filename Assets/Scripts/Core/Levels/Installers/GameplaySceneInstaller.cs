@@ -45,6 +45,7 @@ namespace Core.Levels
 			Container.BindInterfacesAndSelf<MainThemePlayInitializer>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<ShowReviveUiOnStopSystem>().FromNew().AsSingle();
 			
+			Container.BindInterfacesAndSelf<PoolViewsOnDisposeHelper>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<DestroyEntitySystem>().FromNew().AsSingle();
 		}
 	}

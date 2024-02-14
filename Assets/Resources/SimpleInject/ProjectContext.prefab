@@ -70,6 +70,7 @@ MonoBehaviour:
   _generalSettings: {fileID: 11400000, guid: c19cc3382c42397489043a33637de277, type: 2}
   _soundStorage: {fileID: 11400000, guid: 8e8d18547c0d68449acd124318261e93, type: 2}
   _inputConfig: {fileID: 11400000, guid: a19e897042c59464f82214f61070ecff, type: 2}
+  _vehiclesStorage: {fileID: 11400000, guid: b13ccf359dcf60d4e9c83bfdd6a1c8dd, type: 2}
 --- !u!114 &312936225568156269
 MonoBehaviour:
   m_ObjectHideFlags: 0

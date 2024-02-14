@@ -30,7 +30,7 @@ namespace Debugging
 
 		public void Tick()
 		{
-			if (Input.GetKeyDown(KeyCode.M))
+			if (Input.GetKeyDown(KeyCode.C))
 				_moneyManager.AddMoney(1000);
 
 			if (Input.GetKeyDown(KeyCode.M)) 

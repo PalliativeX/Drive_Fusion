@@ -34,5 +34,7 @@ namespace Core.AssetManagement
 			instantiated.transform.eulerAngles = rotationEuler;
 			return (instantiated, isPooled);
 		}
+
+		public void Return(GameObject gameObject, string assetName) => _pool.Return(gameObject, assetName);
 	}
 }

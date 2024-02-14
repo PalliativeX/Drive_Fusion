@@ -7,5 +7,6 @@ namespace Core.AssetManagement
 		(GameObject, bool isPooled) LoadAsset(string assetName);
 		(GameObject, bool isPooled) LoadAsset(string assetName, Vector3 position, Vector3 rotationEuler);
 		(T, bool isPooled) LoadAsset<T>(string assetName);
+		void Return(GameObject gameObject, string assetName);
 	}
 }

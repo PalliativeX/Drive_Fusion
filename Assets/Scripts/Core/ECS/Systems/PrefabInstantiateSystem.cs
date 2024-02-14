@@ -31,12 +31,17 @@ namespace Core.ECS
 			foreach (var entity in _filter)
 			{
 				ref var prefabComponent = ref entity.GetComponent<Prefab>();
+				if (string.IsNullOrEmpty(prefabComponent.Value))
+				{
+					Debug.LogError("Prefab value is empty!");
+					continue;
+				}
 
 				(GameObject instantiated, bool isPooled) = _assetProvider.LoadAsset(prefabComponent.Value);
 				
 				entity.SetComponent(new View { Reference = instantiated });
 				if (isPooled)
-					entity.SetComponent(new Pooled());
+					entity.SetComponent(new Pooled { AssetName = prefabComponent.Value });
 
 				SetInitialTransform(instantiated, entity);
 
