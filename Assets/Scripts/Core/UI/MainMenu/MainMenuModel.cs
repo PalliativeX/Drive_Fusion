@@ -1,7 +1,7 @@
 using Core.Gameplay;
 using Core.Levels;
 using Core.Menu;
-using Core.UI.Settings;
+using Core.Sound;
 
 namespace Core.UI.MainMenu
 {
@@ -10,17 +10,21 @@ namespace Core.UI.MainMenu
 		private readonly LevelsHelper _levelsHelper;
 		private readonly PanelController _panelController;
 		private readonly VehicleSelectionService _vehicleSelection;
+		private readonly SoundService _sound;
 
-		public MainMenuModel(LevelsHelper levelsHelper, PanelController panelController, VehicleSelectionService vehicleSelection)
+		public MainMenuModel(LevelsHelper levelsHelper, PanelController panelController, VehicleSelectionService vehicleSelection, SoundService sound)
 		{
 			_levelsHelper = levelsHelper;
 			_panelController = panelController;
 			_vehicleSelection = vehicleSelection;
+			_sound = sound;
 		}
 
 		public void OnPlay() => _levelsHelper.Play(1);
+		
+		public bool IsSoundActive() => _sound.IsSoundActive;
 
-		public void OnSettings() => _panelController.Open<SettingsPresenter>();
+		public void ToggleSoundActive() => _sound.ToggleActive();
 
 		public void SelectPreviousVehicle() => _vehicleSelection.SelectPrevious();
 		public void SelectNextVehicle() => _vehicleSelection.SelectNext();

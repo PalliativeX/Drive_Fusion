@@ -46,13 +46,12 @@ namespace Core.Infrastructure.Installers
 
 		private void InstallSound()
 		{
+			Container.BindInterfacesAndSelf<SoundService>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<AudioSourceCreator>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<MusicPlayer>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<SoundPlayer>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<InitializeClipSystem>().FromNew().AsSingle();
-			Container.BindInterfacesAndSelf<SoundActiveInitializer>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<PlayInitializedClipSystem>().FromNew().AsSingle();
-			Container.BindInterfacesAndSelf<SoundActiveChangedSystem>().FromNew().AsSingle();
 		}
 
 		private void InstallGameStateMachine()

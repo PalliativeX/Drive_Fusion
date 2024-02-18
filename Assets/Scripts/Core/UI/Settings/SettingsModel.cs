@@ -1,3 +1,4 @@
+using Core.Gameplay;
 using Core.Levels;
 using UnityEngine;
 
@@ -7,15 +8,17 @@ namespace Core.UI.Settings
 	{
 		private readonly PanelController _panelController;
 		private readonly LevelsHelper _levelsHelper;
+		private readonly GamePauser _pauser;
 
-		public SettingsModel(PanelController panelController, LevelsHelper levelsHelper)
+		public SettingsModel(PanelController panelController, LevelsHelper levelsHelper, GamePauser pauser)
 		{
 			_panelController = panelController;
 			_levelsHelper = levelsHelper;
+			_pauser = pauser;
 		}
 
 		public void SwitchPause(bool paused) => 
-			Time.timeScale = paused ? 0f : 1f;
+			_pauser.SwitchPause(paused);
 
 		public void OnContinue() => 
 			_panelController.Close<SettingsPresenter>();

@@ -1,8 +1,7 @@
-﻿using Core.Infrastructure.GameFsm;
+﻿using Core.ECS;
 using Core.InputLogic;
 using Scellecs.Morpeh;
 using Unity.IL2CPP.CompilerServices;
-using UnityEngine;
 
 namespace Core.Gameplay
 {
@@ -27,10 +26,13 @@ namespace Core.Gameplay
 		{
 			foreach (var entity in _filter)
 			{
+				if (!entity.Has<Active>())
+					continue;
+				
 				var config = entity.GetComponent<VehicleConfigComponent>().Reference;
 
 				ref var fuel = ref entity.GetComponent<Fuel>();
-				fuel.Value -= Time.deltaTime * config.FuelConsumptionPerSecond;
+				fuel.Value -= deltaTime * config.FuelConsumptionPerSecond;
 				
 				if (fuel.Value <= 0f && !entity.Has<Stopped>())
 					entity.SetComponent(new StopRequested());

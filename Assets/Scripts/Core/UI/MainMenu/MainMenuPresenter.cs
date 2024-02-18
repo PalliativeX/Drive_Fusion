@@ -24,8 +24,10 @@ namespace Core.UI.MainMenu
 		protected override void OnShow()
 		{
 			base.OnShow();
+			
+			View.SoundToggle.SwitchActive(_model.IsSoundActive());
+			View.SoundToggle.Button.OnClickSubscribeDisposable(ToggleSoundActive).AddTo(Disposable);
 
-			View.SettingsButton.OnClickSubscribeDisposable(_model.OnSettings).AddTo(Disposable);
 			View.PlayButton.OnClickSubscribeDisposable(_model.OnPlay).AddTo(Disposable);
 			View.BuyVehicleButton.OnClickSubscribeDisposable(OnBuy).AddTo(Disposable);
 			View.PreviousVehicleButton.OnClickSubscribeDisposable(() =>
@@ -68,6 +70,7 @@ namespace Core.UI.MainMenu
 			}
 
 			SetVehicleIndex();
+			SetVehicleStats(config);
 		}
 
 		private void OnBuy()
@@ -82,6 +85,22 @@ namespace Core.UI.MainMenu
 			(int currentIndex, int totalCount) = _model.GetVehicleIndex();
 			View.CurrentVehicleIndex.SetText(currentIndex.ToString());
 			View.TotalVehicleCount.SetText(totalCount.ToString());
+		}
+
+		private void SetVehicleStats(VehicleConfig config)
+		{
+			View.VehicleName.SetText(config.DisplayedName);
+			for (int i = 0; i < config.Parameters.Count; i++)
+			{
+				VehicleParameter parameter = config.Parameters[i];
+				View.Parameters[i].Set(parameter);
+			}
+		}
+		
+		private void ToggleSoundActive()
+		{
+			_model.ToggleSoundActive();
+			View.SoundToggle.Toggle();
 		}
 	}
 }

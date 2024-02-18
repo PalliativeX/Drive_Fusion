@@ -22,7 +22,6 @@ namespace Core.UI
 			Container.BindInterfacesAndSelf<ReviveModel>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<RevivePresenter>().FromNew().AsSingle();
 			
-			
 			Container.BindInterfacesAndSelf<PanelByStateInitializer>().FromNew().AsSingle();
 		}
 	}

@@ -15,3 +15,13 @@ MonoBehaviour:
   Name: Default
   Price: 0
   FuelConsumptionPerSecond: 0.035
+  DisplayedName: Blue Monster
+  Parameters:
+  - Type: 0
+    Value: 0.35
+  - Type: 1
+    Value: 0.5
+  - Type: 2
+    Value: 0.6
+  - Type: 3
+    Value: 0.5

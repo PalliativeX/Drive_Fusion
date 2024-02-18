@@ -26,6 +26,7 @@ namespace Core.Gameplay
 
 			await Task.Yield();
 			_selectionService.Initialize();
+			_selectionService.Select(DefaultVehicle);
 		}
 
 		public void Dispose() { }

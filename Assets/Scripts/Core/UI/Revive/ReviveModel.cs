@@ -11,16 +11,18 @@ namespace Core.UI.Revive
 		private readonly LevelsHelper _levelsHelper;
 		private readonly PanelController _panelController;
 		private readonly World _world;
+		private readonly GamePauser _pauser;
 
-		public ReviveModel(LevelsHelper levelsHelper, PanelController panelController, World world)
+		public ReviveModel(LevelsHelper levelsHelper, PanelController panelController, World world, GamePauser pauser)
 		{
 			_levelsHelper = levelsHelper;
 			_panelController = panelController;
 			_world = world;
+			_pauser = pauser;
 		}
 
 		public void SwitchPause(bool paused) =>
-			Time.timeScale = paused ? 0f : 1f;
+			_pauser.SwitchPause(paused);
 
 		// TODO: For Ads!
 		public void OnRevive()

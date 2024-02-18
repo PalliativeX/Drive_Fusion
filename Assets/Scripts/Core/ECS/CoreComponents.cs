@@ -60,4 +60,10 @@ namespace Core.ECS
 	{
 		public EntityId Id;
 	}
+	
+	[Il2CppSetOption(Option.NullChecks, false)]
+	[Il2CppSetOption(Option.ArrayBoundsChecks, false)]
+	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
+	[Serializable]
+	public struct Active : IComponent { }
 }

@@ -1,4 +1,5 @@
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Core.UI.MainMenu
@@ -6,8 +7,7 @@ namespace Core.UI.MainMenu
 	public sealed class MainMenuView : BaseView
 	{
 		public AnimatedCountTextBehaviour CurrencyText;
-		
-		public Button SettingsButton;
+
 		public Button PlayButton;
 		public Button BuyVehicleButton;
 
@@ -17,5 +17,12 @@ namespace Core.UI.MainMenu
 		public TextMeshProUGUI VehiclePriceText;
 		public TextMeshProUGUI CurrentVehicleIndex;
 		public TextMeshProUGUI TotalVehicleCount;
+
+		[Header("Settings UI")] 
+		public UiToggle SoundToggle;
+
+		[Header("Vehicle Stats")] 
+		public TextMeshProUGUI VehicleName;
+		public VehicleParameterUi[] Parameters;
 	}
 }
