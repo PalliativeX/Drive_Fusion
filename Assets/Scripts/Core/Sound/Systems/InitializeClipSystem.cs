@@ -37,7 +37,8 @@ namespace Core.Sound
 				entity.SetComponent(new AudioClipComponent { Value = entry.Clip });
 				entity.SetComponent(new Volume { Value = entry.Volume });
 				entity.SetComponent(new Pitch { Value = entry.Pitch });
-				entity.SetComponent(new Looped());
+				if (entry.IsLooped)
+					entity.SetComponent(new Looped());
 				
 				entity.SetComponent(new Initialized());
 			}

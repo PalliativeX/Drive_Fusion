@@ -16,6 +16,8 @@ namespace Core.ECS
 		{
 			Entity = entity;
 
+			entity.SetComponent(new InstanceId { Value = gameObject.GetInstanceID() });
+			
 			OnLink(entity);
 
 			foreach (AChildEcsBehaviour child in _children) 

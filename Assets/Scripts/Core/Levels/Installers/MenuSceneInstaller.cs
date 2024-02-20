@@ -28,11 +28,11 @@ namespace Core.Levels
 			
 			Container.BindInterfacesAndSelf<VehicleSelectionSpawnSystem>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<PrefabInstantiateSystem>().FromNew().AsSingle();
-			// Container.BindInterfacesAndSelf<GameplaySceneInitializer>().FromNew().AsSingle();
 			
 			Container.BindInterfacesAndSelf<SynchronizePositionFromTransformSystem>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<SynchronizeTransformSystem>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<SetCameraFollowSystem>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<UpdateLookAtCameraSystem>().FromNew().AsSingle();
 			
 			Container.BindInterfacesAndSelf<MenuThemePlayInitializer>().FromNew().AsSingle();
 

@@ -27,9 +27,9 @@ namespace Core.Gameplay
 	[Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
 	[Serializable]
-	public struct InteractiveTypeComponent : IComponent
+	public struct Interactive : IComponent
 	{
-		public InteractiveType Value;
+		public InteractiveType Type;
 	}
 	
 	[Il2CppSetOption(Option.NullChecks, false)]
@@ -37,6 +37,15 @@ namespace Core.Gameplay
 	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
 	[Serializable]
 	public struct InteractiveCoins : IComponent
+	{
+		public int Value;
+	}
+	
+	[Il2CppSetOption(Option.NullChecks, false)]
+	[Il2CppSetOption(Option.ArrayBoundsChecks, false)]
+	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
+	[Serializable]
+	public struct InteractiveValue : IComponent
 	{
 		public float Value;
 	}

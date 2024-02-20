@@ -24,9 +24,14 @@ MonoBehaviour:
     Volume: 0.225
     Pitch: 1
   - Id: 2
-    Clip: {fileID: 0}
+    Clip: {fileID: 8300000, guid: addc7495b750e694ebafd7ea80210fd4, type: 3}
+    IsLooped: 1
+    Volume: 0.7
+    Pitch: 1
+  - Id: 3
+    Clip: {fileID: 8300000, guid: b4f7bb465c836f1418c83680e1b75f76, type: 3}
     IsLooped: 0
-    Volume: 1
+    Volume: 0.4
     Pitch: 1
   Sources:
   - Type: 0

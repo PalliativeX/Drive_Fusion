@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace Core.Gameplay.Behaviours
 {
-	public sealed class InteractiveObjectChildBehaviour : AChildEcsBehaviour
+	public sealed class InteractiveValueChildBehaviour : AChildEcsBehaviour
 	{
-		[SerializeField] private InteractiveType _type;
+		[SerializeField] private float _amount;
 
 		public override void Link(Entity entity)
 		{
-			entity.SetComponent(new Interactive { Type = _type });
+			entity.SetComponent(new InteractiveValue { Value = _amount });
 		}
 
 		public override void Unlink(Entity entity) { }

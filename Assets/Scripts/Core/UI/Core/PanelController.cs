@@ -6,6 +6,8 @@ namespace Core.UI
 {
 	public class PanelController
 	{
+		private readonly HashSet<IPresenter> _openedPanels = new HashSet<IPresenter>();
+		
 		private Dictionary<Type, IPresenter> _presenters;
 
 		[Inject]
@@ -21,6 +23,8 @@ namespace Core.UI
 			var presenter = _presenters[typeof(T)];
 			if (!presenter.IsActive)
 				presenter.Open();
+
+			_openedPanels.Add(presenter);
 		}
 
 		public void Close<T>() where T : IPresenter
@@ -28,6 +32,15 @@ namespace Core.UI
 			var presenter = _presenters[typeof(T)];
 			if (presenter.IsActive)
 				presenter.Close();
+			
+			_openedPanels.Remove(presenter);
+		}
+
+		public void Dispose()
+		{
+			foreach (IPresenter openedPanel in _openedPanels) 
+				openedPanel.Close();
+			_openedPanels.Clear();
 		}
 	}
 }

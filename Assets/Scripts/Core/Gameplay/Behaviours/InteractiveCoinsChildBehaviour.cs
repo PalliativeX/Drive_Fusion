@@ -6,7 +6,7 @@ namespace Core.Gameplay.Behaviours
 {
 	public sealed class InteractiveCoinsChildBehaviour : AChildEcsBehaviour
 	{
-		[SerializeField] private float _amount;
+		[SerializeField] private int _amount;
 
 		public override void Link(Entity entity)
 		{

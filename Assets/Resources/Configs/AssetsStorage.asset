@@ -46,3 +46,9 @@ MonoBehaviour:
   - Name: MainMenu
     Reference: {fileID: 4421294754327072182, guid: 14c1ae4b5c99d2d4baf025c9e3c4d521, type: 3}
     PooledCount: 0
+  - Name: Coin
+    Reference: {fileID: 7293438705960873562, guid: db217e6b20401a74dae1344e2764ef49, type: 3}
+    PooledCount: 0
+  - Name: Fuel
+    Reference: {fileID: 48402415588636884, guid: d5dce9798a163404294534b2cfaf2006, type: 3}
+    PooledCount: 0

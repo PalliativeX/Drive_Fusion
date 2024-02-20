@@ -14,6 +14,7 @@ namespace Core.UI
 			Container.BindInterfacesAndSelf<PanelFactory>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<PanelInitializer>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<PanelController>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<PanelsDisposeHandler>().FromNew().AsSingle();
 			
 			InstallPanels();
 		}

@@ -220,18 +220,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0000001, y: 2, z: 1.0000002}
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!134 &188068418
-PhysicMaterial:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: DynamicMaterial
-  dynamicFriction: 0
-  staticFriction: 0
-  bounciness: 0
-  frictionCombine: 1
-  bounceCombine: 1
 --- !u!1001 &268626905
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -468,6 +456,18 @@ Transform:
   m_Father: {fileID: 659813475}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!134 &573459536
+PhysicMaterial:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: DynamicMaterial
+  dynamicFriction: 0
+  staticFriction: 0
+  bounciness: 0
+  frictionCombine: 1
+  bounceCombine: 1
 --- !u!1 &659813474
 GameObject:
   m_ObjectHideFlags: 0
@@ -903,7 +903,7 @@ PrefabInstance:
     - target: {fileID: 6458397258766240291, guid: d09f06e1d31ffa840a5f47f39c85f826, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 188068418}
+      objectReference: {fileID: 573459536}
     - target: {fileID: 8178125761769540528, guid: d09f06e1d31ffa840a5f47f39c85f826, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2473,31 +2473,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5107067610117800387, guid: 57ab2d0ed7ff23e4a8fc362c5c56d744, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.40036583
+      value: -0.8784828
       objectReference: {fileID: 0}
     - target: {fileID: 5107067610117800387, guid: 57ab2d0ed7ff23e4a8fc362c5c56d744, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.19
+      value: 1.85
       objectReference: {fileID: 0}
     - target: {fileID: 5107067610117800387, guid: 57ab2d0ed7ff23e4a8fc362c5c56d744, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.649609
+      value: -6.2112184
       objectReference: {fileID: 0}
     - target: {fileID: 5107067610117800387, guid: 57ab2d0ed7ff23e4a8fc362c5c56d744, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9966701
+      value: 0.99347526
       objectReference: {fileID: 0}
     - target: {fileID: 5107067610117800387, guid: 57ab2d0ed7ff23e4a8fc362c5c56d744, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.070950404
+      value: 0.11390835
       objectReference: {fileID: 0}
     - target: {fileID: 5107067610117800387, guid: 57ab2d0ed7ff23e4a8fc362c5c56d744, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.040082302
+      value: 0.0056043286
       objectReference: {fileID: 0}
     - target: {fileID: 5107067610117800387, guid: 57ab2d0ed7ff23e4a8fc362c5c56d744, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0028533565
+      value: -0.0006425725
       objectReference: {fileID: 0}
     - target: {fileID: 5107067610117800387, guid: 57ab2d0ed7ff23e4a8fc362c5c56d744, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2540,12 +2540,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5107067610238916072, guid: 57ab2d0ed7ff23e4a8fc362c5c56d744, type: 3}
+      propertyPath: m_ScreenX
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107067610238916072, guid: 57ab2d0ed7ff23e4a8fc362c5c56d744, type: 3}
       propertyPath: m_TrackedObjectOffset.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5107067610238916079, guid: 57ab2d0ed7ff23e4a8fc362c5c56d744, type: 3}
+      propertyPath: CameraDistance
+      value: 11.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107067610238916079, guid: 57ab2d0ed7ff23e4a8fc362c5c56d744, type: 3}
       propertyPath: ShoulderOffset.x
-      value: 4.58
+      value: 5.3
       objectReference: {fileID: 0}
     - target: {fileID: 5107067610238916079, guid: 57ab2d0ed7ff23e4a8fc362c5c56d744, type: 3}
       propertyPath: ShoulderOffset.y
@@ -2553,11 +2561,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5107067610238916079, guid: 57ab2d0ed7ff23e4a8fc362c5c56d744, type: 3}
       propertyPath: ShoulderOffset.z
-      value: 13.37
+      value: 12.93
       objectReference: {fileID: 0}
     - target: {fileID: 5107067610238916079, guid: 57ab2d0ed7ff23e4a8fc362c5c56d744, type: 3}
       propertyPath: VerticalArmLength
-      value: 0.8
+      value: 1.46
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57ab2d0ed7ff23e4a8fc362c5c56d744, type: 3}

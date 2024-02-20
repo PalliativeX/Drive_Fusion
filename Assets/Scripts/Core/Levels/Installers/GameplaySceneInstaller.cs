@@ -15,7 +15,7 @@ namespace Core.Levels
 	public sealed class GameplaySceneInstaller : MonoInstaller
 	{
 		[SerializeField] private LevelBehaviour _levelBehaviour; 
-		[SerializeField] private GameParentBehaviour _gameParent; 
+		[SerializeField] private GameParentBehaviour _gameParent;
 		
 		public override void InstallBindings()
 		{
@@ -42,6 +42,11 @@ namespace Core.Levels
 			Container.BindInterfacesAndSelf<SynchronizePositionFromTransformSystem>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<SynchronizeTransformSystem>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<SetCameraFollowSystem>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<UpdateLookAtCameraSystem>().FromNew().AsSingle();
+			
+			Container.BindInterfacesAndSelf<UpdateTriggerEnterSystem>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<UpdateTriggerExitSystem>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<TriggerHandler>().FromNew().AsSingle();
 			
 			Container.BindInterfacesAndSelf<MainThemePlayInitializer>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<ShowReviveUiOnStopSystem>().FromNew().AsSingle();

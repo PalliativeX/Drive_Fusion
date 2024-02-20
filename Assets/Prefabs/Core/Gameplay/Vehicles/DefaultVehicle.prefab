@@ -15011,6 +15011,7 @@ GameObject:
   - component: {fileID: 6458397258766240288}
   - component: {fileID: 6458397258766240291}
   - component: {fileID: 6458397258766240290}
+  - component: {fileID: 3839188146180179579}
   m_Layer: 0
   m_Name: Controller
   m_TagString: Untagged
@@ -15084,7 +15085,7 @@ MonoBehaviour:
   sideFriction: 0.5
   collidableLayers:
     serializedVersion: 2
-    m_Bits: 503
+    m_Bits: 119
   adjustToScale: 1
   accelerationCurve:
     serializedVersion: 2
@@ -15153,6 +15154,18 @@ MonoBehaviour:
     m_RotationOrder: 4
   forwardFriction: 60
   lateralFriction: 60
+--- !u!114 &3839188146180179579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6458397258766240292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3af16acc659b43958ebd4ac64c65deae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7326568891096638028
 GameObject:
   m_ObjectHideFlags: 0
@@ -15320,6 +15333,7 @@ MonoBehaviour:
   _children:
   - {fileID: 1743437408957457451}
   - {fileID: 8499344249677140659}
+  - {fileID: 3839188146180179579}
 --- !u!114 &1743437408957457451
 MonoBehaviour:
   m_ObjectHideFlags: 0
