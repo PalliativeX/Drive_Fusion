@@ -24,7 +24,7 @@ namespace Core.Gameplay
 		public void OnEnter(Entity entity, int triggerId)
 		{
 			Entity triggerEntity = GetTriggerEntity(triggerId);
-			Debug.Log("Enter: " + triggerEntity);
+			// Debug.Log("Enter: " + triggerEntity);
 			if (triggerEntity == null)
 				return;
 

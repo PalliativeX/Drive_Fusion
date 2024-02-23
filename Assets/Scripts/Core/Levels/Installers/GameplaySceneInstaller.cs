@@ -5,6 +5,7 @@ using Core.Gameplay.Behaviours;
 using Core.Infrastructure;
 using Core.InputLogic;
 using Core.Sound;
+using Core.UI;
 using Core.UI.Systems;
 using Scellecs.Morpeh;
 using SimpleInject;
@@ -47,11 +48,16 @@ namespace Core.Levels
 			Container.BindInterfacesAndSelf<UpdateTriggerEnterSystem>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<UpdateTriggerExitSystem>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<TriggerHandler>().FromNew().AsSingle();
-			
+			Container.BindInterfacesAndSelf<HandleCollisionEventsSystem>().FromNew().AsSingle();
+
 			Container.BindInterfacesAndSelf<MainThemePlayInitializer>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<ShowReviveUiOnStopSystem>().FromNew().AsSingle();
 			
 			Container.BindInterfacesAndSelf<GamePauser>().FromNew().AsSingle();
+			
+			Container.BindInterfacesAndSelf<DurabilityChangedUpdateUiSystem>().FromNew().AsSingle();
+
+			Container.BindInterfacesAndSelf<RemoveDurabilityChangedSystem>().FromNew().AsSingle();
 			
 			Container.BindInterfacesAndSelf<PoolViewsOnDisposeHelper>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<DestroyEntitySystem>().FromNew().AsSingle();

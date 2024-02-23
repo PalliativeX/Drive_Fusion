@@ -1,4 +1,5 @@
 ﻿using SimpleInject;
+using UniRx;
 
 namespace Core.UI
 {
@@ -19,11 +20,11 @@ namespace Core.UI
 				touchArea.PointerDown += OnTouchAreaPressed;
 				touchArea.PointerUp += OnTouchAreaUp;
 			}
-			
-			View.SettingsButton.onClick.AddListener(_model.OnSettings);
 
-			View.DurabilityFill.fillAmount = _model.GetCurrentDurability();
-			View.FuelFill.fillAmount = _model.GetCurrentFuel();
+			View.SettingsButton.OnClickSubscribeDisposable(_model.OnSettings).AddTo(Disposable);
+
+			UpdateDurability();
+			UpdateFuel();
 		}
 
 		protected override void OnClose()
@@ -33,8 +34,6 @@ namespace Core.UI
 				touchArea.PointerUp -= OnTouchAreaUp;
 			}
 			
-			View.SettingsButton.onClick.RemoveListener(_model.OnSettings);
-			
 			OnTouchAreaUp();
 		}
 
@@ -43,8 +42,12 @@ namespace Core.UI
 			if (!IsActive)
 				return;
 			
-			View.FuelFill.fillAmount = _model.GetCurrentFuel();
+			UpdateFuel();
 		}
+
+		public void UpdateDurability() => View.DurabilityFill.fillAmount = _model.GetCurrentDurability();
+
+		private void UpdateFuel() => View.FuelFill.fillAmount = _model.GetCurrentFuel();
 
 		private void OnTouchAreaPressed(MovementTouchAreaType type)
 		{

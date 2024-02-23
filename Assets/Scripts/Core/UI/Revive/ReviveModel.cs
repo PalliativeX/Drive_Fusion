@@ -1,8 +1,8 @@
 using Core.ECS;
 using Core.Gameplay;
 using Core.Levels;
+using Core.UI.Result;
 using Scellecs.Morpeh;
-using UnityEngine;
 
 namespace Core.UI.Revive
 {
@@ -31,11 +31,12 @@ namespace Core.UI.Revive
 			ref var fuel = ref player.GetComponent<Fuel>();
 			fuel.Value = 1f;
 			
-			ref var durability = ref player.GetComponent<Durability>();
-			durability.Value = 1f;
+			player.ChangeDurability(1f);
 
 			player.TryRemove<Wrecked>();
 			player.RemoveComponent<Stopped>();
+			
+			player.SetComponent(new ReviveUnavailable());
 
 			_panelController.Close<RevivePresenter>();
 		}
@@ -43,7 +44,8 @@ namespace Core.UI.Revive
 		public void OnRefuse()
 		{
 			SwitchPause(false);
-			_levelsHelper.LoadMenu();
+			_panelController.Close<RevivePresenter>();
+			_panelController.Open<ResultPresenter>();
 		}
 	}
 }

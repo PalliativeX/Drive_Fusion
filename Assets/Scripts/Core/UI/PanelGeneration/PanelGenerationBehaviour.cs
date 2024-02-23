@@ -16,7 +16,7 @@ namespace Core.UI.PanelGeneration
 		private void OnValidate()
 		{
 			if (Name.IsNullOrWhitespace())
-				Name = name;
+				Name = name.Replace("Panel", "").Trim();
 
 			if (Path.IsNullOrWhitespace())
 			{

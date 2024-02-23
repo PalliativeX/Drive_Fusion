@@ -9,6 +9,8 @@ namespace Core.Gameplay
 	{
 		public List<VehicleConfig> Configs;
 
+		public AnimationCurve CollisionCurve;
+
 		public VehicleConfig Get(string vehicleName)
 		{
 			foreach (var config in Configs)

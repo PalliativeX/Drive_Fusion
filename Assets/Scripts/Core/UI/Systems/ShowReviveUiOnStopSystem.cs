@@ -1,4 +1,5 @@
 ﻿using Core.Gameplay;
+using Core.UI.Result;
 using Core.UI.Revive;
 using Scellecs.Morpeh;
 using Unity.IL2CPP.CompilerServices;
@@ -33,7 +34,10 @@ namespace Core.UI.Systems
 				entity.RemoveComponent<StopRequested>();
 				entity.SetComponent(new Stopped());
 				
-				_panelController.Open<RevivePresenter>();
+				if (!entity.Has<ReviveUnavailable>())
+					_panelController.Open<RevivePresenter>();
+				else
+					_panelController.Open<ResultPresenter>();
 			}
 		}
 		

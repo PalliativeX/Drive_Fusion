@@ -33,6 +33,9 @@ namespace Core.Gameplay
 			// CreateCameraTarget(player);
 			CreateCamera();
 
+			CreateCurrentLevelEntity();
+
+			// TODO: Test, delete
 			for (int i = 0; i < 4; i++)
 			{
 				Entity coin = World.CreateEntity();
@@ -50,6 +53,12 @@ namespace Core.Gameplay
 			}
 		}
 
+		private void CreateCurrentLevelEntity()
+		{
+			Entity currentLevel = World.CreateEntity();
+			currentLevel.SetComponent(new Score { Value = 0f });
+		}
+
 		public void Dispose() { }
 
 		private Entity CreatePlayer()
@@ -62,6 +71,7 @@ namespace Core.Gameplay
 			player.SetComponent(new Position { Value = spawnPoint.position });
 			player.SetComponent(new Rotation { Value = spawnPoint.eulerAngles });
 			player.SetComponent(new TransformUpdatesPosition());
+			player.SetComponent(new TrackPositionChange());
 
 			player.SetComponent(new MovementInput { Value = Vector3.zero });
 			

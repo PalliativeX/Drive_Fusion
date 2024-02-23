@@ -15294,6 +15294,7 @@ GameObject:
   - component: {fileID: 1743437408957457451}
   - component: {fileID: 8499344249677140659}
   - component: {fileID: 3753506680966670094}
+  - component: {fileID: 8614806469218536440}
   m_Layer: 0
   m_Name: DefaultVehicle
   m_TagString: Untagged
@@ -15333,6 +15334,7 @@ MonoBehaviour:
   _children:
   - {fileID: 1743437408957457451}
   - {fileID: 8499344249677140659}
+  - {fileID: 8614806469218536440}
   - {fileID: 3839188146180179579}
 --- !u!114 &1743437408957457451
 MonoBehaviour:
@@ -15402,6 +15404,19 @@ MonoBehaviour:
   particlesBoost: {fileID: 8030199806118162919}
   rotationSmoothingOnGround: 10
   rotationSmoothingInAir: 5
+--- !u!114 &8614806469218536440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8178125761769540529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b35b7ef3ec264777aadfa727e603961b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _carController: {fileID: 6458397258766240290}
 --- !u!1 &8228604009923350543
 GameObject:
   m_ObjectHideFlags: 0

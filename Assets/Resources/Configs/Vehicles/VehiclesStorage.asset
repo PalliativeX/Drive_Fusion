@@ -15,3 +15,63 @@ MonoBehaviour:
   Configs:
   - {fileID: 11400000, guid: 9147108f803e5f74db97187113d3dfe4, type: 2}
   - {fileID: 11400000, guid: 4e8ddbb2017ac95488f80651d75c6567, type: 2}
+  CollisionCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.5328581
+      value: 0.40019482
+      inSlope: 1.782512
+      outSlope: 1.782512
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.083480045
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.80061847
+      value: 0.96293235
+      inSlope: 0.87270945
+      outSlope: 0.87270945
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.056410722
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.99734366
+      value: 1.0003412
+      inSlope: -0.011877434
+      outSlope: -0.011877434
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.6958921
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9991088
+      value: 1.0003595
+      inSlope: -0.22034734
+      outSlope: -0.22034734
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

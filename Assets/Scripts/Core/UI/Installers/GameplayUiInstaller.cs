@@ -1,4 +1,5 @@
 ﻿using Core.UI.Menu;
+using Core.UI.Result;
 using Core.UI.Revive;
 using Core.UI.Settings;
 using Core.UI.Systems;
@@ -21,6 +22,9 @@ namespace Core.UI
 			
 			Container.BindInterfacesAndSelf<ReviveModel>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<RevivePresenter>().FromNew().AsSingle();
+			
+			Container.BindInterfacesAndSelf<ResultModel>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<ResultPresenter>().FromNew().AsSingle();
 			
 			Container.BindInterfacesAndSelf<PanelByStateInitializer>().FromNew().AsSingle();
 		}

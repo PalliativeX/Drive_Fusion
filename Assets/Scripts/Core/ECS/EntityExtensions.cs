@@ -1,5 +1,6 @@
 ﻿using Core.Gameplay;
 using Scellecs.Morpeh;
+using UnityEngine;
 
 namespace Core.ECS
 {
@@ -16,5 +17,13 @@ namespace Core.ECS
 
 		public static void AddPrefab(this Entity entity, string name) => 
 			entity.SetComponent(new Prefab { Value = name });
+
+		public static void ChangeDurability(this Entity entity, float newDurability)
+		{
+			ref var durability = ref entity.GetComponent<Durability>();
+			durability.Value = newDurability;
+			if (!entity.Has<DurabilityChanged>())
+				entity.SetComponent(new DurabilityChanged());
+		}
 	}
 }
