@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Core.SceneManagement.LoadingScreen;
+using Cysharp.Threading.Tasks;
 
 namespace Core.Infrastructure.GameFsm
 {
@@ -23,13 +24,14 @@ namespace Core.Infrastructure.GameFsm
 			// _saveLoadService = saveLoadService;
 		// }
 
-		public async void Enter()
-		{
+		public void Enter() => OnEnter();
+
+		private async UniTaskVoid OnEnter() {
 			// _saveLoadService.RestoreState(_saveable);
 
-			await Task.Delay(500);
+			await UniTask.Delay(500);
 			_loadingScreenProvider.LoadingScreen.Hide();
-			
+
 			RequestNextState?.Invoke(GameStateType.Menu);
 		}
 

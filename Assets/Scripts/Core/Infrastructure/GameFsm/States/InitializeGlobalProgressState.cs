@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Core.Levels;
+using Cysharp.Threading.Tasks;
 using Scellecs.Morpeh;
 
 namespace Core.Infrastructure.GameFsm
@@ -29,16 +30,18 @@ namespace Core.Infrastructure.GameFsm
 			// _saveLoadService = saveLoadService;
 		}
 
-		public async void Enter()
+		public void Enter() => Initialize();
+
+		private async UniTaskVoid Initialize()
 		{
 			// _saveLoadService.RestoreState(_loadable);
 			
 			var entity = _levelsHelper.Initialize();
 
-			await Task.Yield();
+			await UniTask.Yield();
 			
 			entity.SetComponent(new RequestMenuLoad());
-			_stateMachine.ChangeState(GameStateType.LoadLevel, entity);
+			_stateMachine.ChangeState(GameStateType.LoadLevel, entity);	
 		}
 
 		public void Update() { }

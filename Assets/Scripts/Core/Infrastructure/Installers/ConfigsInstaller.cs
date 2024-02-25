@@ -17,6 +17,7 @@ namespace Core.Infrastructure.Installers
 		[SerializeField] private SoundStorage _soundStorage;
 		[SerializeField] private InputConfig _inputConfig;
 		[SerializeField] private VehiclesStorage _vehiclesStorage;
+		[SerializeField] private RoadsConfig _roadsConfig;
 		
 		public override void InstallBindings()
 		{
@@ -27,6 +28,7 @@ namespace Core.Infrastructure.Installers
 			Container.BindSelf<CoroutineRunner>().FromComponentInNewPrefab(_coroutineRunner).AsSingle();
 			Container.BindSelf<InputConfig>().FromInstance(_inputConfig).AsSingle();
 			Container.BindSelf<VehiclesStorage>().FromInstance(_vehiclesStorage).AsSingle();
+			Container.BindSelf<RoadsConfig>().FromInstance(_roadsConfig).AsSingle();
 		}
 	}
 }

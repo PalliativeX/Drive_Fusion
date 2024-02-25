@@ -27,6 +27,7 @@ namespace Core.Levels
 			Container.BindInterfacesAndSelf<LevelBehaviour>().FromInstance(_levelBehaviour).AsSingle();
 			Container.BindInterfacesAndSelf<GameParentBehaviour>().FromInstance(_gameParent).AsSingle();
 			Container.BindInterfacesAndSelf<GameParentInitializer>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<RoadCreator>().FromNew().AsSingle();
 			
 			Container.BindInterfacesAndSelf<PrefabInstantiateSystem>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<GameplaySceneInitializer>().FromNew().AsSingle();
