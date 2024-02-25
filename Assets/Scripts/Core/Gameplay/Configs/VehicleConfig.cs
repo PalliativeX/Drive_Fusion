@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 namespace Core.Gameplay
@@ -19,6 +18,7 @@ namespace Core.Gameplay
 		public string DisplayedName;
 		public List<VehicleParameter> Parameters;
 
+#if UNITY_EDITOR
 		private void OnValidate()
 		{
 			if (Parameters == null || Parameters.Count == 0)
@@ -28,8 +28,9 @@ namespace Core.Gameplay
 				foreach (VehicleParameterType value in Enum.GetValues(typeof(VehicleParameterType)))
 					Parameters.Add(new VehicleParameter(value, 0f));
 				
-				EditorUtility.SetDirty(this);
+				UnityEditor.EditorUtility.SetDirty(this);
 			}
 		}
+#endif
 	}
 }

@@ -1,5 +1,4 @@
-﻿using Sirenix.Utilities;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Core.UI.PanelGeneration
 {
@@ -15,13 +14,11 @@ namespace Core.UI.PanelGeneration
 #if UNITY_EDITOR
 		private void OnValidate()
 		{
-			if (Name.IsNullOrWhitespace())
+			if (string.IsNullOrWhiteSpace(Name))
 				Name = name.Replace("Panel", "").Trim();
 
-			if (Path.IsNullOrWhitespace())
-			{
+			if (string.IsNullOrWhiteSpace(Name)) 
 				Path = $"/Scripts/Core/UI/{Name}/";
-			}
 		}
 #endif
 	}
