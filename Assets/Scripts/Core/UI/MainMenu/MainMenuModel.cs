@@ -12,7 +12,12 @@ namespace Core.UI.MainMenu
 		private readonly VehicleSelectionService _vehicleSelection;
 		private readonly SoundService _sound;
 
-		public MainMenuModel(LevelsHelper levelsHelper, PanelController panelController, VehicleSelectionService vehicleSelection, SoundService sound)
+		public MainMenuModel(
+			LevelsHelper levelsHelper,
+			PanelController panelController,
+			VehicleSelectionService vehicleSelection,
+			SoundService sound
+		)
 		{
 			_levelsHelper = levelsHelper;
 			_panelController = panelController;
@@ -21,7 +26,7 @@ namespace Core.UI.MainMenu
 		}
 
 		public void OnPlay() => _levelsHelper.Play(1);
-		
+
 		public bool IsSoundActive() => _sound.IsSoundActive;
 
 		public void ToggleSoundActive() => _sound.ToggleActive();
@@ -31,6 +36,7 @@ namespace Core.UI.MainMenu
 		public bool IsOwned() => _vehicleSelection.IsOwned(_vehicleSelection.GetSelectedName());
 		public (VehicleConfig, bool) GetVehicleData() => _vehicleSelection.GetVehicleData();
 		public bool Buy() => _vehicleSelection.BuySelected();
+
 		public (int, int) GetVehicleIndex()
 		{
 			(int, int) data = _vehicleSelection.GetVehicleIndex();

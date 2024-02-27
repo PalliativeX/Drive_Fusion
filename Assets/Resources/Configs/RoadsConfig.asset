@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RoadsConfig
   m_EditorClassIdentifier: 
   BlockSize: 30
-  ConcurrentBlockCount: 6
+  ConcurrentBlockCount: 15
   Blocks:
   - Type: 0
     PrefabName: Straight

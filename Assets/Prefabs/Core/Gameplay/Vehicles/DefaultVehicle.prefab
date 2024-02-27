@@ -15295,6 +15295,7 @@ GameObject:
   - component: {fileID: 8499344249677140659}
   - component: {fileID: 3753506680966670094}
   - component: {fileID: 8614806469218536440}
+  - component: {fileID: -6408119402839970949}
   m_Layer: 0
   m_Name: DefaultVehicle
   m_TagString: Untagged
@@ -15335,6 +15336,7 @@ MonoBehaviour:
   - {fileID: 1743437408957457451}
   - {fileID: 8499344249677140659}
   - {fileID: 8614806469218536440}
+  - {fileID: -6408119402839970949}
   - {fileID: 3839188146180179579}
 --- !u!114 &1743437408957457451
 MonoBehaviour:
@@ -15417,6 +15419,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _carController: {fileID: 6458397258766240290}
+--- !u!114 &-6408119402839970949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8178125761769540529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7ace90d89034da7baab6faa43f1f1af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 6458397258766240293}
 --- !u!1 &8228604009923350543
 GameObject:
   m_ObjectHideFlags: 0

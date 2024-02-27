@@ -22,6 +22,17 @@ namespace Core.Gameplay
 
 		public void Dispose() => Reference = null;
 	}
+	
+	[Il2CppSetOption(Option.NullChecks, false)]
+	[Il2CppSetOption(Option.ArrayBoundsChecks, false)]
+	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
+	[Serializable]
+	public struct CustomTransform : IComponent, IDisposable
+	{
+		public Transform Reference;
+
+		public void Dispose() => Reference = null;
+	}
 
 	[Il2CppSetOption(Option.NullChecks, false)]
 	[Il2CppSetOption(Option.ArrayBoundsChecks, false)]

@@ -17,7 +17,7 @@ namespace Core.UI.PanelGeneration
 			if (string.IsNullOrWhiteSpace(Name))
 				Name = name.Replace("Panel", "").Trim();
 
-			if (string.IsNullOrWhiteSpace(Name)) 
+			if (string.IsNullOrWhiteSpace(Path)) 
 				Path = $"/Scripts/Core/UI/{Name}/";
 		}
 #endif

@@ -1,4 +1,5 @@
-﻿using Scellecs.Morpeh;
+﻿using Core.Gameplay;
+using Scellecs.Morpeh;
 using Unity.IL2CPP.CompilerServices;
 using UnityEngine;
 
@@ -31,8 +32,11 @@ namespace Core.ECS
 
 				ref Vector3 position = ref entity.GetComponent<Position>().Value;
 				ref Vector3 eulerAngles = ref entity.GetComponent<Rotation>().Value;
+
+				var transform = entity.Has<CustomTransform>() 
+					? entity.GetComponent<CustomTransform>().Reference 
+					: view.Reference.transform;
 				
-				Transform transform = view.Reference.transform;
 				position = transform.position;
 				eulerAngles = transform.eulerAngles;
 			}

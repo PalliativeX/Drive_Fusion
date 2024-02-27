@@ -12,12 +12,14 @@ namespace Core.Gameplay
 	{
 		private readonly World _globalWorld;
 		private readonly MoneyManager _moneyManager;
+		private readonly RoadCreator _roadCreator;
 		private readonly Filter _instanceFilter;
 		
-		public TriggerHandler(GlobalWorld globalWorld, World world, MoneyManager moneyManager)
+		public TriggerHandler(GlobalWorld globalWorld, World world, MoneyManager moneyManager, RoadCreator roadCreator) 
 		{
 			_globalWorld = globalWorld;
 			_moneyManager = moneyManager;
+			_roadCreator = roadCreator;
 			_instanceFilter = world.Filter.With<InstanceId>().Build();
 		}
 
@@ -55,6 +57,18 @@ namespace Core.Gameplay
 				_globalWorld.CreateSound(SoundId.CollectInteractive, SoundType.Sound);
 
 				triggerEntity.SetComponent(new Destroyed());
+				return;
+			}
+
+			if (triggerEntity.Has<RoadBlock>())
+			{
+				if (entity.Has<CurrentRoadBlock>())
+				{
+					ref var currentBlock = ref entity.GetComponent<CurrentRoadBlock>();
+					currentBlock.Value = triggerEntity.ID;
+				}
+				else
+					entity.SetComponent(new CurrentRoadBlock { Value = triggerEntity.ID });
 			}
 		}
 		
@@ -63,8 +77,11 @@ namespace Core.Gameplay
 			Entity triggerEntity = GetTriggerEntity(triggerId);
 			if (triggerEntity == null)
 				return;
+
+			if (!triggerEntity.Has<RoadBlock>())
+				return;
 			
-			
+			_roadCreator.HandleRoadCreation(triggerEntity);
 		}
 
 		[CanBeNull]

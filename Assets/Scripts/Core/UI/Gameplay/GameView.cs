@@ -10,8 +10,9 @@ namespace Core.UI
 
 		public Button SettingsButton;
 
-		public TextMeshProUGUI ScoreLabel;
 		public SlicedFilledImage DurabilityFill;
 		public SlicedFilledImage FuelFill;
+		public SlicedFilledImage ScoreRecordFill;
+		public TextMeshProUGUI ScoreLabel;
 	}
 }

@@ -22,6 +22,7 @@ namespace Core.Levels
 			Container.BindInterfacesAndSelf<Bootstrap>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<SetComponentsDisposableInitializer>().FromNew().AsSingle();
 			
+			Container.BindInterfacesAndSelf<MenuInitializer>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<MenuLevelBehaviour>().FromInstance(_levelBehaviour).AsSingle();
 			Container.BindInterfacesAndSelf<GameParentBehaviour>().FromInstance(_gameParent).AsSingle();
 			Container.BindInterfacesAndSelf<GameParentInitializer>().FromNew().AsSingle();

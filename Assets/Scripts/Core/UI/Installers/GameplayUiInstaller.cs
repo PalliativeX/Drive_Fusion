@@ -1,4 +1,5 @@
 ﻿using Core.UI.Menu;
+using Core.UI.RateUs;
 using Core.UI.Result;
 using Core.UI.Revive;
 using Core.UI.Settings;
@@ -25,6 +26,9 @@ namespace Core.UI
 			
 			Container.BindInterfacesAndSelf<ResultModel>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<ResultPresenter>().FromNew().AsSingle();
+			
+			Container.BindInterfacesAndSelf<RateUsModel>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<RateUsPresenter>().FromNew().AsSingle();
 			
 			Container.BindInterfacesAndSelf<PanelByStateInitializer>().FromNew().AsSingle();
 		}

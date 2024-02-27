@@ -16,11 +16,11 @@ namespace Core.Gameplay.Behaviours
 			entity.SetComponent(new VehicleConfigComponent { Reference = _config });
 			entity.SetComponent(new Fuel { Value = 1f });
 			entity.SetComponent(new Durability { Value = 1f });
-			
-			_controller.Clear();
+
+			_controller.Clear(Vector3.zero, Quaternion.identity);
 		}
 
 		public override void Unlink(Entity entity) => 
-			_controller.Clear();
+			_controller.Clear(Vector3.zero, Quaternion.identity);
 	}
 }

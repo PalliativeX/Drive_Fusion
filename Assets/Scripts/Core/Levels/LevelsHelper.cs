@@ -1,4 +1,5 @@
-﻿using Core.Infrastructure.GameFsm;
+﻿using System.Collections.Generic;
+using Core.Infrastructure.GameFsm;
 using Core.Levels.Storages;
 using Core.Sound;
 using Scellecs.Morpeh;
@@ -26,6 +27,7 @@ namespace Core.Levels
 		{
 			var entity = _world.CreateEntity();
 			entity.SetComponent(new CurrentLevel { Value = 0 });
+			entity.SetComponent(new LevelScoreRecords { Dictionary = new Dictionary<int, float>() });
 			return entity;
 		}
 		
@@ -58,6 +60,24 @@ namespace Core.Levels
 			var entity = _filter.First();
 			var currentLevel = entity.GetComponent<CurrentLevel>();
 			return _levels.LevelEntries[currentLevel.Index];
+		}
+
+		public float GetCurrentLevelScoreRecord()
+		{
+			var entity = _filter.First();
+			var currentLevel = entity.GetComponent<CurrentLevel>();
+			ref var scoreRecords = ref entity.GetComponent<LevelScoreRecords>();
+			if (scoreRecords.Dictionary.TryGetValue(currentLevel.Index, out float score))
+				return score;
+            return 0;
+		}
+
+		public void SetCurrentLevelScoreRecord(float score)
+		{
+			var entity = _filter.First();
+			var currentLevel = entity.GetComponent<CurrentLevel>();
+			ref var scoreRecords = ref entity.GetComponent<LevelScoreRecords>();
+			scoreRecords.Dictionary[currentLevel.Value] = score;
 		}
 	}
 }

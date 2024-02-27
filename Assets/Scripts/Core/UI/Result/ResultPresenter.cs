@@ -13,6 +13,7 @@ namespace Core.UI.Result
 		protected override void OnShow()
 		{
 			_model.SwitchPause(true);
+			_model.OnShow();
 
 			View.MenuButton.OnClickSubscribeDisposable(_model.OnMenu).AddTo(Disposable);
 			View.RestartButton.OnClickSubscribeDisposable(_model.OnRestart).AddTo(Disposable);
@@ -21,6 +22,7 @@ namespace Core.UI.Result
 		protected override void OnClose()
 		{
 			_model.SwitchPause(false);
+			_model.OnClose();
 		}
 	}
 }

@@ -61,3 +61,6 @@ MonoBehaviour:
   - Name: TurnSquare
     Reference: {fileID: 3864281397818465040, guid: 51423ef41795bde4ab92f394c3b0beea, type: 3}
     PooledCount: 3
+  - Name: RateUs
+    Reference: {fileID: 6878192136770198466, guid: be173993ea381b545838344dbf9304bf, type: 3}
+    PooledCount: 0

@@ -24,6 +24,7 @@ namespace Core.Levels
 			Container.BindInterfacesAndSelf<Bootstrap>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<SetComponentsDisposableInitializer>().FromNew().AsSingle();
 			
+			Container.BindInterfacesAndSelf<CurrentLevelService>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<LevelBehaviour>().FromInstance(_levelBehaviour).AsSingle();
 			Container.BindInterfacesAndSelf<GameParentBehaviour>().FromInstance(_gameParent).AsSingle();
 			Container.BindInterfacesAndSelf<GameParentInitializer>().FromNew().AsSingle();
@@ -41,6 +42,7 @@ namespace Core.Levels
 			Container.BindInterfacesAndSelf<UpdateVehicleFuelSystem>().FromNew().AsSingle();
 			// Container.BindInterfacesAndSelf<UpdateCameraTargetSystem>().FromNew().AsSingle();
 			
+			Container.BindInterfacesAndSelf<SetPreviousPositionSystem>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<SynchronizePositionFromTransformSystem>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<SynchronizeTransformSystem>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<SetCameraFollowSystem>().FromNew().AsSingle();
@@ -55,6 +57,7 @@ namespace Core.Levels
 			Container.BindInterfacesAndSelf<ShowReviveUiOnStopSystem>().FromNew().AsSingle();
 			
 			Container.BindInterfacesAndSelf<GamePauser>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<UpdateScoreSystem>().FromNew().AsSingle();
 			
 			Container.BindInterfacesAndSelf<DurabilityChangedUpdateUiSystem>().FromNew().AsSingle();
 

@@ -1,6 +1,7 @@
 ﻿using Core.AssetManagement;
 using Core.Gameplay;
 using Core.InputLogic;
+using Core.Integrations;
 using Core.Levels.Storages;
 using Core.Sound;
 using SimpleInject;
@@ -18,6 +19,7 @@ namespace Core.Infrastructure.Installers
 		[SerializeField] private InputConfig _inputConfig;
 		[SerializeField] private VehiclesStorage _vehiclesStorage;
 		[SerializeField] private RoadsConfig _roadsConfig;
+		[SerializeField] private RateUsConfig _rateUs;
 		
 		public override void InstallBindings()
 		{
@@ -29,6 +31,7 @@ namespace Core.Infrastructure.Installers
 			Container.BindSelf<InputConfig>().FromInstance(_inputConfig).AsSingle();
 			Container.BindSelf<VehiclesStorage>().FromInstance(_vehiclesStorage).AsSingle();
 			Container.BindSelf<RoadsConfig>().FromInstance(_roadsConfig).AsSingle();
+			Container.BindSelf<RateUsConfig>().FromInstance(_rateUs).AsSingle();
 		}
 	}
 }

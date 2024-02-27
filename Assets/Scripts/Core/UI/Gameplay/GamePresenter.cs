@@ -1,17 +1,21 @@
-﻿using SimpleInject;
+﻿using Core.Gameplay;
+using SimpleInject;
 using UniRx;
+using Utils;
 
 namespace Core.UI
 {
 	public class GamePresenter : APresenter<GameView>, ITickable
 	{
 		private readonly GameModel _model;
-		
+		private readonly CurrentLevelService _currentLevelService;
+
 		public override string Name => "Game";
 
-		public GamePresenter(GameModel model)
+		public GamePresenter(GameModel model, CurrentLevelService currentLevelService)
 		{
 			_model = model;
+			_currentLevelService = currentLevelService;
 		}
 
 		protected override void OnShow()
@@ -22,9 +26,12 @@ namespace Core.UI
 			}
 
 			View.SettingsButton.OnClickSubscribeDisposable(_model.OnSettings).AddTo(Disposable);
+			
+			_currentLevelService.ScoreChanged += UpdateScore;
 
 			UpdateDurability();
 			UpdateFuel();
+			UpdateScore(_currentLevelService.Score);
 		}
 
 		protected override void OnClose()
@@ -33,6 +40,8 @@ namespace Core.UI
 				touchArea.PointerDown -= OnTouchAreaPressed;
 				touchArea.PointerUp -= OnTouchAreaUp;
 			}
+			
+			_currentLevelService.ScoreChanged -= UpdateScore;
 			
 			OnTouchAreaUp();
 		}
@@ -55,5 +64,16 @@ namespace Core.UI
 		}
 
 		private void OnTouchAreaUp() => _model.SetXTouchInput(0f);
+		
+		private void UpdateScore(float score)
+		{
+			View.ScoreLabel.text = score.ToString("F0");
+
+			float fill = 1f;
+			if (!_currentLevelService.CurrentScoreRecord.IsZero())
+				fill = score / _currentLevelService.CurrentScoreRecord;
+
+			View.ScoreRecordFill.fillAmount = fill;
+		}
 	}
 }

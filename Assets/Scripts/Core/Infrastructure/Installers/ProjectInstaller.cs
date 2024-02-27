@@ -3,6 +3,8 @@ using Core.Currency;
 using Core.ECS;
 using Core.Gameplay;
 using Core.Infrastructure.GameFsm;
+using Core.Integrations;
+using Core.Integrations.Ads;
 using Core.Levels;
 using Core.Menu;
 using Core.SceneManagement;
@@ -32,9 +34,11 @@ namespace Core.Infrastructure.Installers
 			Container.BindInterfacesAndSelf<GameParentProvider>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<LoadingScreenProvider>().FromNew().AsSingle();
 			
-			Container.BindInterfacesAndSelf<GeneralSettingsInitializer>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<GeneralSettingsService>().FromNew().AsSingle();
 
 			Container.BindInterfacesAndSelf<MoneyManager>().FromNew().AsSingle();
+
+			InstallIntegrations();
 			
 			InstallSound();
 
@@ -74,6 +78,13 @@ namespace Core.Infrastructure.Installers
 		{
 			Container.BindInterfacesAndSelf<VehiclesInitializer>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<VehicleSelectionService>().FromNew().AsSingle();
+		}
+
+		private void InstallIntegrations()
+		{
+			Container.BindInterfacesAndSelf<AdsService>().FromNew().AsSingle();
+			
+			Container.BindInterfacesAndSelf<RateUsShowController>().FromNew().AsSingle();
 		}
 	}
 }

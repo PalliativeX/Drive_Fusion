@@ -4,7 +4,6 @@ using Core.ECS;
 using Cysharp.Threading.Tasks;
 using Scellecs.Morpeh;
 using UnityEngine;
-using Utils;
 
 namespace Core.Gameplay
 {
@@ -68,6 +67,20 @@ namespace Core.Gameplay
 			block.SetComponent(new Destroyed());
 			
 			road.Blocks.RemoveFirst();
+		}
+
+		public bool HandleRoadCreation(Entity roadBlock)
+		{
+			Entity roadEntity = _roadFilter.First();
+			ref var road = ref roadEntity.GetComponent<Road>();
+
+			var blocks = road.Blocks;
+			if (blocks.First.Value == roadBlock.ID)
+				return false;
+			
+			RemoveFirstBlock();
+			CreateNextBlock();
+			return true;
 		}
 
 		public void Dispose() { }
