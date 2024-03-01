@@ -1,15 +1,19 @@
-﻿namespace Utils
+﻿using Core;
+using UnityEngine;
+
+namespace Utils
 {
-	public static class Platform
+	public sealed class Platform : Singleton<Platform>
 	{
-		// TODO
-		public static bool IsYandexGames()
+		[SerializeField] private GeneralSettings _settings; 
+		
+		public bool IsYandexGames()
 		{
-// #if !UNITY_EDITOR && UNITY_WEBGL
-			// return !SettingsController.Instance.IsTestBuild;
-// #else
+#if !UNITY_EDITOR && UNITY_WEBGL
+			return _settings.IsYandexGames;
+#else
 			return false;
-// #endif
+#endif
 		}
 	}
 }

@@ -29,7 +29,7 @@ namespace Core.Integrations.Ads
 				Debug.Log("TimePassed:" + (Time.realtimeSinceStartup - _time) + "	Show Ad");
 #endif
 
-				if (Platform.IsYandexGames())
+				if (Platform.Instance.IsYandexGames())
 					ShowInterstitialAdExternal();
 				else
 					_time = Time.realtimeSinceStartup;
@@ -44,7 +44,7 @@ namespace Core.Integrations.Ads
 		
 		public void ShowRewardedAd(Action<bool> callback)
 		{
-			if (!Platform.IsYandexGames())
+			if (!Platform.Instance.IsYandexGames())
 			{
 				callback?.Invoke(true);
 				OnRewardedAdClosedCallback?.Invoke();

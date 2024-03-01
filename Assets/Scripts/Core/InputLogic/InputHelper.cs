@@ -30,7 +30,10 @@ namespace Core.InputLogic
 			input.Value.z = _inputConfig.SetZManually 
 				? zInput 
 				: 1f;
+#else
+			input.Value.z = 1f;
 #endif
+			
 		}
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Debugging;
 using SimpleInject;
 using UnityEngine;
 
@@ -37,10 +38,11 @@ namespace Core.Infrastructure.GameFsm
 
 			IGameState state = _states[stateType];
 			_activeState = state;
-			
-#if DEBUG
-			Debug.Log("NewState: " + $"<color=orange>{stateType}</color>");
-#endif
+
+			ConsoleLogger.Instance.Log("NewState: " + $"<color=orange>{stateType}</color>");
+// #if DEBUG
+			// Debug.Log("NewState: " + $"<color=orange>{stateType}</color>");
+// #endif
 			
 			_activeState.Enter();
 			

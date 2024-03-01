@@ -3,15 +3,15 @@ mergeInto(LibraryManager.library, {
   SavePlayerProgressDataExternal: function (data) {
     var newDataString = UTF8ToString(data);
     var dataObject = JSON.parse(newDataString);
-    //console.log("Save Data: " + dataObject);
+    console.log("Save Data: " + dataObject);
     player.setData(dataObject);
   },
 
   LoadPlayerProgressDataExternal: function () {
     player.getData().then(function (_data) {
       const myJSON = JSON.stringify(_data);
-      //console.log("Load Data: " + myJSON);
-      unityInstance.SendMessage('Progress', 'SetPlayerProgressData', myJSON);
+      console.log("Load Data: " + myJSON);
+      unityInstance.SendMessage('JsEventsReceiver', 'SetPlayerProgressData', myJSON);
     })
   },
 
@@ -20,7 +20,7 @@ mergeInto(LibraryManager.library, {
       function (result) {
         if (result) {
           //console.log('Set Leaderboard Score: ' + value)
-          leaderboards.setLeaderboardScore('LevelsPassed', value);
+          leaderboards.setLeaderboardScore('Score', value);
         }
       });
   },

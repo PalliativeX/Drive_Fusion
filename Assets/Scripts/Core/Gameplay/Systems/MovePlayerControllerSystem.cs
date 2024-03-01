@@ -1,5 +1,7 @@
 ﻿using Core.ECS;
 using Core.InputLogic;
+using Core.UI;
+using Debugging;
 using Scellecs.Morpeh;
 using Unity.IL2CPP.CompilerServices;
 using UnityEngine;
@@ -27,13 +29,16 @@ namespace Core.Gameplay
 		{
 			foreach (var entity in _filter)
 			{
-				if (!entity.Has<Active>())
-					continue;
-				
-				ref var controller = ref entity.GetComponent<CarController>().Reference;
-
 				ref Vector3 input = ref entity.GetComponent<MovementInput>().Value;
 
+				if (!entity.Has<Active>())
+				{
+					input = Vector3.zero;
+					continue;
+				}
+
+				ref var controller = ref entity.GetComponent<CarController>().Reference;
+				
 				controller.SetSteering(input.x);
 				controller.SetMotor(input.z);
 				

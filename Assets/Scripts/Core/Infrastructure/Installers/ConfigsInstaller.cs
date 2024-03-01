@@ -3,6 +3,7 @@ using Core.Gameplay;
 using Core.InputLogic;
 using Core.Integrations;
 using Core.Levels.Storages;
+using Core.Localization;
 using Core.Sound;
 using SimpleInject;
 using UnityEngine;
@@ -20,6 +21,7 @@ namespace Core.Infrastructure.Installers
 		[SerializeField] private VehiclesStorage _vehiclesStorage;
 		[SerializeField] private RoadsConfig _roadsConfig;
 		[SerializeField] private RateUsConfig _rateUs;
+		[SerializeField] private LocaleStorage _localeStorage;
 		
 		public override void InstallBindings()
 		{
@@ -32,6 +34,7 @@ namespace Core.Infrastructure.Installers
 			Container.BindSelf<VehiclesStorage>().FromInstance(_vehiclesStorage).AsSingle();
 			Container.BindSelf<RoadsConfig>().FromInstance(_roadsConfig).AsSingle();
 			Container.BindSelf<RateUsConfig>().FromInstance(_rateUs).AsSingle();
+			Container.BindSelf<LocaleStorage>().FromInstance(_localeStorage).AsSingle();
 		}
 	}
 }

@@ -9,5 +9,7 @@ namespace Core
 		public int TargetFrameRate = 60;
 		
 		public bool IsEnableMultitouch;
+
+		public bool IsYandexGames;
 	}
 }

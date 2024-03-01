@@ -11,9 +11,9 @@ namespace Debugging
 
 		public void Log(string text)
 		{
-			if (Platform.IsYandexGames())
-				LogExternal(text);
-			else
+			// if (Platform.Instance.IsYandexGames())
+				// LogExternal(text);
+			// else
 				Debug.Log(text);
 		}
 	}

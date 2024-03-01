@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Core.Integrations.SaveSystem;
 using Core.Levels;
 using Cysharp.Threading.Tasks;
 using Scellecs.Morpeh;
@@ -10,8 +12,7 @@ namespace Core.Infrastructure.GameFsm
 	{
 		private readonly GameStateMachine _stateMachine;
 		private readonly LevelsHelper _levelsHelper;
-		// private readonly List<ILoadable> _loadable;
-		// private readonly SaveLoadService _saveLoadService;
+		private readonly SaveService _saveLoadService;
 
 		public GameStateType Type => GameStateType.InitializeGlobalProgress;
 
@@ -19,24 +20,22 @@ namespace Core.Infrastructure.GameFsm
 
 		public InitializeGlobalProgressState(
 			GameStateMachine stateMachine,
-			// List<ILoadable> loadable,
-			// SaveLoadService saveLoadService,
+			SaveService saveLoadService,
 			LevelsHelper levelsHelper
 		)
 		{
 			_stateMachine = stateMachine;
 			_levelsHelper = levelsHelper;
-			// _loadable = loadable;
-			// _saveLoadService = saveLoadService;
+			_saveLoadService = saveLoadService;
 		}
 
 		public void Enter() => Initialize();
 
 		private async UniTaskVoid Initialize()
 		{
-			// _saveLoadService.RestoreState(_loadable);
+			_saveLoadService.InitializeLoadables();
 			
-			var entity = _levelsHelper.Initialize();
+			var entity = _levelsHelper.Load(_saveLoadService.SaveData);
 
 			await UniTask.Yield();
 			

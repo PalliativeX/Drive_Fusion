@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Core.Infrastructure.GameFsm;
+using Core.Integrations.SaveSystem;
 using Core.Levels.Storages;
-using Core.Sound;
 using Scellecs.Morpeh;
+using UnityEngine;
 
 namespace Core.Levels
 {
@@ -11,23 +13,28 @@ namespace Core.Levels
 		private readonly World _world;
 		private readonly IGameStateMachine _stateMachine;
 		private readonly LevelsStorage _levels;
+		private readonly SaveService _save;
 
 		private readonly Filter _filter;
 
-		public LevelsHelper(World world, GameStateMachine stateMachine, LevelsStorage levels)
+		public LevelsHelper(World world, GameStateMachine stateMachine, LevelsStorage levels, SaveService save)
 		{
 			_world = world;
 			_stateMachine = stateMachine;
 			_levels = levels;
+			_save = save;
 
 			_filter = world.Filter.With<CurrentLevel>().Build();
 		}
 
-		public Entity Initialize()
+		public Entity Load(SaveData data)
 		{
 			var entity = _world.CreateEntity();
 			entity.SetComponent(new CurrentLevel { Value = 0 });
-			entity.SetComponent(new LevelScoreRecords { Dictionary = new Dictionary<int, float>() });
+			entity.SetComponent(new LevelScoreRecords
+			{
+				Dictionary = data.HighestScores.ToDictionary(d => d.Level, d => d.Score)
+			});
 			return entity;
 		}
 		
@@ -78,6 +85,19 @@ namespace Core.Levels
 			var currentLevel = entity.GetComponent<CurrentLevel>();
 			ref var scoreRecords = ref entity.GetComponent<LevelScoreRecords>();
 			scoreRecords.Dictionary[currentLevel.Value] = score;
+
+			SaveScores(scoreRecords.Dictionary);
+		}
+
+		private void SaveScores(Dictionary<int, float> scores)
+		{
+			var scoresSave = _save.SaveData.HighestScores;
+			scoresSave.Clear();
+			
+			foreach ((int level, float value) in scores) 
+				scoresSave.Add(new LevelScoreData(level, value));
+
+			_save.Save();
 		}
 	}
 }

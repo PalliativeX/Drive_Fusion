@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Core;
 using UnityEditor;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
@@ -19,6 +20,8 @@ namespace BuildUtils
 			for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
 				gameScenes.Add(SceneUtility.GetScenePathByBuildIndex(i));
 
+			SetYandexFlag();
+
 			BuildReport buildReport = BuildPipeline.BuildPlayer(
 				gameScenes.ToArray(),
 				ProjectPath,
@@ -36,7 +39,7 @@ namespace BuildUtils
 		{
 			ModifyIndexHtml();
 		}
-		
+
 		[MenuItem("Tools/Build/Clear Builds Folder")]
 		public static void ClearBuildsFolder()
 		{
@@ -137,6 +140,12 @@ namespace BuildUtils
 			foreach (string line in lines) 
 				listToAppend.Add(line);
 		}
-		
+
+		private static void SetYandexFlag() {
+			var settings = Resources.Load<GeneralSettings>("Configs/GeneralSettings");
+			settings.IsYandexGames = true;
+			EditorUtility.SetDirty(settings);
+			AssetDatabase.SaveAssetIfDirty(settings);
+		}
 	}
 }

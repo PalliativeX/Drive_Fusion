@@ -29,7 +29,7 @@ namespace Core.Gameplay
 		public VehicleConfig GetPrevious(string vehicleName)
 		{
 			int index = GetIndex(vehicleName);
-			return index - 1 < Configs.Count ? Configs[^1] : Configs[index - 1];
+			return index - 1 < 0 ? Configs[^1] : Configs[index - 1];
 		}
 
 		private int GetIndex(string vehicleName)

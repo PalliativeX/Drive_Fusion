@@ -1,6 +1,7 @@
 ﻿using Core.Currency;
 using Core.ECS;
 using Core.Gameplay;
+using Core.Integrations.SaveSystem;
 using Scellecs.Morpeh;
 
 namespace Core.Menu
@@ -10,14 +11,16 @@ namespace Core.Menu
 		private readonly World _world;
 		private readonly VehiclesStorage _vehicles;
 		private readonly MoneyManager _moneyManager;
+		private readonly SaveService _save;
 
 		private readonly Filter _vehiclesFilter;
 
-		public VehicleSelectionService(GlobalWorld world, VehiclesStorage vehicles, MoneyManager moneyManager)
+		public VehicleSelectionService(GlobalWorld world, VehiclesStorage vehicles, MoneyManager moneyManager, SaveService save)
 		{
 			_world = world;
 			_vehicles = vehicles;
 			_moneyManager = moneyManager;
+			_save = save;
 
 			_vehiclesFilter = _world.Filter
 				.With<OwnedVehicles>()
@@ -87,6 +90,10 @@ namespace Core.Menu
 			
 			ref var ownedVehicles = ref _vehiclesFilter.First().GetComponent<OwnedVehicles>();
 			ownedVehicles.List.Add(config.Name);
+			
+			_save.SaveData.OwnedVehicles = ownedVehicles.List;
+			_save.Save();
+			
 			return true;
 		}
 
@@ -96,11 +103,19 @@ namespace Core.Menu
 			ref var selectedVehicleIndex = ref entity.GetComponent<SelectedVehicleIndex>();
 			ref var vehicleConfig = ref entity.GetComponent<VehicleConfigComponent>();
 
-			selectedVehicle.Value = newConfig.Name;
+			string newSelected = newConfig.Name;
+			selectedVehicle.Value = newSelected;
 			vehicleConfig.Reference = newConfig;
 			selectedVehicleIndex.Value = _vehicles.Configs.IndexOf(newConfig);
 			
 			entity.SetComponent(new Changed());
+
+			if (entity.GetComponent<OwnedVehicles>().List.Contains(newSelected) &&
+			    newSelected != _save.SaveData.SelectedVehicle)
+			{
+				_save.SaveData.SelectedVehicle = newSelected;
+				_save.Save();
+			}
 		}
 	}
 }

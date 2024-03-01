@@ -5,7 +5,9 @@ using Core.Gameplay;
 using Core.Infrastructure.GameFsm;
 using Core.Integrations;
 using Core.Integrations.Ads;
+using Core.Integrations.SaveSystem;
 using Core.Levels;
+using Core.Localization;
 using Core.Menu;
 using Core.SceneManagement;
 using Core.SceneManagement.LoadingScreen;
@@ -13,12 +15,16 @@ using Core.Sound;
 using Scellecs.Morpeh;
 using SimpleInject;
 using UnityEngine;
+using Utils;
 
 namespace Core.Infrastructure.Installers
 {
 	public sealed class ProjectInstaller : MonoInstaller
 	{
 		[SerializeField] private PoolContainer _poolContainer;
+		[SerializeField] private JsEventsReceiver _jsEventsReceiver;
+		[SerializeField] private LocalizationService _localizationService;
+		[SerializeField] private Platform _platform;
 		
 		public override void InstallBindings()
 		{
@@ -30,15 +36,20 @@ namespace Core.Infrastructure.Installers
 			Container.BindInterfacesAndSelf<AssetPool>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<AssetProvider>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<PoolContainer>().FromComponentInNewPrefab(_poolContainer).AsSingle();
+			Container.BindInterfacesAndSelf<JsEventsReceiver>().FromComponentInNewPrefab(_jsEventsReceiver).AsSingle();
+			Container.BindInterfacesAndSelf<LocalizationService>().FromComponentInNewPrefab(_localizationService).AsSingle();
 			Container.BindInterfacesAndSelf<SceneLoader>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<GameParentProvider>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<LoadingScreenProvider>().FromNew().AsSingle();
 			
 			Container.BindInterfacesAndSelf<GeneralSettingsService>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<Platform>().FromComponentInNewPrefab(_platform).AsSingle();
 
 			Container.BindInterfacesAndSelf<MoneyManager>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<LeaderboardService>().FromNew().AsSingle();
 
 			InstallIntegrations();
+			InstallSaves();
 			
 			InstallSound();
 
@@ -85,6 +96,11 @@ namespace Core.Infrastructure.Installers
 			Container.BindInterfacesAndSelf<AdsService>().FromNew().AsSingle();
 			
 			Container.BindInterfacesAndSelf<RateUsShowController>().FromNew().AsSingle();
+		}
+
+		private void InstallSaves()
+		{
+			Container.BindInterfacesAndSelf<SaveService>().FromNew().AsSingle();
 		}
 	}
 }

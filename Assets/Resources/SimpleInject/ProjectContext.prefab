@@ -73,6 +73,7 @@ MonoBehaviour:
   _vehiclesStorage: {fileID: 11400000, guid: b13ccf359dcf60d4e9c83bfdd6a1c8dd, type: 2}
   _roadsConfig: {fileID: 11400000, guid: 0feda433af5a813419dabe771c774f4c, type: 2}
   _rateUs: {fileID: 11400000, guid: 5d3677c008c71534080c87c30601643a, type: 2}
+  _localeStorage: {fileID: 11400000, guid: 0713f1100a36c364cb9f713eb46d74fb, type: 2}
 --- !u!114 &312936225568156269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,3 +87,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _poolContainer: {fileID: 8428765201517566551, guid: dd791b6561380aa408fe8a607d7895db, type: 3}
+  _jsEventsReceiver: {fileID: 335587460874475905, guid: c5a4fc9f29debe045ac9eff5e7afdbe9, type: 3}
+  _localizationService: {fileID: 7815191077640508876, guid: 02f5caff25154bc44b00c61690114d38, type: 3}
+  _platform: {fileID: 4876554698728460853, guid: 5f58528922f46004d8b2694f8820ef9c, type: 3}
