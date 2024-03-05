@@ -18,7 +18,7 @@ namespace Core.CameraLogic
 
 		public void OnAwake()
 		{
-			_cameraFilter = World.Filter.With<ActualCamera>().Without<Link>().Build();
+			_cameraFilter = World.Filter.With<VirtualCameras>().Without<Link>().Build();
 			_cameraTargetFilter = World.Filter.With<CameraTarget>().With<CameraTargetTransform>().With<View>().Build();
 		}
 
@@ -34,9 +34,10 @@ namespace Core.CameraLogic
 
 			Transform targetTransform = cameraTarget.GetComponent<CameraTargetTransform>().Reference.transform;
 
-			ref var virtualCamera = ref camera.GetComponent<ActualCamera>().Reference;
-			virtualCamera.Follow = targetTransform;
-			virtualCamera.LookAt = targetTransform;
+			foreach ((string key, var virtualCamera) in camera.GetComponent<VirtualCameras>().List) {
+				virtualCamera.Follow = targetTransform;
+				virtualCamera.LookAt = targetTransform;
+			}
 
 			camera.SetComponent(new Link { Id = cameraTarget.ID });
 		}

@@ -146,4 +146,21 @@ namespace Core.Gameplay
 	{
 		public EntityId Value;
 	}
+	
+	[Il2CppSetOption(Option.NullChecks, false)]
+	[Il2CppSetOption(Option.ArrayBoundsChecks, false)]
+	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
+	[Serializable]
+	public struct CurrentSteeringFactor : IComponent
+	{
+		public float Value;
+		public SteeringDirection Direction;
+	}
+
+	public enum SteeringDirection
+	{
+		None,
+		Left,
+		Right
+	}
 }

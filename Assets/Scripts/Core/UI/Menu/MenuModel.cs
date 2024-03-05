@@ -1,7 +1,10 @@
-﻿using Core.ECS;
+﻿using Core.CameraLogic;
+using Core.ECS;
+using Core.Gameplay;
 using Core.Infrastructure.GameFsm;
 using Core.Levels;
 using Core.Sound;
+using Cysharp.Threading.Tasks;
 using Scellecs.Morpeh;
 
 namespace Core.UI.Menu
@@ -9,24 +12,21 @@ namespace Core.UI.Menu
 	public class MenuModel
 	{
 		private readonly IGameStateMachine _stateMachine;
-		private readonly SoundService _sound;
+		private readonly World _world;
 
-		private readonly Filter _hasSoundFilter;
 		private readonly Filter _currentLevelFilter;
+		private readonly Filter _playerFilter;
+		private readonly Filter _cameraFilter;
 		
-		public MenuModel(GlobalWorld globalWorld, GameStateMachine stateMachine, SoundService sound)
+		public MenuModel(GlobalWorld globalWorld, GameStateMachine stateMachine, World world)
 		{
 			_stateMachine = stateMachine;
-			_sound = sound;
+			_world = world;
 
-			var world = globalWorld.World;
-			_currentLevelFilter = world.Filter.With<CurrentLevel>().Build();
+			var global = globalWorld.World;
+			_currentLevelFilter = global.Filter.With<CurrentLevel>().Build();
+			_playerFilter = world.Filter.With<HumanPlayer>().With<CarController>().Build();
 		}
-
-		public bool IsSoundActive() => _sound.IsSoundActive;
-
-		public void ToggleSoundActive() => _sound.ToggleActive();
-
 		public int GetCurrentLevel()
 		{
 			var entity = _currentLevelFilter.First();
@@ -37,5 +37,22 @@ namespace Core.UI.Menu
 		{
 			_stateMachine.ChangeState(GameStateType.Gameplay);
 		}
+
+		public async UniTask Initialize(float animationSpeed)
+		{
+			Entity player;
+			do
+			{
+				await UniTask.Yield();
+				player = _playerFilter.FirstOrDefault();
+			}
+			while (player == null);
+
+			player.GetComponent<CarController>().Reference.SetMotor(animationSpeed);
+			
+			_world.ChangeActiveCamera("Menu");
+		}
+
+		public void SetMainCamera() => _world.ChangeActiveCamera("Main");
 	}
 }

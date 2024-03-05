@@ -1,51 +1,39 @@
-﻿using Core.Currency;
+﻿using Cysharp.Threading.Tasks;
+using Utils;
 
 namespace Core.UI.Menu
 {
 	public class MenuPresenter : APresenter<MenuView>
 	{
 		private readonly MenuModel _model;
-		private readonly MoneyManager _moneyManager;
 
 		public override string Name => "Menu";
 
-		public MenuPresenter(MenuModel model, MoneyManager moneyManager)
+		public MenuPresenter(MenuModel model)
 		{
 			_model = model;
-			_moneyManager = moneyManager;
 		}
 
 		protected override void OnShow()
 		{
-			View.SoundToggle.SwitchActive(_model.IsSoundActive());
-			View.SoundToggle.Button.onClick.AddListener(ToggleSoundActive);
-			
-			View.StartGameplayButton.onClick.AddListener(_model.StartPlaying);
-			
-			UpdateMoney(_moneyManager.Money);
-			_moneyManager.MoneyChanged += UpdateMoney;
-			
-			View.LevelText.SetText($"Level {_model.GetCurrentLevel()}");
+			// View.LevelText.SetText($"Level {_model.GetCurrentLevel()}");
+
+			PlayAnimation();
 		}
 
-		protected override void OnClose()
-		{
-			View.SoundToggle.Button.onClick.RemoveListener(ToggleSoundActive);
-			
-			View.StartGameplayButton.onClick.RemoveListener(_model.StartPlaying);
-			
-			_moneyManager.MoneyChanged -= UpdateMoney;
-		}
+		protected override void OnClose() { }
 
-		private void ToggleSoundActive()
+		private async UniTaskVoid PlayAnimation()
 		{
-			_model.ToggleSoundActive();
-			View.SoundToggle.Toggle();
-		}
+			await _model.Initialize(View.AnimationSpeed);
 
-		private void UpdateMoney(int money)
-		{
-			View.MoneyCountText.SetText(money.ToString());
+			await UniTask.Delay((1000 * View.InitialWaitDuration).ToInt());
+
+			_model.SetMainCamera();
+
+			await UniTask.Delay((1000 * View.AnimationDuration).ToInt());
+			
+			_model.StartPlaying();
 		}
 	}
 }

@@ -15117,7 +15117,7 @@ MonoBehaviour:
   maxSpeedReverse: 25
   brakeStrength: 60
   slopeFriction: 1
-  maxSteering: 150
+  maxSteering: 125
   steeringMultiplierInAir: 0.25
   steeringBySpeed:
     serializedVersion: 2
@@ -15132,7 +15132,7 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.25
+      time: 0.3
       value: 1
       inSlope: 0
       outSlope: 0
@@ -15395,6 +15395,9 @@ MonoBehaviour:
   airPitchMax: 45
   airPitchSpeed: 1
   airPitchSpeedGrounded: 10
+  rollMaxAngle: 2
+  rollSpeed: 10
+  rollLerpSpeed: 5
   minSideFrictionVelocity: 1
   particlesSideFriction: {fileID: 681879289893887076}
   minSideCollisionForce: 10

@@ -5,9 +5,9 @@ namespace Core.UI.Menu
 {
 	public sealed class MenuView : BaseView
 	{
+		public float AnimationDuration;
+		public float InitialWaitDuration;
+		public float AnimationSpeed;
 		public TextMeshProUGUI LevelText;
-		public UiToggle SoundToggle;
-		public TextMeshProUGUI MoneyCountText;
-		public Button StartGameplayButton;
 	}
 }

@@ -11,6 +11,10 @@ namespace Core.Gameplay
 
 		public AnimationCurve CollisionCurve;
 
+		[Header("Global Steering Parameters")]
+		public float SteeringFactorMultiplier;
+		public AnimationCurve SteeringFactorCurve;
+
 		public VehicleConfig Get(string vehicleName)
 		{
 			foreach (var config in Configs)

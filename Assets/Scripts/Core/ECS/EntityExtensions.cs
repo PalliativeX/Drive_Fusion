@@ -1,4 +1,5 @@
-﻿using Core.Gameplay;
+﻿using Core.CameraLogic;
+using Core.Gameplay;
 using Scellecs.Morpeh;
 using UnityEngine;
 
@@ -24,6 +25,15 @@ namespace Core.ECS
 			durability.Value = newDurability;
 			if (!entity.Has<DurabilityChanged>())
 				entity.SetComponent(new DurabilityChanged());
+		}
+
+		public static void ChangeActiveCamera(this World world, string cameraName)
+		{
+			var camera = world.Filter.With<CurrentVirtualCamera>().Build().First();
+			ref var current = ref camera.GetComponent<CurrentVirtualCamera>();
+			current.Value = cameraName;
+			Debug.Log(current.Value);
+			camera.SetComponent(new CurrentVirtualCameraChanged());
 		}
 	}
 }

@@ -47,6 +47,7 @@ namespace Core.Levels
 			Container.BindInterfacesAndSelf<SynchronizeTransformSystem>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<SetCameraFollowSystem>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<UpdateLookAtCameraSystem>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<UpdateCurrentVirtualCameraSystem>().FromNew().AsSingle();
 			
 			Container.BindInterfacesAndSelf<UpdateTriggerEnterSystem>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<UpdateTriggerExitSystem>().FromNew().AsSingle();
