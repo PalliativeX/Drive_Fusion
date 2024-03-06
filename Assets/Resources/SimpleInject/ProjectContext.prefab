@@ -74,6 +74,7 @@ MonoBehaviour:
   _roadsConfig: {fileID: 11400000, guid: 0feda433af5a813419dabe771c774f4c, type: 2}
   _rateUs: {fileID: 11400000, guid: 5d3677c008c71534080c87c30601643a, type: 2}
   _localeStorage: {fileID: 11400000, guid: 0713f1100a36c364cb9f713eb46d74fb, type: 2}
+  _currencyConfig: {fileID: 11400000, guid: cacecdee96f88af4b8b559ecfe2ac94a, type: 2}
 --- !u!114 &312936225568156269
 MonoBehaviour:
   m_ObjectHideFlags: 0

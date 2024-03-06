@@ -15391,13 +15391,14 @@ MonoBehaviour:
   - {fileID: 3259422818333916560}
   - {fileID: 3019717974535668819}
   rotatePitch: 1
-  rotateRoll: 1
   airPitchMax: 45
   airPitchSpeed: 1
   airPitchSpeedGrounded: 10
+  rotateRoll: 1
   rollMaxAngle: 2
   rollSpeed: 10
   rollLerpSpeed: 5
+  carSit: 0.1
   minSideFrictionVelocity: 1
   particlesSideFriction: {fileID: 681879289893887076}
   minSideCollisionForce: 10

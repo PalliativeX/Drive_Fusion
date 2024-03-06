@@ -1,4 +1,5 @@
 ﻿using Core.AssetManagement;
+using Core.Currency;
 using Core.Gameplay;
 using Core.InputLogic;
 using Core.Integrations;
@@ -22,6 +23,7 @@ namespace Core.Infrastructure.Installers
 		[SerializeField] private RoadsConfig _roadsConfig;
 		[SerializeField] private RateUsConfig _rateUs;
 		[SerializeField] private LocaleStorage _localeStorage;
+		[SerializeField] private CurrencyConfig _currencyConfig;
 		
 		public override void InstallBindings()
 		{
@@ -35,6 +37,7 @@ namespace Core.Infrastructure.Installers
 			Container.BindSelf<RoadsConfig>().FromInstance(_roadsConfig).AsSingle();
 			Container.BindSelf<RateUsConfig>().FromInstance(_rateUs).AsSingle();
 			Container.BindSelf<LocaleStorage>().FromInstance(_localeStorage).AsSingle();
+			Container.BindSelf<CurrencyConfig>().FromInstance(_currencyConfig).AsSingle();
 		}
 	}
 }

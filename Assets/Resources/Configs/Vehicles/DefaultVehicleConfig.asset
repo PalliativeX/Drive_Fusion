@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Default
   Price: 0
-  FuelConsumptionPerSecond: 0
+  FuelConsumptionPerSecond: 0.025
   DisplayedName: Blue Monster
   Parameters:
   - Type: 0

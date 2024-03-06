@@ -1,6 +1,6 @@
 ﻿using System;
+using Core.Currency;
 using Core.Integrations;
-using Core.Integrations.SaveSystem;
 using Core.Levels;
 using SimpleInject;
 using Utils;
@@ -11,18 +11,20 @@ namespace Core.Gameplay
 	{
 		private readonly LevelsHelper _levels;
 		private readonly LeaderboardService _leaderboard;
-		private readonly SaveService _save;
+		private readonly MoneyManager _moneyManager;
 
 		public float Score { get; private set; }
 		public float CurrentScoreRecord { get; private set; }
+
+		public int EarnedMoney { get; private set; }
 		
 		public event Action<float> ScoreChanged;
 
-		public CurrentLevelService(LevelsHelper levels, LeaderboardService leaderboard, SaveService save)
+		public CurrentLevelService(LevelsHelper levels, LeaderboardService leaderboard, MoneyManager moneyManager)
 		{
 			_levels = levels;
 			_leaderboard = leaderboard;
-			_save = save;
+			_moneyManager = moneyManager;
 		}
 
 		public void Initialize()
@@ -47,6 +49,14 @@ namespace Core.Gameplay
 			_levels.SetCurrentLevelScoreRecord(Score);
 			
 			_leaderboard.SetNewScore(Score.ToInt());
+		}
+
+		public void AddEarnings(int money) => EarnedMoney += money;
+
+		public void AddTotalEarnings(int earnings)
+		{
+			_moneyManager.AddMoney(earnings);
+			EarnedMoney = 0;
 		}
 	}
 }

@@ -32,9 +32,7 @@ namespace Core.Gameplay
 
 			// CreateCameraTarget(player);
 			CreateCamera();
-
-			CreateCurrentLevelEntity();
-
+			
 			// TODO: Test, delete
 			for (int i = 0; i < 4; i++)
 			{
@@ -51,12 +49,6 @@ namespace Core.Gameplay
 				coin.SetComponent(new Position { Value = new Vector3(5 + i * 5, 0f, 0f) });
 				coin.SetComponent(new Rotation { Value = Vector3.zero });
 			}
-		}
-
-		private void CreateCurrentLevelEntity()
-		{
-			Entity currentLevel = World.CreateEntity();
-			currentLevel.SetComponent(new Score { Value = 0f });
 		}
 
 		public void Dispose() { }

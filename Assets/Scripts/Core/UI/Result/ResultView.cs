@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine.UI;
 
 namespace Core.UI.Result
@@ -6,5 +7,11 @@ namespace Core.UI.Result
 	{
 		public Button MenuButton;
 		public Button RestartButton;
+		public Button IncreaseRewardAds;
+
+		public TextMeshProUGUI ScoreText;
+		public TextMeshProUGUI PreviousRecordText;
+		public TextMeshProUGUI EarnedMoneyText;
+		public TextMeshProUGUI IncreaseMoneyText;
 	}
 }

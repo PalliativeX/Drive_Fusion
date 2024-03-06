@@ -11,15 +11,20 @@ namespace Core.Gameplay
 	public class TriggerHandler
 	{
 		private readonly World _globalWorld;
-		private readonly MoneyManager _moneyManager;
 		private readonly RoadCreator _roadCreator;
+		private readonly CurrentLevelService _currentLevel;
 		private readonly Filter _instanceFilter;
-		
-		public TriggerHandler(GlobalWorld globalWorld, World world, MoneyManager moneyManager, RoadCreator roadCreator) 
+
+		public TriggerHandler(
+			GlobalWorld globalWorld,
+			World world,
+			RoadCreator roadCreator,
+			CurrentLevelService currentLevel
+		)
 		{
 			_globalWorld = globalWorld;
-			_moneyManager = moneyManager;
 			_roadCreator = roadCreator;
+			_currentLevel = currentLevel;
 			_instanceFilter = world.Filter.With<InstanceId>().Build();
 		}
 
@@ -33,10 +38,11 @@ namespace Core.Gameplay
 			if (triggerEntity.Has<Interactive>())
 			{
 				var interactiveType = triggerEntity.GetComponent<Interactive>().Type;
-				switch (interactiveType) {
+				switch (interactiveType)
+				{
 					case InteractiveType.Coins:
 						var interactiveCoins = triggerEntity.GetComponent<InteractiveCoins>();
-						_moneyManager.AddMoney(interactiveCoins.Value);
+						_currentLevel.AddEarnings(interactiveCoins.Value);
 						break;
 					case InteractiveType.Fuel:
 						var fuelAmount = triggerEntity.GetComponent<InteractiveValue>();
@@ -53,7 +59,7 @@ namespace Core.Gameplay
 					default:
 						throw new ArgumentOutOfRangeException();
 				}
-				
+
 				_globalWorld.CreateSound(SoundId.CollectInteractive, SoundType.Sound);
 
 				triggerEntity.SetComponent(new Destroyed());
@@ -71,7 +77,7 @@ namespace Core.Gameplay
 					entity.SetComponent(new CurrentRoadBlock { Value = triggerEntity.ID });
 			}
 		}
-		
+
 		public void OnExit(Entity entity, int triggerId)
 		{
 			Entity triggerEntity = GetTriggerEntity(triggerId);
@@ -80,7 +86,7 @@ namespace Core.Gameplay
 
 			if (!triggerEntity.Has<RoadBlock>())
 				return;
-			
+
 			_roadCreator.HandleRoadCreation(triggerEntity);
 		}
 

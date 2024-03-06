@@ -1,7 +1,6 @@
 ﻿using Core.CameraLogic;
 using Core.Gameplay;
 using Scellecs.Morpeh;
-using UnityEngine;
 
 namespace Core.ECS
 {
@@ -32,7 +31,6 @@ namespace Core.ECS
 			var camera = world.Filter.With<CurrentVirtualCamera>().Build().First();
 			ref var current = ref camera.GetComponent<CurrentVirtualCamera>();
 			current.Value = cameraName;
-			Debug.Log(current.Value);
 			camera.SetComponent(new CurrentVirtualCameraChanged());
 		}
 	}
