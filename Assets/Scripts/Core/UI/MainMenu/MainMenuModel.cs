@@ -1,5 +1,6 @@
 using Core.Gameplay;
 using Core.Levels;
+using Core.Localization;
 using Core.Menu;
 using Core.Sound;
 
@@ -11,18 +12,21 @@ namespace Core.UI.MainMenu
 		private readonly PanelController _panelController;
 		private readonly VehicleSelectionService _vehicleSelection;
 		private readonly SoundService _sound;
+		private readonly LocalizationService _localization;
 
 		public MainMenuModel(
 			LevelsHelper levelsHelper,
 			PanelController panelController,
 			VehicleSelectionService vehicleSelection,
-			SoundService sound
+			SoundService sound,
+			LocalizationService localization
 		)
 		{
 			_levelsHelper = levelsHelper;
 			_panelController = panelController;
 			_vehicleSelection = vehicleSelection;
 			_sound = sound;
+			_localization = localization;
 		}
 
 		public void OnPlay() => _levelsHelper.Play(1);
@@ -43,5 +47,11 @@ namespace Core.UI.MainMenu
 			data.Item1 += 1;
 			return data;
 		}
+
+		public string GetParameterLocale(VehicleParameterType parameter) => 
+			_localization.GetText(parameter.ToString());
+
+		public string GetVehicleName(string nameKey) => 
+			_localization.GetText(nameKey);
 	}
 }

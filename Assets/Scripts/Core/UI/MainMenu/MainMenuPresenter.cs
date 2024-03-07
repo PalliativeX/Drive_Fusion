@@ -89,11 +89,11 @@ namespace Core.UI.MainMenu
 
 		private void SetVehicleStats(VehicleConfig config)
 		{
-			View.VehicleName.SetText(config.DisplayedName);
+			View.VehicleName.SetText(_model.GetVehicleName(config.DisplayedName));
 			for (int i = 0; i < config.Parameters.Count; i++)
 			{
 				VehicleParameter parameter = config.Parameters[i];
-				View.Parameters[i].Set(parameter);
+				View.Parameters[i].Set(_model.GetParameterLocale(parameter.Type), parameter.Value);
 			}
 		}
 		

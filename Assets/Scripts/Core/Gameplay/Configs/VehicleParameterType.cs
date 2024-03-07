@@ -5,6 +5,6 @@
 		Speed,
 		Handling,
 		Acceleration,
-		Coolness
+		Coolness,
 	}
 }

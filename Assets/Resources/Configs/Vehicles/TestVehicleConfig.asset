@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Test
   Price: 500
   FuelConsumptionPerSecond: 0.025
-  DisplayedName: Simple Truck
+  DisplayedName: NamePlaceholder
   Parameters:
   - Type: 0
     Value: 0.3

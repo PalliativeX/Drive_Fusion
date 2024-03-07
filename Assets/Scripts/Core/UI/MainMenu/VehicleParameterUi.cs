@@ -1,5 +1,4 @@
-﻿using Core.Gameplay;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using Utils;
 
@@ -10,10 +9,10 @@ namespace Core.UI.MainMenu
 		[SerializeField] private TextMeshProUGUI _name;
 		[SerializeField] private SlicedFilledImage _fill;
 
-		public void Set(VehicleParameter parameter)
+		public void Set(string name, float value)
 		{
-			_name.text = parameter.Type.ToString();
-			_fill.fillAmount = parameter.Value;
+			_name.text = name;
+			_fill.fillAmount = value;
 		}
 	}
 }

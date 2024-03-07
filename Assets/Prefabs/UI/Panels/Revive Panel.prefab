@@ -64,6 +64,7 @@ GameObject:
   - component: {fileID: 7874070589571900096}
   - component: {fileID: 7874070589571900098}
   - component: {fileID: 7874070589571900099}
+  - component: {fileID: 2408333291290230716}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -89,7 +90,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -30, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7874070589571900098
 CanvasRenderer:
@@ -190,6 +191,21 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &2408333291290230716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874070589571900097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea96397a5cdc426495c8a598655a6bf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 7874070589571900099}
+  _key:
+    _value: NoThanks
 --- !u!1 &7874070589649509667
 GameObject:
   m_ObjectHideFlags: 0
@@ -894,6 +910,7 @@ GameObject:
   - component: {fileID: 7874070591088695337}
   - component: {fileID: 7874070591088695339}
   - component: {fileID: 7874070591088695336}
+  - component: {fileID: 4859188205501350160}
   m_Layer: 5
   m_Name: Revive Label
   m_TagString: Untagged
@@ -982,7 +999,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 2
+  m_fontStyle: 18
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -1018,6 +1035,21 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4859188205501350160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874070591088695342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea96397a5cdc426495c8a598655a6bf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 7874070591088695336}
+  _key:
+    _value: ReviveHeader
 --- !u!1 &7874070591101135807
 GameObject:
   m_ObjectHideFlags: 0
@@ -1181,6 +1213,7 @@ GameObject:
   - component: {fileID: 7874070591516397340}
   - component: {fileID: 7874070591516397342}
   - component: {fileID: 7874070591516397343}
+  - component: {fileID: 6998824132320754114}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1269,7 +1302,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 45
-  m_fontStyle: 2
+  m_fontStyle: 18
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -1305,3 +1338,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &6998824132320754114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874070591516397341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea96397a5cdc426495c8a598655a6bf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 7874070591516397343}
+  _key:
+    _value: Yes
