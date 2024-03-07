@@ -9,6 +9,8 @@ namespace Core.Gameplay
 	{
 		public List<VehicleConfig> Configs;
 
+		[Header("Global Parameters")] 
+		public float DefaultSensitivity = 0.5f;
 		public AnimationCurve CollisionCurve;
 
 		[Header("Global Steering Parameters")]

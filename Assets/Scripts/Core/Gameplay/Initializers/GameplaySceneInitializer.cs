@@ -17,13 +17,19 @@ namespace Core.Gameplay
 	{
 		private readonly LevelBehaviour _levelBehaviour;
 		private readonly VehicleSelectionService _vehicleSelectionService;
+		private readonly GameplayParametersProvider _gameplayParameters;
 
 		public World World { get; set; }
 
-		public GameplaySceneInitializer(LevelBehaviour levelBehaviour, VehicleSelectionService vehicleSelectionService)
+		public GameplaySceneInitializer(
+			LevelBehaviour levelBehaviour,
+			VehicleSelectionService vehicleSelectionService,
+			GameplayParametersProvider gameplayParameters
+		)
 		{
 			_levelBehaviour = levelBehaviour;
 			_vehicleSelectionService = vehicleSelectionService;
+			_gameplayParameters = gameplayParameters;
 		}
 
 		public void OnAwake()
@@ -32,7 +38,7 @@ namespace Core.Gameplay
 
 			// CreateCameraTarget(player);
 			CreateCamera();
-			
+
 			// TODO: Test, delete
 			for (int i = 0; i < 4; i++)
 			{
@@ -41,7 +47,7 @@ namespace Core.Gameplay
 				coin.SetComponent(new Position { Value = new Vector3(i * 2, 0f, i * 2) });
 				coin.SetComponent(new Rotation { Value = Vector3.zero });
 			}
-			
+
 			for (int i = 0; i < 4; i++)
 			{
 				Entity coin = World.CreateEntity();
@@ -66,7 +72,7 @@ namespace Core.Gameplay
 			player.SetComponent(new TrackPositionChange());
 
 			player.SetComponent(new MovementInput { Value = Vector3.zero });
-			
+
 			player.SetComponent(new CameraTarget());
 
 			return player;

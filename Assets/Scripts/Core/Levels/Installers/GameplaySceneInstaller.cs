@@ -33,6 +33,7 @@ namespace Core.Levels
 			Container.BindInterfacesAndSelf<PrefabInstantiateSystem>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<GameplaySceneInitializer>().FromNew().AsSingle();
 			
+			Container.BindInterfacesAndSelf<SetSteeringSensitivityListener>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<SetPlayerActiveSystem>().FromNew().AsSingle();
 			// Container.BindInterfacesAndSelf<MovePlayerWheelColliderSystem>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<InputHelper>().FromNew().AsSingle();

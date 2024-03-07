@@ -47,6 +47,7 @@ namespace Core.Infrastructure.Installers
 
 			Container.BindInterfacesAndSelf<MoneyManager>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<LeaderboardService>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<GameplayParametersProvider>().FromNew().AsSingle();
 
 			InstallIntegrations();
 			InstallSaves();

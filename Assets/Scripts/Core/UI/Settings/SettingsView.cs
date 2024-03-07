@@ -7,5 +7,8 @@ namespace Core.UI.Settings
 		public Button MenuButton;
 		public Button RestartButton;
 		public Button ContinueButton;
+
+		public UiToggle SoundToggle;
+		public Slider SensitivitySlider;
 	}
 }

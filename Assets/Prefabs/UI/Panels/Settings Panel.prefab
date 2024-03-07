@@ -1533,6 +1533,8 @@ MonoBehaviour:
   MenuButton: {fileID: 7792004453492215459}
   RestartButton: {fileID: 6188318909121894880}
   ContinueButton: {fileID: 1040257814306670935}
+  SoundToggle: {fileID: 2460144350724944831}
+  SensitivitySlider: {fileID: 4554391202665277189}
 --- !u!1 &6964737431111540119
 GameObject:
   m_ObjectHideFlags: 0

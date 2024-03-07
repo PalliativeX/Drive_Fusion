@@ -17,6 +17,8 @@ namespace Core.Integrations.SaveSystem
 
 		public bool Rated;
 		public int RateUsShowCount;
+
+		public float Sensitivity;
 		
 		public List<LevelScoreData> HighestScores;
 

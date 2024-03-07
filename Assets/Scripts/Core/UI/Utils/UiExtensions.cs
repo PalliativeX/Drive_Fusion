@@ -18,5 +18,8 @@ namespace Core.UI
 
 		public static IDisposable OnClickSubscribeDisposable<T>(this Button self, Action<T> callback, T value) => 
 			self.OnClickAsObservable().Subscribe(_ => callback(value));
+		
+		public static IDisposable OnValueChangedSubscribeDisposable(this Slider self, Action<float> callback) => 
+			self.OnValueChangedAsObservable().Subscribe(callback);
 	}
 }
