@@ -2009,7 +2009,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7554532484215923971, guid: 0b8a9db31580c574c9f403f3a6aab188, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 462.3783
+      value: 408.1271
       objectReference: {fileID: 0}
     - target: {fileID: 7554532484215923971, guid: 0b8a9db31580c574c9f403f3a6aab188, type: 3}
       propertyPath: m_SizeDelta.y
@@ -2017,7 +2017,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7554532484215923971, guid: 0b8a9db31580c574c9f403f3a6aab188, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 34.791992
       objectReference: {fileID: 0}
     - target: {fileID: 7554532484329193889, guid: 0b8a9db31580c574c9f403f3a6aab188, type: 3}
       propertyPath: m_Pivot.x

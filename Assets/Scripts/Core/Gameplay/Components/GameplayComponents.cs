@@ -60,13 +60,4 @@ namespace Core.Gameplay
 	{
 		public float Value;
 	}
-	
-	[Il2CppSetOption(Option.NullChecks, false)]
-	[Il2CppSetOption(Option.ArrayBoundsChecks, false)]
-	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
-	[Serializable]
-	public struct CarController : IComponent
-	{
-		public TinyCarController Reference;
-	}
 }

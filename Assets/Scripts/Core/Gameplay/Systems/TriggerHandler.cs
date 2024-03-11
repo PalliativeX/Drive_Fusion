@@ -52,7 +52,7 @@ namespace Core.Gameplay
 					case InteractiveType.Repair:
 						var durabilityAmount = triggerEntity.GetComponent<InteractiveValue>();
 						ref var durability = ref entity.GetComponent<Durability>();
-						durability.Value = Mathf.Clamp01(durability.Value + durabilityAmount.Value);
+						entity.ChangeDurability(durability.Value + durabilityAmount.Value);
 						break;
 					case InteractiveType.Boost:
 						break;

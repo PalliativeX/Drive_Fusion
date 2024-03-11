@@ -55,6 +55,9 @@ MonoBehaviour:
   - Name: Fuel
     Reference: {fileID: 48402415588636884, guid: d5dce9798a163404294534b2cfaf2006, type: 3}
     PooledCount: 0
+  - Name: Repair
+    Reference: {fileID: 48402415588636884, guid: 51e978c2ec4bc874ba8d0eb1cb065918, type: 3}
+    PooledCount: 0
   - Name: Straight
     Reference: {fileID: 5438166418236111957, guid: fb8c66d9049455140a53db10b1199659, type: 3}
     PooledCount: 3

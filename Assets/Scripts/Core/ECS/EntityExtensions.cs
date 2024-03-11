@@ -1,6 +1,7 @@
 ﻿using Core.CameraLogic;
 using Core.Gameplay;
 using Scellecs.Morpeh;
+using UnityEngine;
 
 namespace Core.ECS
 {
@@ -21,7 +22,7 @@ namespace Core.ECS
 		public static void ChangeDurability(this Entity entity, float newDurability)
 		{
 			ref var durability = ref entity.GetComponent<Durability>();
-			durability.Value = newDurability;
+			durability.Value = Mathf.Clamp01(newDurability);
 			if (!entity.Has<DurabilityChanged>())
 				entity.SetComponent(new DurabilityChanged());
 		}

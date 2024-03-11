@@ -29,6 +29,7 @@ namespace Core.Levels
 			Container.BindInterfacesAndSelf<GameParentBehaviour>().FromInstance(_gameParent).AsSingle();
 			Container.BindInterfacesAndSelf<GameParentInitializer>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<RoadCreator>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<InteractiveItemsCreator>().FromNew().AsSingle();
 			
 			Container.BindInterfacesAndSelf<PrefabInstantiateSystem>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<GameplaySceneInitializer>().FromNew().AsSingle();
@@ -49,6 +50,8 @@ namespace Core.Levels
 			Container.BindInterfacesAndSelf<SetCameraFollowSystem>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<UpdateLookAtCameraSystem>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<UpdateCurrentVirtualCameraSystem>().FromNew().AsSingle();
+			
+			Container.BindInterfacesAndSelf<RoadBlockCreatedSystem>().FromNew().AsSingle();
 			
 			Container.BindInterfacesAndSelf<UpdateTriggerEnterSystem>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<UpdateTriggerExitSystem>().FromNew().AsSingle();

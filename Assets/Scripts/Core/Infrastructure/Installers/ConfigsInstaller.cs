@@ -24,6 +24,7 @@ namespace Core.Infrastructure.Installers
 		[SerializeField] private RateUsConfig _rateUs;
 		[SerializeField] private LocaleStorage _localeStorage;
 		[SerializeField] private CurrencyConfig _currencyConfig;
+		[SerializeField] private InteractiveItemsConfig _interactiveItems;
 		
 		public override void InstallBindings()
 		{
@@ -38,6 +39,7 @@ namespace Core.Infrastructure.Installers
 			Container.BindSelf<RateUsConfig>().FromInstance(_rateUs).AsSingle();
 			Container.BindSelf<LocaleStorage>().FromInstance(_localeStorage).AsSingle();
 			Container.BindSelf<CurrencyConfig>().FromInstance(_currencyConfig).AsSingle();
+			Container.BindSelf<InteractiveItemsConfig>().FromInstance(_interactiveItems).AsSingle();
 		}
 	}
 }

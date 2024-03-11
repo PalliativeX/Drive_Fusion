@@ -39,22 +39,7 @@ namespace Core.Gameplay
 			// CreateCameraTarget(player);
 			CreateCamera();
 
-			// TODO: Test, delete
-			for (int i = 0; i < 4; i++)
-			{
-				Entity coin = World.CreateEntity();
-				coin.AddPrefab("Coin");
-				coin.SetComponent(new Position { Value = new Vector3(i * 2, 0f, i * 2) });
-				coin.SetComponent(new Rotation { Value = Vector3.zero });
-			}
-
-			for (int i = 0; i < 4; i++)
-			{
-				Entity coin = World.CreateEntity();
-				coin.AddPrefab("Fuel");
-				coin.SetComponent(new Position { Value = new Vector3(5 + i * 5, 0f, 0f) });
-				coin.SetComponent(new Rotation { Value = Vector3.zero });
-			}
+			// TestInteractive();
 		}
 
 		public void Dispose() { }
@@ -94,5 +79,22 @@ namespace Core.Gameplay
 			Entity cameraEntity = World.CreateEntity();
 			cameraEntity.AddPrefab("Camera");
 		}
+
+		// private void TestInteractive() {
+		// 	// TODO: Test, delete
+		// 	for (int i = 0; i < 4; i++) {
+		// 		Entity coin = World.CreateEntity();
+		// 		coin.AddPrefab("Coin");
+		// 		coin.SetComponent(new Position { Value = new Vector3(i * 2, 0f, i * 2) });
+		// 		coin.SetComponent(new Rotation { Value = Vector3.zero });
+		// 	}
+		//
+		// 	for (int i = 0; i < 4; i++) {
+		// 		Entity coin = World.CreateEntity();
+		// 		coin.AddPrefab("Fuel");
+		// 		coin.SetComponent(new Position { Value = new Vector3(5 + i * 5, 0f, 0f) });
+		// 		coin.SetComponent(new Rotation { Value = Vector3.zero });
+		// 	}
+		// }
 	}
 }
