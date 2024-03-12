@@ -61,9 +61,18 @@ MonoBehaviour:
   - Name: Straight
     Reference: {fileID: 5438166418236111957, guid: fb8c66d9049455140a53db10b1199659, type: 3}
     PooledCount: 3
-  - Name: TurnSquare
+  - Name: TurnLeft
     Reference: {fileID: 3864281397818465040, guid: 51423ef41795bde4ab92f394c3b0beea, type: 3}
     PooledCount: 3
+  - Name: TurnRight
+    Reference: {fileID: 3864281397818465040, guid: efce97b1a95293a4194cd8d2c575b3e1, type: 3}
+    PooledCount: 0
   - Name: RateUs
     Reference: {fileID: 6878192136770198466, guid: be173993ea381b545838344dbf9304bf, type: 3}
+    PooledCount: 0
+  - Name: ObstacleDumpster
+    Reference: {fileID: 7293438705960873562, guid: 89c6f48cb5bf230439b90f72d9ddfce1, type: 3}
+    PooledCount: 0
+  - Name: ObstacleBike
+    Reference: {fileID: 7293438705960873562, guid: 17a695f03495478499458ee2556f0074, type: 3}
     PooledCount: 0

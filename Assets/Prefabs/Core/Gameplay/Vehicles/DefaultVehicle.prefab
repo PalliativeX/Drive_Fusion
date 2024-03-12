@@ -15154,7 +15154,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   forwardFriction: 60
-  lateralFriction: 60
+  lateralFriction: 45
 --- !u!114 &3839188146180179579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15406,7 +15406,7 @@ MonoBehaviour:
   particlesSideCollision: {fileID: 6561004721592492827}
   minLandingForce: 20
   particlesLanding: {fileID: 6556859058224970345}
-  minDriftingSpeed: 10
+  minDriftingSpeed: 3
   particlesDrifting: {fileID: 8018937486378983078}
   particlesBoost: {fileID: 8030199806118162919}
   rotationSmoothingOnGround: 10

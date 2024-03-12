@@ -14,8 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BlockSize: 30
   ConcurrentBlockCount: 6
+  TurnGenerationInterval: {x: 4, y: 6}
   Blocks:
   - Type: 0
+    Direction: 0
     PrefabName: Straight
   - Type: 1
-    PrefabName: TurnSquare
+    Direction: 1
+    PrefabName: TurnLeft
+  - Type: 2
+    Direction: 2
+    PrefabName: TurnRight

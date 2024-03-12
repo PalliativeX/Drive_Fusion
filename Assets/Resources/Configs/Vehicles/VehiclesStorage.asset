@@ -15,6 +15,7 @@ MonoBehaviour:
   Configs:
   - {fileID: 11400000, guid: 9147108f803e5f74db97187113d3dfe4, type: 2}
   - {fileID: 11400000, guid: 4e8ddbb2017ac95488f80651d75c6567, type: 2}
+  DefaultSensitivity: 0.5
   CollisionCurve:
     serializedVersion: 2
     m_Curve:
@@ -37,14 +38,14 @@ MonoBehaviour:
       inWeight: 0.083480045
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.80061847
-      value: 0.96293235
-      inSlope: 0.87270945
-      outSlope: 0.87270945
+      time: 0.70044994
+      value: 1.0028799
+      inSlope: 0.057218555
+      outSlope: 0.057218555
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.056410722
-      outWeight: 0.33333334
+      outWeight: 0.038342718
     - serializedVersion: 3
       time: 0.99734366
       value: 1.0003412

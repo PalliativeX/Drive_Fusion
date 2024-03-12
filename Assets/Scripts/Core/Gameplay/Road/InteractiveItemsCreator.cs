@@ -9,25 +9,25 @@ namespace Core.Gameplay
 	{
 		private readonly InteractiveItemsConfig _interactiveItems;
 		private readonly World _world;
-
+		
 		public InteractiveItemsCreator(InteractiveItemsConfig interactiveItems, World world)
 		{
 			_interactiveItems = interactiveItems;
 			_world = world;
 		}
 
-		public void Create(InteractiveType type, Vector3 position, Vector3 rotation)
+		public void Create(InteractiveType type, Vector3 position, Vector3 rotation, EntityId roadBlockId, Vector3 roadForward)
 		{
 			InteractiveItemEntry interactiveEntry = _interactiveItems.Entries.First(e => e.Type == type);
 
 			if (type != InteractiveType.Coins)
-				CreateEntity(position, rotation, interactiveEntry);
+				CreateEntity(position, rotation, interactiveEntry, roadBlockId);
 			else
 			{
 				float currentYOffset = 0f;
 				foreach (float offset in _interactiveItems.CoinOffsets)
 				{
-					var coin = CreateEntity(position + Vector3.forward * offset, rotation, interactiveEntry);
+					var coin = CreateEntity(position + roadForward * offset, rotation, interactiveEntry, roadBlockId);
 					coin.SetComponent(new Offset { Value = currentYOffset });
 					currentYOffset += _interactiveItems.CoinYOffset;
 				}
@@ -36,11 +36,13 @@ namespace Core.Gameplay
 
 		public int GetSkipInitialBlockCount() => _interactiveItems.SkipInitialBlocksCount;
 
-		private Entity CreateEntity(Vector3 position, Vector3 rotation, InteractiveItemEntry interactiveEntry) {
+		private Entity CreateEntity(Vector3 position, Vector3 rotation, InteractiveItemEntry interactiveEntry, EntityId roadBlockId) {
 			Entity interactiveItem = _world.CreateEntity();
-			interactiveItem.SetComponent(new Prefab { Value = interactiveEntry.PrefabName });
+			interactiveItem.SetComponent(new Prefab { Value = interactiveEntry.PrefabNames.GetRandom() });
 			interactiveItem.SetComponent(new Position { Value = position });
 			interactiveItem.SetComponent(new Rotation { Value = rotation });
+			
+			interactiveItem.SetComponent(new Link { Id = roadBlockId });
 			
 			return interactiveItem;
 		}

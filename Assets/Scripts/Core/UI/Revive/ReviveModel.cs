@@ -10,21 +10,18 @@ namespace Core.UI.Revive
 {
 	public sealed class ReviveModel
 	{
-		private readonly LevelsHelper _levelsHelper;
 		private readonly PanelController _panelController;
 		private readonly World _world;
 		private readonly GamePauser _pauser;
 		private readonly AdsService _ads;
 
 		public ReviveModel(
-			LevelsHelper levelsHelper,
 			PanelController panelController,
 			World world,
 			GamePauser pauser,
 			AdsService ads
 		)
 		{
-			_levelsHelper = levelsHelper;
 			_panelController = panelController;
 			_world = world;
 			_pauser = pauser;
@@ -66,7 +63,11 @@ namespace Core.UI.Revive
 			_world.TryGetEntity(blockId, out Entity block);
 
 			var carController = player.GetComponent<CarController>().Reference;
-			carController.Clear(block.GetComponent<Position>().Value, Quaternion.identity);
+
+			carController.Clear(
+				block.GetComponent<Position>().Value,
+				Quaternion.LookRotation(block.GetComponent<RoadBlockDirection>().Forward)
+			);
 
 			_panelController.Close<RevivePresenter>();
 		}

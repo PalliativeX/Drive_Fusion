@@ -37,7 +37,10 @@ namespace Core.Gameplay
 				for (int i = collisionEvents.List.Count - 1; i >= 0; i--)
 				{
 					CollisionEventData collisionData = collisionEvents.List[i];
+					
+#if DEBUG
 					Debug.Log(collisionData.CollisionForce + ", HasHitSide: " + collisionData.CollisionDot);
+#endif
 					
 					var durability = entity.GetComponent<Durability>();
 					float durabilityChange = _vehicles.CollisionCurve.Evaluate(collisionData.CollisionDot);

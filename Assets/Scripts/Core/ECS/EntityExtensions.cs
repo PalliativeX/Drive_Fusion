@@ -1,4 +1,5 @@
-﻿using Core.CameraLogic;
+﻿using System.Collections.Generic;
+using Core.CameraLogic;
 using Core.Gameplay;
 using Scellecs.Morpeh;
 using UnityEngine;
@@ -11,6 +12,15 @@ namespace Core.ECS
 		{
 			if (entity.Has<T>())
 				entity.RemoveComponent<T>();
+		}
+
+		public static void FillEntitiesWithLink(this World world, EntityId id, ref List<Entity> buffer)
+		{
+			buffer.Clear();
+
+			foreach (var entity in world.Filter.With<Link>().Build())
+				if (entity.GetComponent<Link>().Id == id)
+					buffer.Add(entity);
 		}
 
 		public static Entity GetPlayer(this World world) => 

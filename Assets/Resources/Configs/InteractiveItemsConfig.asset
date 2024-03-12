@@ -14,18 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Entries:
   - Type: 0
-    PrefabName: Coin
+    PrefabNames:
+    - Coin
   - Type: 1
-    PrefabName: Fuel
+    PrefabNames:
+    - Fuel
   - Type: 2
-    PrefabName: Repair
+    PrefabNames:
+    - Repair
   - Type: 3
-    PrefabName: 
+    PrefabNames:
+    - ObstacleDumpster
+    - ObstacleBike
+  - Type: 4
+    PrefabNames: []
+  - Type: 5
+    PrefabNames: []
   CoinOffsets:
-  - -4
-  - -2
+  - -4.5
+  - -2.25
   - 0
-  - 2
-  - 4
-  CoinYOffset: 0.2
+  - 2.25
+  - 4.5
+  CoinYOffset: 0.3
   SkipInitialBlocksCount: 4

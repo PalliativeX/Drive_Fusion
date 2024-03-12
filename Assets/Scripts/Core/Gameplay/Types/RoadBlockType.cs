@@ -3,6 +3,7 @@
 	public enum RoadBlockType
 	{
 		Straight,
-		TurnSquare,
+		TurnLeft,
+		TurnRight,
 	}
 }

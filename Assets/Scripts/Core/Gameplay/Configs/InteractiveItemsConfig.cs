@@ -18,6 +18,6 @@ namespace Core.Gameplay
 	public class InteractiveItemEntry
 	{
 		public InteractiveType Type;
-		public string PrefabName;
+		public List<string> PrefabNames;
 	}
 }

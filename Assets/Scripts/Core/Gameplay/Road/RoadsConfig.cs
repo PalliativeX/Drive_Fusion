@@ -9,6 +9,7 @@ namespace Core.Gameplay
 	{
 		public float BlockSize = 30f;
 		public int ConcurrentBlockCount;
+		public Vector2Int TurnGenerationInterval;
 
 		public List<RoadBlockEntry> Blocks;
 	}
@@ -17,6 +18,7 @@ namespace Core.Gameplay
 	public class RoadBlockEntry
 	{
 		public RoadBlockType Type;
+		public RoadDirection Direction;
 		public string PrefabName;
 	}
 }

@@ -28,6 +28,25 @@ namespace Core.Gameplay
 	[Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
 	[Serializable]
+	public struct RoadBlockDirection : IComponent
+	{
+		public RoadDirection Value;
+		public Vector3 Forward;
+	}
+	
+	[Il2CppSetOption(Option.NullChecks, false)]
+	[Il2CppSetOption(Option.ArrayBoundsChecks, false)]
+	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
+	[Serializable]
+	public struct RoadsDirection : IComponent
+	{
+		public Vector3 Value;
+	}
+	
+	[Il2CppSetOption(Option.NullChecks, false)]
+	[Il2CppSetOption(Option.ArrayBoundsChecks, false)]
+	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
+	[Serializable]
 	public struct ObjectPositions : IComponent
 	{
 		public Transform[] List;

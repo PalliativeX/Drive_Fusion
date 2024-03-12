@@ -5,6 +5,8 @@
 		Coins,
 		Fuel,
 		Repair,
+		Obstacle,
+		Vehicle,
 		Boost,
 	}
 }

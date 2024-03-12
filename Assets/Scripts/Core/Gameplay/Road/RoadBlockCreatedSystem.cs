@@ -12,15 +12,17 @@ namespace Core.Gameplay
 	public sealed class RoadBlockCreatedSystem : ISystem
 	{
 		private readonly InteractiveItemsCreator _itemsCreator;
-		
+		private readonly RoadCreator _roadCreator;
+
 		private Filter _filter;
 		private int _skipInitialBlockCount;
 		
 		public World World { get; set; }
 
-		public RoadBlockCreatedSystem(InteractiveItemsCreator itemsCreator)
+		public RoadBlockCreatedSystem(InteractiveItemsCreator itemsCreator, RoadCreator roadCreator)
 		{
 			_itemsCreator = itemsCreator;
+			_roadCreator = roadCreator;
 		}
 
 		public void OnAwake()
@@ -53,10 +55,19 @@ namespace Core.Gameplay
 					continue;
 
 				Transform[] positions = entity.GetComponent<ObjectPositions>().List;
-				Transform randomPosition = positions.GetRandom();
+				var interactiveType = (InteractiveType) Random.Range(0, 4);
+
+				int randomPositionIndex;
+				do
+					randomPositionIndex = Random.Range(0, positions.Length);
+				while ((interactiveType == InteractiveType.Obstacle || interactiveType == InteractiveType.Vehicle) &&
+				       randomPositionIndex == 0);
+				
+				Transform randomPosition = positions[randomPositionIndex];
 
 				_itemsCreator.Create(
-					(InteractiveType) Random.Range(0, 3), randomPosition.position, randomPosition.eulerAngles
+					interactiveType, randomPosition.position, randomPosition.eulerAngles, entity.ID,
+					_roadCreator.GetRoadsDirection()
 				);
 			}
 		}
