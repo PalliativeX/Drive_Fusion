@@ -21,7 +21,7 @@ namespace Core.UI.Settings
 			View.RestartButton.Subscribe(_model.OnRestart);
 			
 			View.SoundToggle.SwitchActive(_model.IsSoundActive());
-			View.SoundToggle.Button.OnClickSubscribeDisposable(ToggleSoundActive).AddTo(Disposable);
+			View.SoundToggle.Button.Subscribe(ToggleSoundActive);
 
 			View.SensitivitySlider.value = _model.GetSensitivity();
 			View.SensitivitySlider.onValueChanged.AddListener(ChangeSensitivity);
@@ -35,6 +35,7 @@ namespace Core.UI.Settings
 			View.ContinueButton.Unsubscribe(_model.OnContinue);
 			View.MenuButton.Unsubscribe(_model.OnMenu);
 			View.RestartButton.Unsubscribe(_model.OnRestart);
+			View.SoundToggle.Button.Unsubscribe(ToggleSoundActive);
 			
 			View.SensitivitySlider.onValueChanged.RemoveListener(ChangeSensitivity);
 		}

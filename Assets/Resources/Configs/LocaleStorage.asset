@@ -41,6 +41,7 @@ MonoBehaviour:
     - Restart
     - Sound
     - NamePlaceholder
+    - PressToSteer
     m_values:
     - Locales:
       - Language: 0
@@ -180,4 +181,9 @@ MonoBehaviour:
         Text: Name Placeholder
       - Language: 1
         Text: "\u0418\u043C\u044F \u043C\u0430\u0448\u0438\u043D\u044B"
+    - Locales:
+      - Language: 0
+        Text: Press to steer
+      - Language: 1
+        Text: "\u041D\u0430\u0436\u043C\u0438 \u0447\u0442\u043E\u0431\u044B \u0440\u0443\u043B\u0438\u0442\u044C"
   DebugLanguage: 1

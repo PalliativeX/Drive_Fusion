@@ -1,6 +1,8 @@
 ﻿using System;
 using Core.Infrastructure.GameFsm;
+using Core.Tutorial;
 using Core.UI.Menu;
+using Core.UI.Tutorial;
 using SimpleInject;
 
 namespace Core.UI.Systems
@@ -9,11 +11,13 @@ namespace Core.UI.Systems
 	{
 		private readonly PanelController _panelController;
 		private readonly IGameStateMachine _gameFsm;
+		private readonly TutorialService _tutorial;
 
-		public PanelByStateInitializer(PanelController panelController, GameStateMachine gameFsm)
+		public PanelByStateInitializer(PanelController panelController, GameStateMachine gameFsm, TutorialService tutorial)
 		{
 			_panelController = panelController;
 			_gameFsm = gameFsm;
+			_tutorial = tutorial;
 		}
 
 		public void Initialize()
@@ -29,6 +33,8 @@ namespace Core.UI.Systems
 			{
 				_panelController.Close<MenuPresenter>();
 				_panelController.Open<GamePresenter>();
+				if (_tutorial.HasTutorial())
+					_panelController.Open<TutorialPresenter>();
 			}
 		}
 

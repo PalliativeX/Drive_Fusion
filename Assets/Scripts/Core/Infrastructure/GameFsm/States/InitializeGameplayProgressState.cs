@@ -29,7 +29,7 @@ namespace Core.Infrastructure.GameFsm
 		private async UniTaskVoid OnEnter() {
 			// _saveLoadService.RestoreState(_saveable);
 
-			await UniTask.Delay(500);
+			await UniTask.Delay(600);
 			_loadingScreenProvider.LoadingScreen.Hide();
 
 			RequestNextState?.Invoke(GameStateType.Menu);

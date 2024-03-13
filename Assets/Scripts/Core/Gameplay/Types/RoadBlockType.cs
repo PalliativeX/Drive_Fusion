@@ -5,5 +5,9 @@
 		Straight,
 		TurnLeft,
 		TurnRight,
+		FuelStationRoadLeft,
+		FuelStationRoadRight,
+		CarFixRoadLeft,
+		CarFixRoadRight,
 	}
 }

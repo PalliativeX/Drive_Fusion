@@ -42,6 +42,7 @@ namespace Core.Levels
 			Container.BindInterfacesAndSelf<MovePlayerControllerSystem>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<SetVehicleWreckedDurabilitySystem>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<UpdateVehicleFuelSystem>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<MoveInteractiveVehiclesSystem>().FromNew().AsSingle();
 			// Container.BindInterfacesAndSelf<UpdateCameraTargetSystem>().FromNew().AsSingle();
 			
 			Container.BindInterfacesAndSelf<SetPreviousPositionSystem>().FromNew().AsSingle();

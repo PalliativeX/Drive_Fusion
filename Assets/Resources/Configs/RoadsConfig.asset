@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BlockSize: 30
   ConcurrentBlockCount: 6
-  TurnGenerationInterval: {x: 4, y: 6}
+  TurnGenerationInterval: {x: 4, y: 7}
+  FuelStationGenerationInterval: {x: 15, y: 20}
+  CarRepairGenerationInterval: {x: 12, y: 16}
   Blocks:
   - Type: 0
     Direction: 0
@@ -25,3 +27,16 @@ MonoBehaviour:
   - Type: 2
     Direction: 2
     PrefabName: TurnRight
+  - Type: 3
+    Direction: 0
+    PrefabName: FuelStationLeft
+  - Type: 4
+    Direction: 0
+    PrefabName: FuelStationRight
+  - Type: 5
+    Direction: 0
+    PrefabName: CarFixLeft
+  - Type: 6
+    Direction: 0
+    PrefabName: CarFixRight
+  StraightBlocks: 

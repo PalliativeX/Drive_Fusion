@@ -32,6 +32,9 @@ namespace Utils
 				z + original.z ?? original.z
 			);
 		}
+		
+		public static float Random(this Vector2 vector) => 
+			UnityEngine.Random.Range(vector.x, vector.y);
 
 		public static int Random(this Vector2Int vector) => 
 			UnityEngine.Random.Range(vector.x, vector.y + 1);

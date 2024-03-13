@@ -49,27 +49,44 @@ namespace Core.Gameplay
 					_skipInitialBlockCount--;
 					continue;
 				}
+
+				var roadBlockType = entity.GetComponent<RoadBlock>().Type;
+				var isBoostBlock = roadBlockType != RoadBlockType.Straight && roadBlockType != RoadBlockType.TurnLeft &&
+				                   roadBlockType != RoadBlockType.TurnRight;
 				
-				// TODO: Rework
-				if (Random.value > 0.5f)
+				if (!isBoostBlock && !_itemsCreator.ShouldCreate())
 					continue;
 
 				Transform[] positions = entity.GetComponent<ObjectPositions>().List;
-				var interactiveType = (InteractiveType) Random.Range(0, 4);
+				InteractiveType interactiveType;
+				if (!isBoostBlock)
+					interactiveType = _itemsCreator.GetRandomType(entity.Has<IsAfterTurn>());
+				else if (roadBlockType == RoadBlockType.CarFixRoadLeft || roadBlockType == RoadBlockType.CarFixRoadRight)
+					interactiveType = InteractiveType.Repair;
+				else
+					interactiveType = InteractiveType.Fuel;
 
-				int randomPositionIndex;
-				do
-					randomPositionIndex = Random.Range(0, positions.Length);
-				while ((interactiveType == InteractiveType.Obstacle || interactiveType == InteractiveType.Vehicle) &&
-				       randomPositionIndex == 0);
-				
-				Transform randomPosition = positions[randomPositionIndex];
+				Transform randomPosition = GetRandomPosition(positions, interactiveType);
 
-				_itemsCreator.Create(
+				_itemsCreator.CreateRandom(
 					interactiveType, randomPosition.position, randomPosition.eulerAngles, entity.ID,
 					_roadCreator.GetRoadsDirection()
 				);
 			}
+		}
+
+		private static Transform GetRandomPosition(Transform[] positions, InteractiveType interactiveType)
+		{
+			return positions.GetRandom(); // TODO: Change?
+			
+			int randomPositionIndex;
+			do
+				randomPositionIndex = Random.Range(0, positions.Length);
+			while ((interactiveType == InteractiveType.Obstacle || interactiveType == InteractiveType.Vehicle) &&
+			       randomPositionIndex == 0);
+
+			Transform randomPosition = positions[randomPositionIndex];
+			return randomPosition;
 		}
 
 		public void Dispose() { }

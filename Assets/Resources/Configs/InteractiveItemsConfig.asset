@@ -26,10 +26,15 @@ MonoBehaviour:
     PrefabNames:
     - ObstacleDumpster
     - ObstacleBike
+    - ObstacleVehicle
   - Type: 4
-    PrefabNames: []
+    PrefabNames:
+    - VehicleObstacle1
+    - VehicleObstacle2
   - Type: 5
     PrefabNames: []
+  ObstacleTypes: 0300000004000000
+  RewardTypes: 00000000
   CoinOffsets:
   - -4.5
   - -2.25
@@ -38,3 +43,5 @@ MonoBehaviour:
   - 4.5
   CoinYOffset: 0.3
   SkipInitialBlocksCount: 4
+  ItemCreationChance: 0.7
+  ObstacleGenerationChance: 0.7

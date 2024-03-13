@@ -14,18 +14,21 @@ namespace Core.UI.Revive
 		private readonly World _world;
 		private readonly GamePauser _pauser;
 		private readonly AdsService _ads;
+		private readonly RoadCreator _roadCreator;
 
 		public ReviveModel(
 			PanelController panelController,
 			World world,
 			GamePauser pauser,
-			AdsService ads
+			AdsService ads,
+			RoadCreator roadCreator
 		)
 		{
 			_panelController = panelController;
 			_world = world;
 			_pauser = pauser;
 			_ads = ads;
+			_roadCreator = roadCreator;
 		}
 
 		public void SwitchPause(bool paused) =>
@@ -61,6 +64,8 @@ namespace Core.UI.Revive
 
 			var blockId = player.GetComponent<CurrentRoadBlock>().Value;
 			_world.TryGetEntity(blockId, out Entity block);
+			
+			_roadCreator.DestroyBlockObjects(blockId);
 
 			var carController = player.GetComponent<CarController>().Reference;
 

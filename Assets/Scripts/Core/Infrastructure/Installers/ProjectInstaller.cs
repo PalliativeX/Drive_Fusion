@@ -12,6 +12,7 @@ using Core.Menu;
 using Core.SceneManagement;
 using Core.SceneManagement.LoadingScreen;
 using Core.Sound;
+using Core.Tutorial;
 using Scellecs.Morpeh;
 using SimpleInject;
 using UnityEngine;
@@ -48,6 +49,8 @@ namespace Core.Infrastructure.Installers
 			Container.BindInterfacesAndSelf<MoneyManager>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<LeaderboardService>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<GameplayParametersProvider>().FromNew().AsSingle();
+			
+			Container.BindInterfacesAndSelf<TutorialService>().FromNew().AsSingle();
 
 			InstallIntegrations();
 			InstallSaves();

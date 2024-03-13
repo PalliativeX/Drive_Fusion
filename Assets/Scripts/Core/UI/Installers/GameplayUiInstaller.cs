@@ -4,6 +4,7 @@ using Core.UI.Result;
 using Core.UI.Revive;
 using Core.UI.Settings;
 using Core.UI.Systems;
+using Core.UI.Tutorial;
 using SimpleInject;
 
 namespace Core.UI
@@ -29,6 +30,9 @@ namespace Core.UI
 			
 			Container.BindInterfacesAndSelf<RateUsModel>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<RateUsPresenter>().FromNew().AsSingle();
+			
+			Container.BindInterfacesAndSelf<TutorialPresenter>().FromNew().AsSingle();
+			Container.BindInterfacesAndSelf<TutorialModel>().FromNew().AsSingle();
 			
 			Container.BindInterfacesAndSelf<PanelByStateInitializer>().FromNew().AsSingle();
 		}

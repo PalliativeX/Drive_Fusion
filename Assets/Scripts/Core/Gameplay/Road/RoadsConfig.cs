@@ -10,8 +10,11 @@ namespace Core.Gameplay
 		public float BlockSize = 30f;
 		public int ConcurrentBlockCount;
 		public Vector2Int TurnGenerationInterval;
+		public Vector2Int FuelStationGenerationInterval;
+		public Vector2Int CarRepairGenerationInterval;
 
 		public List<RoadBlockEntry> Blocks;
+		public List<RoadBlockType> StraightBlocks;
 	}
 
 	[Serializable]

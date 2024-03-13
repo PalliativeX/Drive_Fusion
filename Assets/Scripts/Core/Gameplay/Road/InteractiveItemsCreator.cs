@@ -16,25 +16,38 @@ namespace Core.Gameplay
 			_world = world;
 		}
 
-		public void Create(InteractiveType type, Vector3 position, Vector3 rotation, EntityId roadBlockId, Vector3 roadForward)
+		public void CreateRandom(InteractiveType type, Vector3 position, Vector3 rotation, EntityId roadBlockId, Vector3 roadForward)
 		{
 			InteractiveItemEntry interactiveEntry = _interactiveItems.Entries.First(e => e.Type == type);
 
 			if (type != InteractiveType.Coins)
-				CreateEntity(position, rotation, interactiveEntry, roadBlockId);
-			else
 			{
-				float currentYOffset = 0f;
-				foreach (float offset in _interactiveItems.CoinOffsets)
-				{
-					var coin = CreateEntity(position + roadForward * offset, rotation, interactiveEntry, roadBlockId);
-					coin.SetComponent(new Offset { Value = currentYOffset });
-					currentYOffset += _interactiveItems.CoinYOffset;
-				}
+				Vector3 endRotation = type == InteractiveType.Vehicle ? Quaternion.LookRotation(-roadForward).eulerAngles : rotation;
+				var entity = CreateEntity(position, endRotation, interactiveEntry, roadBlockId);
+				return;
+			}
+
+			float currentYOffset = 0f;
+			foreach (float offset in _interactiveItems.CoinOffsets)
+			{
+				var coin = CreateEntity(position + roadForward * offset, rotation, interactiveEntry, roadBlockId);
+				coin.SetComponent(new Offset { Value = currentYOffset });
+				currentYOffset += _interactiveItems.CoinYOffset;
 			}
 		}
 
+		public InteractiveType GetRandomType(bool isAfterTurn)
+		{
+			bool shouldCreateObstacle = !isAfterTurn && Random.value <= _interactiveItems.ObstacleGenerationChance;
+			return shouldCreateObstacle 
+				? _interactiveItems.ObstacleTypes.GetRandom() 
+				: _interactiveItems.RewardTypes.GetRandom();
+		}
+
 		public int GetSkipInitialBlockCount() => _interactiveItems.SkipInitialBlocksCount;
+
+		public bool ShouldCreate() => 
+			Random.value <= _interactiveItems.ItemCreationChance;
 
 		private Entity CreateEntity(Vector3 position, Vector3 rotation, InteractiveItemEntry interactiveEntry, EntityId roadBlockId) {
 			Entity interactiveItem = _world.CreateEntity();

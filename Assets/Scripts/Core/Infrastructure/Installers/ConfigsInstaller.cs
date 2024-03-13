@@ -6,6 +6,7 @@ using Core.Integrations;
 using Core.Levels.Storages;
 using Core.Localization;
 using Core.Sound;
+using Core.Tutorial;
 using SimpleInject;
 using UnityEngine;
 
@@ -25,6 +26,7 @@ namespace Core.Infrastructure.Installers
 		[SerializeField] private LocaleStorage _localeStorage;
 		[SerializeField] private CurrencyConfig _currencyConfig;
 		[SerializeField] private InteractiveItemsConfig _interactiveItems;
+		[SerializeField] private TutorialConfig _tutorialConfig;
 		
 		public override void InstallBindings()
 		{
@@ -40,6 +42,7 @@ namespace Core.Infrastructure.Installers
 			Container.BindSelf<LocaleStorage>().FromInstance(_localeStorage).AsSingle();
 			Container.BindSelf<CurrencyConfig>().FromInstance(_currencyConfig).AsSingle();
 			Container.BindSelf<InteractiveItemsConfig>().FromInstance(_interactiveItems).AsSingle();
+			Container.BindSelf<TutorialConfig>().FromInstance(_tutorialConfig).AsSingle();
 		}
 	}
 }

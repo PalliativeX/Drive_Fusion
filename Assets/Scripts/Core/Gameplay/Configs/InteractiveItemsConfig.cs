@@ -8,10 +8,17 @@ namespace Core.Gameplay
 	public sealed class InteractiveItemsConfig : ScriptableObject
 	{
 		public List<InteractiveItemEntry> Entries;
+		public List<InteractiveType> ObstacleTypes;
+		public List<InteractiveType> RewardTypes;
+		
 		public List<float> CoinOffsets;
 		public float CoinYOffset;
 
+		[Header("Generation Chances")]
 		public int SkipInitialBlocksCount;
+		
+		[Range(0f, 1f)] public float ItemCreationChance;
+		[Range(0f, 1f)] public float ObstacleGenerationChance;
 	}
 
 	[Serializable]

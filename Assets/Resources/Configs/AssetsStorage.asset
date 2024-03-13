@@ -60,7 +60,7 @@ MonoBehaviour:
     PooledCount: 0
   - Name: Straight
     Reference: {fileID: 5438166418236111957, guid: fb8c66d9049455140a53db10b1199659, type: 3}
-    PooledCount: 3
+    PooledCount: 5
   - Name: TurnLeft
     Reference: {fileID: 3864281397818465040, guid: 51423ef41795bde4ab92f394c3b0beea, type: 3}
     PooledCount: 3
@@ -75,4 +75,28 @@ MonoBehaviour:
     PooledCount: 0
   - Name: ObstacleBike
     Reference: {fileID: 7293438705960873562, guid: 17a695f03495478499458ee2556f0074, type: 3}
+    PooledCount: 0
+  - Name: ObstacleVehicle
+    Reference: {fileID: 7293438705960873562, guid: 0f5f8be1472805740a6d78c2dbcc0ed8, type: 3}
+    PooledCount: 0
+  - Name: Tutorial
+    Reference: {fileID: 7818010729294436226, guid: 97bd4b85b17047a4eaf11b9c2ddaf227, type: 3}
+    PooledCount: 0
+  - Name: VehicleObstacle1
+    Reference: {fileID: 7293438705960873562, guid: 2468e0c4ebc96a042956a674b0569426, type: 3}
+    PooledCount: 0
+  - Name: VehicleObstacle2
+    Reference: {fileID: 7293438705960873562, guid: 1ce0e2b017c5cd34e8747bf702765479, type: 3}
+    PooledCount: 0
+  - Name: CarFixLeft
+    Reference: {fileID: 775591638485387260, guid: ad13356536fecfc4b8695db51deb01b1, type: 3}
+    PooledCount: 0
+  - Name: CarFixRight
+    Reference: {fileID: 22811018675444951, guid: ba5c953dc121f9648a5aa8d88b6bbe9f, type: 3}
+    PooledCount: 0
+  - Name: FuelStationLeft
+    Reference: {fileID: 4586599528334204790, guid: 366b0d80feb28ec489dd1b30af596585, type: 3}
+    PooledCount: 0
+  - Name: FuelStationRight
+    Reference: {fileID: 3753853022858540281, guid: 643ba5bf5fa49bd49ad27392a7aa42a8, type: 3}
     PooledCount: 0

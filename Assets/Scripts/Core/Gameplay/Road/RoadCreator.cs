@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Core.ECS;
 using Cysharp.Threading.Tasks;
 using Scellecs.Morpeh;
@@ -16,6 +15,8 @@ namespace Core.Gameplay
 		private Filter _roadFilter;
 
 		private int _turnGenerationPause;
+		private int _fuelStationGenerationPause;
+		private int _carRepairGenerationPause;
 
 		public World World { get; set; }
 
@@ -63,9 +64,7 @@ namespace Core.Gameplay
 				}
 			}
 
-			var entry = (lastBlockDirection != RoadDirection.Straight || isStraightRoad || _turnGenerationPause > 0) 
-				? _roads.Blocks.First() 
-				: _roads.Blocks.GetRandom();
+			var entry = GetRoadBlockEntry(isStraightRoad, lastBlockDirection);
 
 			Entity newBlock = World.CreateEntity();
 			newBlock.SetComponent(new Prefab { Value = entry.PrefabName });
@@ -81,13 +80,43 @@ namespace Core.Gameplay
 				else if (entry.Direction == RoadDirection.Right)
 					roadsDirection.Value = RotateByDegrees(newForward, 90f);
 			}
+			else if (entry.Type == RoadBlockType.CarFixRoadLeft || entry.Type == RoadBlockType.CarFixRoadRight)
+			{
+				_carRepairGenerationPause = _roads.CarRepairGenerationInterval.Random();
+			}
+			else if (entry.Type == RoadBlockType.FuelStationRoadLeft || entry.Type == RoadBlockType.FuelStationRoadRight)
+			{
+				_fuelStationGenerationPause = _roads.FuelStationGenerationInterval.Random();
+			}
 
 			newBlock.SetComponent(new RoadBlockDirection { Value = entry.Direction, Forward = roadsDirection.Value });
+			
+			if (lastBlockDirection != RoadDirection.Straight)
+				newBlock.SetComponent(new IsAfterTurn());
 			
 			road.Blocks.AddLast(newBlock.ID);
 
 			if (!isStraightRoad)
 				_turnGenerationPause--;
+
+			_carRepairGenerationPause--;
+			_fuelStationGenerationPause--;
+		}
+
+		private RoadBlockEntry GetRoadBlockEntry(bool isStraightRoad, RoadDirection lastBlockDirection)
+		{
+			if (isStraightRoad)
+				return _roads.Blocks[0];
+
+			RoadBlockType type = RoadBlockType.Straight;
+			if (_carRepairGenerationPause <= 0)
+				type = Random.value < 0.5f ? RoadBlockType.CarFixRoadLeft : RoadBlockType.CarFixRoadRight;
+			else if (_fuelStationGenerationPause <= 0)
+				type = Random.value < 0.5f ? RoadBlockType.FuelStationRoadLeft : RoadBlockType.FuelStationRoadRight;
+			else if (lastBlockDirection == RoadDirection.Straight && _turnGenerationPause <= 0 && Random.value < 0.5f)
+				type = Random.value < 0.5f ? RoadBlockType.TurnLeft : RoadBlockType.TurnRight;
+
+			return _roads.Blocks.First(b => b.Type == type);
 		}
 
 		public void RemoveFirstBlock()
@@ -104,7 +133,7 @@ namespace Core.Gameplay
 			DestroyBlockObjects(blockId);
 		}
 
-		private void DestroyBlockObjects(EntityId blockId) {
+		public void DestroyBlockObjects(EntityId blockId) {
 			var pool = ListPool<Entity>.Get();
 
 			World.FillEntitiesWithLink(blockId, ref pool);
