@@ -1,4 +1,5 @@
 using Core.Gameplay;
+using Core.Integrations.SaveSystem;
 using Core.Levels;
 using Core.Sound;
 using UnityEngine;
@@ -12,13 +13,15 @@ namespace Core.UI.Settings
 		private readonly GamePauser _pauser;
 		private readonly SoundService _sound;
 		private readonly GameplayParametersProvider _gameplayParameters;
+		private readonly SaveService _save;
 
 		public SettingsModel(
 			PanelController panelController,
 			LevelsHelper levelsHelper,
 			GamePauser pauser,
 			SoundService sound,
-			GameplayParametersProvider gameplayParameters
+			GameplayParametersProvider gameplayParameters,
+			SaveService save
 		)
 		{
 			_panelController = panelController;
@@ -26,7 +29,10 @@ namespace Core.UI.Settings
 			_pauser = pauser;
 			_sound = sound;
 			_gameplayParameters = gameplayParameters;
+			_save = save;
 		}
+
+		public void OnHide() => _save.Save();
 
 		public void SwitchPause(bool paused) =>
 			_pauser.SwitchPause(paused);

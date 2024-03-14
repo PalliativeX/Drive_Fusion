@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Core.AssetManagement;
 using Core.ECS;
+using Core.Infrastructure;
 using JetBrains.Annotations;
 using Scellecs.Morpeh;
 using SimpleInject;
@@ -14,6 +15,8 @@ namespace Core.Sound
 	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
 	public abstract class AudioPlayer : IInitializer
 	{
+		private readonly UnityCallbacksReceiver _callbacksReceiver;
+		
 		protected AudioSourceCreator AudioSourceCreator;
 
 		protected List<AudioSource> Sources;
@@ -22,9 +25,17 @@ namespace Core.Sound
 
 		public World World { get; set; }
 
+		protected AudioPlayer(UnityCallbacksReceiver callbacksReceiver)
+		{
+			_callbacksReceiver = callbacksReceiver;
+		}
+
 		public void OnAwake()
 		{
 			Sources = AudioSourceCreator.CreateSoundSources(Type);
+
+			_callbacksReceiver.ApplicationPaused += SwitchMuteAllAudio;
+			_callbacksReceiver.ApplicationFocus += SwitchMuteAllAudio;
 		}
 
 		public abstract void Play(Entity entity);
@@ -45,6 +56,11 @@ namespace Core.Sound
 		{
 			foreach (AudioSource audioSource in Sources)
 				audioSource.mute = !active;
+		}
+
+		public void SwitchMuteAllAudio(bool isActive)
+		{
+			AudioListener.pause = !isActive;
 		}
 
 		[CanBeNull]

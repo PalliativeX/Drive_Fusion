@@ -26,6 +26,7 @@ namespace Core.Infrastructure.Installers
 		[SerializeField] private JsEventsReceiver _jsEventsReceiver;
 		[SerializeField] private LocalizationService _localizationService;
 		[SerializeField] private Platform _platform;
+		[SerializeField] private UnityCallbacksReceiver _unityCallbacksReceiver;
 		
 		public override void InstallBindings()
 		{
@@ -39,6 +40,7 @@ namespace Core.Infrastructure.Installers
 			Container.BindInterfacesAndSelf<PoolContainer>().FromComponentInNewPrefab(_poolContainer).AsSingle();
 			Container.BindInterfacesAndSelf<JsEventsReceiver>().FromComponentInNewPrefab(_jsEventsReceiver).AsSingle();
 			Container.BindInterfacesAndSelf<LocalizationService>().FromComponentInNewPrefab(_localizationService).AsSingle();
+			Container.BindInterfacesAndSelf<UnityCallbacksReceiver>().FromComponentInNewPrefab(_unityCallbacksReceiver).AsSingle();
 			Container.BindInterfacesAndSelf<SceneLoader>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<GameParentProvider>().FromNew().AsSingle();
 			Container.BindInterfacesAndSelf<LoadingScreenProvider>().FromNew().AsSingle();

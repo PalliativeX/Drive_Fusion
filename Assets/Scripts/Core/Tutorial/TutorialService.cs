@@ -1,4 +1,5 @@
 ﻿using Core.Integrations.SaveSystem;
+using UnityEngine;
 
 namespace Core.Tutorial
 {
@@ -22,6 +23,7 @@ namespace Core.Tutorial
 				return false;
 #endif
 
+			Debug.Log("IsFirstSession: " + _save.IsFirstSession + " , IsTutorialComplete: " + IsTutorialComplete);
 			return _save.IsFirstSession && !IsTutorialComplete;
 		}
 

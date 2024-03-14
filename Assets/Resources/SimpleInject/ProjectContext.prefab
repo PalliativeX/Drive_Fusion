@@ -93,3 +93,4 @@ MonoBehaviour:
   _jsEventsReceiver: {fileID: 335587460874475905, guid: c5a4fc9f29debe045ac9eff5e7afdbe9, type: 3}
   _localizationService: {fileID: 7815191077640508876, guid: 02f5caff25154bc44b00c61690114d38, type: 3}
   _platform: {fileID: 4876554698728460853, guid: 5f58528922f46004d8b2694f8820ef9c, type: 3}
+  _unityCallbacksReceiver: {fileID: 5301630354557968883, guid: 59a768ad9f3bbf14eaa414067ceefdc9, type: 3}

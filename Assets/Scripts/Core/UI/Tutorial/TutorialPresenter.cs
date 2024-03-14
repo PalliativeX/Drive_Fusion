@@ -18,7 +18,6 @@ namespace Core.UI.Tutorial
 
 		public void Tick()
 		{
-			Debug.Log(Time.timeScale);
 			if (!_active)
 				return;
 			
@@ -29,7 +28,6 @@ namespace Core.UI.Tutorial
 		protected override void OnShow()
 		{
 			base.OnShow();
-			Debug.Log("Ever here?");
 
 			Time.timeScale = 0;
 
@@ -51,7 +49,6 @@ namespace Core.UI.Tutorial
 			
 			_active = false;
 			Time.timeScale = 1;
-			Debug.Log("Ever here too?");
 		}
 
 		private void OnTutorialPartClicked(TutorialPartBehaviour part)

@@ -29,7 +29,7 @@ namespace Core.UI.Settings
 
 		protected override void OnClose()
 		{
-			base.OnClose();
+			_model.OnHide();
 			_model.SwitchPause(false);
 			
 			View.ContinueButton.Unsubscribe(_model.OnContinue);

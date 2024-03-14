@@ -1,4 +1,5 @@
 ﻿using Core.ECS;
+using Core.Sound;
 using DavidJalbert;
 using Scellecs.Morpeh;
 using Unity.IL2CPP.CompilerServices;
@@ -12,13 +13,17 @@ namespace Core.Gameplay
 	public sealed class HandleCollisionEventsSystem : ISystem
 	{
 		private readonly VehiclesStorage _vehicles;
+		private readonly World _globalWorld;
 		private readonly TriggerHandler _triggerHandler;
 		private Filter _filter;
 		
 		public World World { get; set; }
 
-		public HandleCollisionEventsSystem(VehiclesStorage vehicles) => 
+		public HandleCollisionEventsSystem(VehiclesStorage vehicles, GlobalWorld globalWorld)
+		{
 			_vehicles = vehicles;
+			_globalWorld = globalWorld;
+		}
 
 		public void OnAwake()
 		{
@@ -37,6 +42,11 @@ namespace Core.Gameplay
 				for (int i = collisionEvents.List.Count - 1; i >= 0; i--)
 				{
 					CollisionEventData collisionData = collisionEvents.List[i];
+					if (collisionData.CollisionDot <= 0.05f)
+					{
+						collisionEvents.List.RemoveAt(i);
+						continue;
+					}
 					
 #if DEBUG
 					Debug.Log(collisionData.CollisionForce + ", HasHitSide: " + collisionData.CollisionDot);
@@ -45,7 +55,12 @@ namespace Core.Gameplay
 					var durability = entity.GetComponent<Durability>();
 					float durabilityChange = _vehicles.CollisionCurve.Evaluate(collisionData.CollisionDot);
 					entity.ChangeDurability(durability.Value - durabilityChange);
-					
+
+					_globalWorld.CreateSound(
+						entity.GetComponent<Durability>().Value <= 0f ? SoundId.Crash : SoundId.Bump,
+						SoundType.Sound
+					);
+
 					collisionEvents.List.RemoveAt(i);
 				}
 			}

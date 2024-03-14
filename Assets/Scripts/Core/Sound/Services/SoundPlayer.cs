@@ -1,4 +1,5 @@
 ﻿using Core.ECS;
+using Core.Infrastructure;
 using Scellecs.Morpeh;
 using SimpleInject;
 
@@ -7,6 +8,8 @@ namespace Core.Sound
 	public class SoundPlayer : AudioPlayer
 	{
 		protected override SoundType Type => SoundType.Sound;
+		
+		public SoundPlayer(UnityCallbacksReceiver callbacksReceiver) : base(callbacksReceiver) { }
 		
 		[Inject]
 		public void Construct(AudioSourceCreator audioSourceCreator) => 

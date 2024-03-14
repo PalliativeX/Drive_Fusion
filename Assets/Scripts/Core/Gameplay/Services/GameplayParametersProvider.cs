@@ -1,5 +1,6 @@
 ﻿using System;
 using Core.Integrations.SaveSystem;
+using UnityEngine;
 
 namespace Core.Gameplay
 {
@@ -23,6 +24,7 @@ namespace Core.Gameplay
 			Sensitivity = data.IsFirstSession ? 
 				_vehicles.DefaultSensitivity : 
 				data.Sensitivity;
+			data.Sensitivity = Sensitivity;
 		}
 
 		public void SetSensitivity(float newSensitivity)

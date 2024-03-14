@@ -86,6 +86,8 @@ namespace Core.Integrations.SaveSystem
 				SaveData.IsFirstSession = false;
 				IsFirstSession = false; 
 			}
+
+			Debug.Log("IsFirstSession: " + IsFirstSession);
 			
 			IsInitialized = true;
 			Initialized?.Invoke();
