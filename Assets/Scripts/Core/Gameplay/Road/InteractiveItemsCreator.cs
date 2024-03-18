@@ -9,11 +9,13 @@ namespace Core.Gameplay
 	{
 		private readonly InteractiveItemsConfig _interactiveItems;
 		private readonly World _world;
-		
-		public InteractiveItemsCreator(InteractiveItemsConfig interactiveItems, World world)
+		private readonly CurrentLevelService _currentLevel;
+
+		public InteractiveItemsCreator(InteractiveItemsConfig interactiveItems, World world, CurrentLevelService currentLevel)
 		{
 			_interactiveItems = interactiveItems;
 			_world = world;
+			_currentLevel = currentLevel;
 		}
 
 		public void CreateRandom(InteractiveType type, Vector3 position, Vector3 rotation, EntityId roadBlockId, Vector3 roadForward)
@@ -36,18 +38,22 @@ namespace Core.Gameplay
 			}
 		}
 
-		public InteractiveType GetRandomType(bool isAfterTurn)
-		{
-			bool shouldCreateObstacle = !isAfterTurn && Random.value <= _interactiveItems.ObstacleGenerationChance;
-			return shouldCreateObstacle 
-				? _interactiveItems.ObstacleTypes.GetRandom() 
-				: _interactiveItems.RewardTypes.GetRandom();
-		}
+		public InteractiveType GetRandomReward() => _interactiveItems.RewardTypes.GetRandom();
+		public InteractiveType GetRandomObstacle() => _interactiveItems.ObstacleTypes.GetRandom();
 
 		public int GetSkipInitialBlockCount() => _interactiveItems.SkipInitialBlocksCount;
 
-		public bool ShouldCreate() => 
-			Random.value <= _interactiveItems.ItemCreationChance;
+		public bool ShouldCreateReward()
+		{
+			float difficultyPercent = _currentLevel.GetDifficultyPercent();
+			return Random.value <= _interactiveItems.RewardCreationChance.Lerp(difficultyPercent);
+		}
+
+		public bool ShouldCreateObstacle()
+		{
+			float difficultyPercent = _currentLevel.GetDifficultyPercent();
+			return Random.value <= _interactiveItems.ObstacleGenerationChance.Lerp(difficultyPercent);
+		}
 
 		private Entity CreateEntity(Vector3 position, Vector3 rotation, InteractiveItemEntry interactiveEntry, EntityId roadBlockId) {
 			Entity interactiveItem = _world.CreateEntity();

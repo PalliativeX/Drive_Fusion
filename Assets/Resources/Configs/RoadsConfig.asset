@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f794a7fa316643d3958cc29f5728bdad, type: 3}
   m_Name: RoadsConfig
   m_EditorClassIdentifier: 
-  BlockSize: 30
-  ConcurrentBlockCount: 6
+  ConcurrentBlockCount: 7
   TurnGenerationInterval: {x: 4, y: 7}
   FuelStationGenerationInterval: {x: 15, y: 20}
   CarRepairGenerationInterval: {x: 12, y: 16}
@@ -21,22 +20,37 @@ MonoBehaviour:
   - Type: 0
     Direction: 0
     PrefabName: Straight
+    BlockSize: 30
   - Type: 1
     Direction: 1
     PrefabName: TurnLeft
+    BlockSize: 30
   - Type: 2
     Direction: 2
     PrefabName: TurnRight
+    BlockSize: 30
   - Type: 3
     Direction: 0
     PrefabName: FuelStationLeft
+    BlockSize: 30
   - Type: 4
     Direction: 0
     PrefabName: FuelStationRight
+    BlockSize: 30
   - Type: 5
     Direction: 0
     PrefabName: CarFixLeft
+    BlockSize: 30
   - Type: 6
     Direction: 0
     PrefabName: CarFixRight
-  StraightBlocks: 
+    BlockSize: 30
+  - Type: 7
+    Direction: 0
+    PrefabName: StraightCurvedLeft
+    BlockSize: 60
+  - Type: 8
+    Direction: 0
+    PrefabName: StraightCurvedRight
+    BlockSize: 60
+  StraightBlocks: 00000000

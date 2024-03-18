@@ -3,6 +3,7 @@ using Core.Currency;
 using Core.Integrations;
 using Core.Levels;
 using SimpleInject;
+using UnityEngine;
 using Utils;
 
 namespace Core.Gameplay
@@ -12,19 +13,28 @@ namespace Core.Gameplay
 		private readonly LevelsHelper _levels;
 		private readonly LeaderboardService _leaderboard;
 		private readonly MoneyManager _moneyManager;
+		private readonly GameDifficultyConfig _difficultyConfig;
 
 		public float Score { get; private set; }
 		public float CurrentScoreRecord { get; private set; }
 
 		public int EarnedMoney { get; private set; }
 		
+		public float CurrentDifficultyMultiplier { get; private set; }
+
 		public event Action<float> ScoreChanged;
 
-		public CurrentLevelService(LevelsHelper levels, LeaderboardService leaderboard, MoneyManager moneyManager)
+		public CurrentLevelService(
+			LevelsHelper levels,
+			LeaderboardService leaderboard,
+			MoneyManager moneyManager,
+			GameDifficultyConfig difficultyConfig
+		)
 		{
 			_levels = levels;
 			_leaderboard = leaderboard;
 			_moneyManager = moneyManager;
+			_difficultyConfig = difficultyConfig;
 		}
 
 		public void Initialize()
@@ -32,22 +42,24 @@ namespace Core.Gameplay
 			CurrentScoreRecord = _levels.GetCurrentLevelScoreRecord();
 		}
 
-		public void AddScore(float score) => 
+		public void AddScore(float score) =>
 			SetScore(Score + score);
 
 		public void SetScore(float score)
 		{
 			Score = score;
 			ScoreChanged?.Invoke(score);
+
+			UpdateCurrentDifficulty(score);
 		}
 
 		public void TryUpdateRecord()
 		{
 			if (Score <= CurrentScoreRecord)
 				return;
-			
+
 			_levels.SetCurrentLevelScoreRecord(Score);
-			
+
 			_leaderboard.SetNewScore(Score.ToInt());
 		}
 
@@ -57,6 +69,19 @@ namespace Core.Gameplay
 		{
 			_moneyManager.AddMoney(earnings);
 			EarnedMoney = 0;
+		}
+
+		public void UpdateCurrentDifficulty(float score)
+		{
+			float scoreMapped = score / 1000f;
+
+			CurrentDifficultyMultiplier = _difficultyConfig.DifficultyCurve.Evaluate(scoreMapped);
+			Debug.Log("Current difficulty: " + CurrentDifficultyMultiplier.ToString("F2"));
+		}
+
+		public float GetDifficultyPercent()
+		{
+			return CurrentDifficultyMultiplier / _difficultyConfig.MaxDifficulty;
 		}
 	}
 }

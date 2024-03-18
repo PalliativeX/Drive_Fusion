@@ -43,5 +43,5 @@ MonoBehaviour:
   - 4.5
   CoinYOffset: 0.3
   SkipInitialBlocksCount: 4
-  ItemCreationChance: 0.7
-  ObstacleGenerationChance: 0.7
+  RewardCreationChance: {x: 0.35, y: 0.55}
+  ObstacleGenerationChance: {x: 0.45, y: 0.725}

@@ -17,8 +17,8 @@ namespace Core.Gameplay
 		[Header("Generation Chances")]
 		public int SkipInitialBlocksCount;
 		
-		[Range(0f, 1f)] public float ItemCreationChance;
-		[Range(0f, 1f)] public float ObstacleGenerationChance;
+		public Vector2 RewardCreationChance;
+		public Vector2 ObstacleGenerationChance;
 	}
 
 	[Serializable]

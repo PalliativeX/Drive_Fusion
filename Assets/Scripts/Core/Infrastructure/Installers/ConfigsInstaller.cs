@@ -27,6 +27,7 @@ namespace Core.Infrastructure.Installers
 		[SerializeField] private CurrencyConfig _currencyConfig;
 		[SerializeField] private InteractiveItemsConfig _interactiveItems;
 		[SerializeField] private TutorialConfig _tutorialConfig;
+		[SerializeField] private GameDifficultyConfig _gameDifficultyConfig;
 		
 		public override void InstallBindings()
 		{
@@ -43,6 +44,7 @@ namespace Core.Infrastructure.Installers
 			Container.BindSelf<CurrencyConfig>().FromInstance(_currencyConfig).AsSingle();
 			Container.BindSelf<InteractiveItemsConfig>().FromInstance(_interactiveItems).AsSingle();
 			Container.BindSelf<TutorialConfig>().FromInstance(_tutorialConfig).AsSingle();
+			Container.BindSelf<GameDifficultyConfig>().FromInstance(_gameDifficultyConfig).AsSingle();
 		}
 	}
 }

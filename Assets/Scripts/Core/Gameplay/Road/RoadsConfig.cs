@@ -7,7 +7,7 @@ namespace Core.Gameplay
 	[CreateAssetMenu(fileName = nameof(RoadsConfig), menuName = "Configs/" + nameof(RoadsConfig))]
 	public sealed class RoadsConfig : ScriptableObject
 	{
-		public float BlockSize = 30f;
+		// public float BlockSize = 30f;
 		public int ConcurrentBlockCount;
 		public Vector2Int TurnGenerationInterval;
 		public Vector2Int FuelStationGenerationInterval;
@@ -23,5 +23,6 @@ namespace Core.Gameplay
 		public RoadBlockType Type;
 		public RoadDirection Direction;
 		public string PrefabName;
+		public float BlockSize = 30f;
 	}
 }

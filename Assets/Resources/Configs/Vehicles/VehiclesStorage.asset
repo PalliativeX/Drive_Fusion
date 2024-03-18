@@ -15,7 +15,11 @@ MonoBehaviour:
   Configs:
   - {fileID: 11400000, guid: 9147108f803e5f74db97187113d3dfe4, type: 2}
   - {fileID: 11400000, guid: 4e8ddbb2017ac95488f80651d75c6567, type: 2}
-  DefaultSensitivity: 0.5
+  - {fileID: 11400000, guid: 6fba4e7b5c3a0134fb7e51a548d6faaa, type: 2}
+  - {fileID: 11400000, guid: b3d861f6145c89c448c7eebccfb82f27, type: 2}
+  - {fileID: 11400000, guid: f4f0ae93b60635f4f9acbaa1f89d93fa, type: 2}
+  - {fileID: 11400000, guid: b176f74dc8765174ba07812219f20fde, type: 2}
+  DefaultSensitivity: 0.35
   CollisionCurve:
     serializedVersion: 2
     m_Curve:

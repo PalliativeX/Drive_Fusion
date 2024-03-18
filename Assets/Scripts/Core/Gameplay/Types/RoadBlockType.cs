@@ -9,5 +9,7 @@
 		FuelStationRoadRight,
 		CarFixRoadLeft,
 		CarFixRoadRight,
+		StraightCurvedLeft,
+		StraightCurvedRight,
 	}
 }

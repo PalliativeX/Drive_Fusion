@@ -54,39 +54,58 @@ namespace Core.Gameplay
 				var isBoostBlock = roadBlockType != RoadBlockType.Straight && roadBlockType != RoadBlockType.TurnLeft &&
 				                   roadBlockType != RoadBlockType.TurnRight;
 				
-				if (!isBoostBlock && !_itemsCreator.ShouldCreate())
+				bool shouldCreateObstacle = _itemsCreator.ShouldCreateObstacle();
+				bool shouldCreateReward = _itemsCreator.ShouldCreateReward();
+				if (!shouldCreateObstacle && !shouldCreateReward && !isBoostBlock)
 					continue;
-
+				
 				Transform[] positions = entity.GetComponent<ObjectPositions>().List;
-				InteractiveType interactiveType;
-				if (!isBoostBlock)
-					interactiveType = _itemsCreator.GetRandomType(entity.Has<IsAfterTurn>());
-				else if (roadBlockType == RoadBlockType.CarFixRoadLeft || roadBlockType == RoadBlockType.CarFixRoadRight)
-					interactiveType = InteractiveType.Repair;
-				else
-					interactiveType = InteractiveType.Fuel;
 
-				Transform randomPosition = GetRandomPosition(positions, interactiveType);
+				if (isBoostBlock)
+				{
+					Transform randomPosition = GetRandomPosition(positions);
 
-				_itemsCreator.CreateRandom(
-					interactiveType, randomPosition.position, randomPosition.eulerAngles, entity.ID,
-					_roadCreator.GetRoadsDirection()
-				);
+					InteractiveType type;
+					if (roadBlockType == RoadBlockType.CarFixRoadLeft || roadBlockType == RoadBlockType.CarFixRoadRight)
+						type = InteractiveType.Repair;
+					else
+						type = InteractiveType.Fuel;
+
+					Create(randomPosition, type, entity.ID);
+					
+					continue;
+				}
+
+				int ignoredPositionIndex = -1;
+
+				if (shouldCreateReward)
+				{
+					Transform randomPosition = GetRandomPosition(positions);
+					ignoredPositionIndex = positions.IndexOf(randomPosition);
+					Create(randomPosition, _itemsCreator.GetRandomReward(), entity.ID);
+				}
+
+				if (shouldCreateObstacle && !entity.Has<IsAfterTurn>())
+				{
+					Transform randomPosition = GetRandomPosition(positions, ignoredPositionIndex);
+					Create(randomPosition, _itemsCreator.GetRandomObstacle(), entity.ID);
+				}
 			}
 		}
 
-		private static Transform GetRandomPosition(Transform[] positions, InteractiveType interactiveType)
+		private static Transform GetRandomPosition(Transform[] positions, int ignoredPositionIndex = -1)
 		{
-			return positions.GetRandom(); // TODO: Change?
-			
-			int randomPositionIndex;
-			do
-				randomPositionIndex = Random.Range(0, positions.Length);
-			while ((interactiveType == InteractiveType.Obstacle || interactiveType == InteractiveType.Vehicle) &&
-			       randomPositionIndex == 0);
+			return ignoredPositionIndex == -1 
+				? positions.GetRandom() 
+				: positions.GetRandomExcept(ignoredPositionIndex);
+		}
 
-			Transform randomPosition = positions[randomPositionIndex];
-			return randomPosition;
+		private void Create(Transform randomPosition, InteractiveType type, EntityId entityId)
+		{
+			_itemsCreator.CreateRandom(
+				type, randomPosition.position, randomPosition.eulerAngles, entityId,
+				_roadCreator.GetRoadsDirection()
+			);
 		}
 
 		public void Dispose() { }

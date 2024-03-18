@@ -12,9 +12,15 @@ namespace Core.Gameplay
 	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
 	public sealed class MoveInteractiveVehiclesSystem : ISystem
 	{
+		private readonly CurrentLevelService _currentLevel;
 		private Filter _filter;
 		
 		public World World { get; set; }
+
+		public MoveInteractiveVehiclesSystem(CurrentLevelService currentLevel)
+		{
+			_currentLevel = currentLevel;
+		}
 
 		public void OnAwake()
 		{
@@ -33,7 +39,7 @@ namespace Core.Gameplay
 				ref Position position = ref entity.GetComponent<Position>();
 				Rotation rotation = entity.GetComponent<Rotation>();
 
-				position.Value += rotation.Direction * speed * deltaTime;
+				position.Value += rotation.Direction * speed * _currentLevel.CurrentDifficultyMultiplier * deltaTime;
 			}
 		}
 

@@ -70,9 +70,9 @@ namespace Core.Integrations.SaveSystem
 
 		public void SetPlayerProgressData(string dataJson)
 		{
-			ConsoleLogger.Instance.Log("Setting player progress data");
+			ConsoleLogger.Instance.Log("Setting player progress data: " + dataJson);
 			
-			if (string.IsNullOrEmpty(dataJson))
+			if (string.IsNullOrEmpty(dataJson) || dataJson == "{}")
 			{
 				SaveData = new SaveData { IsFirstSession = true };
                 IsFirstSession = true;

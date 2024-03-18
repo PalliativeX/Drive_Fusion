@@ -59,7 +59,10 @@ namespace Core.Gameplay
 				if (World.TryGetEntity(lastBlockId, out Entity lastBlock))
 				{
 					blockPosition = lastBlock.GetComponent<Position>().Value +
-					                roadEntity.GetComponent<RoadsDirection>().Value * _roads.BlockSize;
+					                roadEntity.GetComponent<RoadsDirection>().Value * 
+					                _roads.Blocks.First(b => b.Type == lastBlock.GetComponent<RoadBlock>().Type).BlockSize;
+					Debug.Log(_roads.Blocks.First(b => b.Type == lastBlock.GetComponent<RoadBlock>().Type).BlockSize);
+					Debug.Log(_roads.Blocks.First(b => b.Type == lastBlock.GetComponent<RoadBlock>().Type));
 					lastBlockDirection = lastBlock.GetComponent<RoadBlockDirection>().Value;
 				}
 			}
@@ -90,6 +93,7 @@ namespace Core.Gameplay
 			}
 
 			newBlock.SetComponent(new RoadBlockDirection { Value = entry.Direction, Forward = roadsDirection.Value });
+			newBlock.SetComponent(new RoadBlock { Type = entry.Type });
 			
 			if (lastBlockDirection != RoadDirection.Straight)
 				newBlock.SetComponent(new IsAfterTurn());
@@ -108,7 +112,7 @@ namespace Core.Gameplay
 			if (isStraightRoad)
 				return _roads.Blocks[0];
 
-			RoadBlockType type = RoadBlockType.Straight;
+			RoadBlockType type = _roads.StraightBlocks.GetRandom();
 			if (_carRepairGenerationPause <= 0)
 				type = Random.value < 0.5f ? RoadBlockType.CarFixRoadLeft : RoadBlockType.CarFixRoadRight;
 			else if (_fuelStationGenerationPause <= 0)
@@ -149,7 +153,7 @@ namespace Core.Gameplay
 			ref var road = ref roadEntity.GetComponent<Road>();
 
 			var blocks = road.Blocks;
-			if (blocks.First.Value == roadBlock.ID)
+			if (blocks.First.Value == roadBlock.ID || (blocks.First.Next != null && blocks.First.Next.Value == roadBlock.ID))
 				return false;
 			
 			RemoveFirstBlock();

@@ -38,5 +38,8 @@ namespace Utils
 
 		public static int Random(this Vector2Int vector) => 
 			UnityEngine.Random.Range(vector.x, vector.y + 1);
+
+		public static float Lerp(this Vector2 vector, float t) =>
+			Mathf.Lerp(vector.x, vector.y, t);
 	}
 }

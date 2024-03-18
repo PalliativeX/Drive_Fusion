@@ -76,6 +76,20 @@ namespace Utils
 			return random;
 		}
 
+		public static T GetRandomExcept<T>(this T[] arr, int index)
+		{
+			T random;
+			int randomIndex;
+			do
+			{
+				randomIndex = Random.Range(0, arr.Length);
+				random = arr[randomIndex];
+			}
+			while (randomIndex == index);
+
+			return random;
+		}
+
 		public static T GetRandomExcept<T>(this IList<T> list, T ignored)
 		{
 			T random;
@@ -94,6 +108,18 @@ namespace Utils
 			while (ignored.Contains(random));
 
 			return random;
+		}
+		
+		public static int IndexOf<T>(this T[] list, T element) where T : class
+		{
+			for (int i = 0; i < list.Length; i++)
+			{
+				T elem = list[i];
+				if (elem == element)
+					return i;
+			}
+
+			return -1;
 		}
 	}
 }

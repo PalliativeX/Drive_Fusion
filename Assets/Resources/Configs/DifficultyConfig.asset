@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9053e46c6ea04c4a803f2fa29ad994b8, type: 3}
+  m_Name: DifficultyConfig
+  m_EditorClassIdentifier: 
+  DifficultyCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1.0983483
+      value: 1.1078159
+      inSlope: 0.06505796
+      outSlope: 0.06505796
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.085261844
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 2.8423917
+      value: 1.273185
+      inSlope: 0.051424142
+      outSlope: 0.051424142
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.124919765
+      outWeight: 0.20256838
+    - serializedVersion: 3
+      time: 3.9200196
+      value: 1.4844857
+      inSlope: 0.19822903
+      outSlope: 0.19822903
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.15886089
+      outWeight: 0.1524538
+    - serializedVersion: 3
+      time: 5
+      value: 2.25
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  MaxDifficulty: 2.25
