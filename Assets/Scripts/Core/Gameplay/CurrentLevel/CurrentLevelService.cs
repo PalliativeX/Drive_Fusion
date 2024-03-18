@@ -3,7 +3,6 @@ using Core.Currency;
 using Core.Integrations;
 using Core.Levels;
 using SimpleInject;
-using UnityEngine;
 using Utils;
 
 namespace Core.Gameplay
@@ -76,7 +75,6 @@ namespace Core.Gameplay
 			float scoreMapped = score / 1000f;
 
 			CurrentDifficultyMultiplier = _difficultyConfig.DifficultyCurve.Evaluate(scoreMapped);
-			Debug.Log("Current difficulty: " + CurrentDifficultyMultiplier.ToString("F2"));
 		}
 
 		public float GetDifficultyPercent()
