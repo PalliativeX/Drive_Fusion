@@ -18,7 +18,9 @@ namespace Core.Localization
 		{
 			SetLanguage();
 
+#if UNITY_EDITOR
 			Debug.Log($"Current language: {CurrentLanguage}");
+#endif
 		}
 		
 		public string GetText(string key) => _locales.GetText(key, CurrentLanguage);

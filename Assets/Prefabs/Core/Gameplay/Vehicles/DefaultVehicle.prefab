@@ -5675,8 +5675,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  maxAccelerationForward: 31
-  maxSpeedForward: 36
+  maxAccelerationForward: 31.5
+  maxSpeedForward: 37
   maxAccelerationReverse: 25
   maxSpeedReverse: 25
   brakeStrength: 60
@@ -5718,7 +5718,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   forwardFriction: 60
-  lateralFriction: 41
+  lateralFriction: 40.5
 --- !u!114 &3839188146180179579
 MonoBehaviour:
   m_ObjectHideFlags: 0

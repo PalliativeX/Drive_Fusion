@@ -61,8 +61,6 @@ namespace Core.Gameplay
 					blockPosition = lastBlock.GetComponent<Position>().Value +
 					                roadEntity.GetComponent<RoadsDirection>().Value * 
 					                _roads.Blocks.First(b => b.Type == lastBlock.GetComponent<RoadBlock>().Type).BlockSize;
-					Debug.Log(_roads.Blocks.First(b => b.Type == lastBlock.GetComponent<RoadBlock>().Type).BlockSize);
-					Debug.Log(_roads.Blocks.First(b => b.Type == lastBlock.GetComponent<RoadBlock>().Type));
 					lastBlockDirection = lastBlock.GetComponent<RoadBlockDirection>().Value;
 				}
 			}

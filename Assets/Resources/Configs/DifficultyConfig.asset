@@ -53,7 +53,7 @@ MonoBehaviour:
       outWeight: 0.1524538
     - serializedVersion: 3
       time: 5
-      value: 2.4
+      value: 2.6
       inSlope: 2
       outSlope: 2
       tangentMode: 0
@@ -63,4 +63,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  MaxDifficulty: 2.4
+  MaxDifficulty: 2.6

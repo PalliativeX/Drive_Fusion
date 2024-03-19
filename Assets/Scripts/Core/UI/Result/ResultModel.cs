@@ -61,6 +61,11 @@ namespace Core.UI.Result
 
 		public void OnRestart()
 		{
+			_ads.ShowInterstitialAd(DoRestart);
+		}
+
+		private void DoRestart()
+		{
 			SwitchPause(false);
 			_levelsHelper.RestartLevel();
 		}

@@ -11,6 +11,7 @@ namespace Core.Integrations.Ads
 		
 		private float _time = 0;
 		private Action<bool> _rewardedCallback;
+		private Action _interstitialCallback;
 
 		[DllImport("__Internal")]
 		private static extern void ShowInterstitialAdExternal();
@@ -20,8 +21,8 @@ namespace Core.Integrations.Ads
 		
 		public event Action OnRewardedAdClosedCallback;
 		public event Action OnRewardedAdRewarded;
-		
-		public void ShowInterstitialAd()
+
+		public void ShowInterstitialAd(Action interstitialCallback = null)
 		{
 			if (Time.realtimeSinceStartup - _time > TimeBetweenAds)
 			{
@@ -30,7 +31,10 @@ namespace Core.Integrations.Ads
 #endif
 
 				if (Platform.Instance.IsYandexGames())
+				{
 					ShowInterstitialAdExternal();
+					_interstitialCallback = interstitialCallback;
+				}
 				else
 					_time = Time.realtimeSinceStartup;
 			}
@@ -38,6 +42,7 @@ namespace Core.Integrations.Ads
 			else
 			{
 				Debug.Log("TimePassed: " + (Time.realtimeSinceStartup - _time).ToString("F1") + "	Dont Show Ad");
+				interstitialCallback?.Invoke();
 			}
 #endif
 		}
@@ -67,6 +72,7 @@ namespace Core.Integrations.Ads
 		{
 			SwitchAudioActive(true);
 			_time = Time.realtimeSinceStartup;
+			_interstitialCallback?.Invoke();
 		}
 
 		public void OnRewardedAdOpened()
