@@ -72,6 +72,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _controller: {fileID: 4438517429364774534}
+  _visuals: {fileID: 5777903312441867178}
   _config: {fileID: 11400000, guid: 9147108f803e5f74db97187113d3dfe4, type: 2}
 --- !u!114 &1282297271168749079
 MonoBehaviour:

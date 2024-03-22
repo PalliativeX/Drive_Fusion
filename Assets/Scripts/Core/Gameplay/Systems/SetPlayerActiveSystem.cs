@@ -18,7 +18,10 @@ namespace Core.Gameplay
 
 		private void OnStateChanged(GameStateType state)
 		{
-			var player = World.Filter.With<HumanPlayer>().Build().First();
+			var player = World.Filter.With<HumanPlayer>().Build().FirstOrDefault();
+			if (player == null)
+				return;
+			
 			if (state != GameStateType.Gameplay)
 			{
 				player.TryRemove<Active>();

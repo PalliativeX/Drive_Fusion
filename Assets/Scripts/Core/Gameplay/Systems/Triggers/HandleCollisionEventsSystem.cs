@@ -53,7 +53,9 @@ namespace Core.Gameplay
 #endif
 					
 					var durability = entity.GetComponent<Durability>();
+					// float durabilityChange = _vehicles.CollisionCurve.Evaluate(collisionData.CollisionDot + 0.02f);
 					float durabilityChange = _vehicles.CollisionCurve.Evaluate(collisionData.CollisionDot);
+					Debug.Log(durabilityChange);
 					entity.ChangeDurability(durability.Value - durabilityChange);
 
 					_globalWorld.CreateSound(

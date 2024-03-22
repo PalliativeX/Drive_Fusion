@@ -13,6 +13,7 @@ namespace Core.Gameplay
 		private readonly RoadsConfig _roads;
 
 		private Filter _roadFilter;
+		private Filter _vehiclesFilter;
 
 		private int _turnGenerationPause;
 		private int _fuelStationGenerationPause;
@@ -25,11 +26,12 @@ namespace Core.Gameplay
 			_roads = roads;
 		}
 
-		public void OnAwake() => Initialize();
+		public void OnAwake() { }
 
-		private async UniTaskVoid Initialize()
+		public async UniTask Initialize()
 		{
 			_roadFilter = World.Filter.With<Road>().Build();
+			_vehiclesFilter = World.Filter.With<InteractiveVehicleSpeed>().Build();
 			
 			Entity road = World.CreateEntity();
 			road.SetComponent(new Road { Blocks = new LinkedList<EntityId>() });
@@ -143,6 +145,12 @@ namespace Core.Gameplay
 				entity.SetComponent(new Destroyed());
 
 			ListPool<Entity>.Release(pool);
+		}
+		
+		public void DestroyAllVehicleObjects() {
+			foreach (var vehicle in _vehiclesFilter)
+				if (!vehicle.Has<Destroyed>())
+					vehicle.SetComponent(new Destroyed());
 		}
 
 		public bool HandleRoadCreation(Entity roadBlock)

@@ -3,6 +3,7 @@ using Core.ECS;
 using Core.InputLogic;
 using Core.Levels;
 using Core.Menu;
+using Cysharp.Threading.Tasks;
 using Scellecs.Morpeh;
 using Unity.IL2CPP.CompilerServices;
 using UnityEngine;
@@ -18,22 +19,29 @@ namespace Core.Gameplay
 		private readonly LevelBehaviour _levelBehaviour;
 		private readonly VehicleSelectionService _vehicleSelectionService;
 		private readonly GameplayParametersProvider _gameplayParameters;
+		private readonly RoadCreator _roadCreator;
 
 		public World World { get; set; }
 
 		public GameplaySceneInitializer(
 			LevelBehaviour levelBehaviour,
 			VehicleSelectionService vehicleSelectionService,
-			GameplayParametersProvider gameplayParameters
+			GameplayParametersProvider gameplayParameters,
+			RoadCreator roadCreator
 		)
 		{
 			_levelBehaviour = levelBehaviour;
 			_vehicleSelectionService = vehicleSelectionService;
 			_gameplayParameters = gameplayParameters;
+			_roadCreator = roadCreator;
 		}
 
-		public void OnAwake()
+		public void OnAwake() => Initialize();
+
+		private async UniTaskVoid Initialize()
 		{
+			await _roadCreator.Initialize();
+			
 			Entity player = CreatePlayer();
 
 			// CreateCameraTarget(player);

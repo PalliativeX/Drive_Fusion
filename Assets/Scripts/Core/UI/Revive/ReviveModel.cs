@@ -66,6 +66,7 @@ namespace Core.UI.Revive
 			_world.TryGetEntity(blockId, out Entity block);
 			
 			_roadCreator.DestroyBlockObjects(blockId);
+			_roadCreator.DestroyAllVehicleObjects();
 
 			var carController = player.GetComponent<CarController>().Reference;
 
